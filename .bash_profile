@@ -14,6 +14,7 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permane
 eval "$(gh completion -s bash)"
 source <(oc completion bash)
 source <(tkn completion bash)
+eval "$(hub alias -s)"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 
