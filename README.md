@@ -1,6 +1,6 @@
 # Shihyu’s dotfiles
 
-![](./neofetch.png)
+![](./rsync_exclude/neofetch.png)
 
 ## Installation
 
