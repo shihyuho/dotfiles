@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"color_scheme": "Monokai.sublime-color-scheme",
 	"default_encoding": "UTF-8",
 	"default_line_ending": "unix",
 	"detect_indentation": false,
@@ -20,7 +20,7 @@
 		".git",
 		"node_modules"
 	],
-	"font_face": "Monaco",
+	"font_face": "Fira Code Retina",
 	"font_size": 13,
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
