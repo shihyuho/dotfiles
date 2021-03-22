@@ -96,6 +96,13 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
+brew install neofetch
+
+# Tools for work
+brew install kubectl
+brew install gh
+brew install oc
+brew install tkn
 
 # Remove outdated versions from the cellar.
 brew cleanup

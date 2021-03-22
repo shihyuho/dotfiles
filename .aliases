@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+alias lsa='exa --git -laa'
+alias l='exa --git -laa'
+alias ll='exa --git -l'
+alias la='exa --git -laa'
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."

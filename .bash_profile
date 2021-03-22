@@ -1,6 +1,22 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
+# lang
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+# https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+
+# Tools for work
+eval "$(gh completion -s bash)"
+source <(oc completion bash)
+source <(tkn completion bash)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.

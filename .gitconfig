@@ -124,10 +124,10 @@
 	changed = green
 	untracked = cyan
 
-[commit]
+#[commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	#gpgsign = false
 
 [diff]
 
@@ -181,3 +181,10 @@
 [init]
 
 	defaultBranch = main
+
+[include]
+  path = .gitalias
+
+[user]
+	name = Shihyu Ho
+	email = methodho@gmail.com
