@@ -6,7 +6,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'hzchirs/vim-material'
 Plug 'drewtempelmeyer/palenight.vim'
 
-" Disabled UP,DONW,LEFT,RIGHT
+" Vim HardTime
 Plug 'takac/vim-hardtime'
 
 call plug#end()
