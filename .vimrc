@@ -1,7 +1,28 @@
-" Use the Solarized Dark theme
+" Vim Plugin Manager: https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+
+" Theme
+Plug 'itchyny/lightline.vim'
+Plug 'hzchirs/vim-material'
+Plug 'drewtempelmeyer/palenight.vim'
+
+" Disabled UP,DONW,LEFT,RIGHT
+Plug 'takac/vim-hardtime'
+
+call plug#end()
+
+" Use the Material Dark theme
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+colorscheme vim-material
+let g:airline_theme='material'
+
+" Vim HardTime
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
+let g:list_of_normal_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_visual_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_disabled_keys = []
 
 " Make Vim more useful
 set nocompatible
