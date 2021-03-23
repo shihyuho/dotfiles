@@ -103,6 +103,7 @@ brew install kubectl
 brew install gh
 brew install oc
 brew install tkn
+brew install jenv
 
 # Remove outdated versions from the cellar.
 brew cleanup
