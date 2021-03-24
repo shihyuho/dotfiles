@@ -105,6 +105,7 @@ brew install oc
 brew install tkn
 brew install jenv
 brew install tmux
+brew install fzf
 
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -17,6 +17,10 @@ source <(tkn completion bash)
 eval "$(hub alias -s)"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# https://github.com/junegunn/fzf#settings
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER=','
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
