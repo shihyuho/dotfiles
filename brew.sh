@@ -104,6 +104,7 @@ brew install gh
 brew install oc
 brew install tkn
 brew install jenv
+brew install tmux
 
 # Remove outdated versions from the cellar.
 brew cleanup
