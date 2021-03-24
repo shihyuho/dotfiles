@@ -9,6 +9,9 @@ Plug 'drewtempelmeyer/palenight.vim'
 " Vim HardTime
 Plug 'takac/vim-hardtime'
 
+" Fzf
+Plug 'junegunn/fzf'
+
 call plug#end()
 
 " Use the Material Dark theme

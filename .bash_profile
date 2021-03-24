@@ -21,6 +21,8 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # https://github.com/junegunn/fzf#settings
 # Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER=','
+# Options to fzf command
+export FZF_COMPLETION_OPTS='--border --info=inline'
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
