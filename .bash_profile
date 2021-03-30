@@ -34,6 +34,9 @@ if type brew &>/dev/null; then
     done
   fi
 fi
+# jEnv: https://github.com/jenv/jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
