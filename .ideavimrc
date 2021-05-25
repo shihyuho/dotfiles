@@ -1,0 +1,46 @@
+" enable auto-switch feature
+set keep-english-in-normal
+set keep-english-in-normal-and-restore-in-insert
+
+" Press `f` to activate AceJump
+map f :action AceAction<CR>
+" Press `F` to activate Target Mode
+map F :action AceTargetAction<CR>
+
+" Allow cursor keys in insert mode
+set esckeys
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+" Add the g flag to search/replace by default
+set gdefault
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+" Change mapleader
+let mapleader=","
+
+" Enable syntax highlighting
+syntax on
+" Highlight current line
+set cursorline
+" Highlight searches
+set hlsearch
+" Ignore case of searches
+set ignorecase
+" Highlight dynamically as pattern is typed
+set incsearch
+" Always show status line
+set laststatus=2
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
+" Show the cursor position
+set ruler
+" Show the current mode
+set showmode
+" Use relative line numbers
+if exists("&relativenumber")
+	set relativenumber
+	au BufReadPost * set relativenumber
+endif
+" Start scrolling three lines before the horizontal window border
+set scrolloff=3
+

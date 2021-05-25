@@ -9,8 +9,20 @@ Plug 'drewtempelmeyer/palenight.vim'
 " Vim HardTime
 Plug 'takac/vim-hardtime'
 
+" Auto paires
+Plug 'jiangmiao/auto-pairs'
+
+" Surround
+Plug 'tpope/vim-surround'
+
+"Repeat
+Plug 'tpope/vim-repeat'
+
 " Fzf
 Plug 'junegunn/fzf'
+
+" Easy motion
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
