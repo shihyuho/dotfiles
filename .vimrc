@@ -24,6 +24,9 @@ Plug 'junegunn/fzf'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 
+" Automatic input method switching for vim
+Plug 'rlue/vim-barbaric'
+
 call plug#end()
 
 " Use the Material Dark theme
