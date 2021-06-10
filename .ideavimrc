@@ -34,6 +34,8 @@ set ruler
 set showmode
 " Enable line numbers¬
 set number¬
+" Disable error bells
+set noerrorbells
 " Use relative line numbers
 if exists("&relativenumber")
 	set relativenumber
