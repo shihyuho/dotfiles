@@ -2,12 +2,6 @@
 set keep-english-in-normal
 set keep-english-in-normal-and-restore-in-insert
 
-" Press `f` to activate AceJump
-map f :action AceAction<CR>
-" Press `F` to activate Target Mode
-map F :action AceTargetAction<CR>
-
-" Allow cursor keys in insert mode
 set esckeys
 " Allow backspace in insert mode
 set backspace=indent,eol,start
