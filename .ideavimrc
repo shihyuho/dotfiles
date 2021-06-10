@@ -12,6 +12,8 @@ set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=","
 
+" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+set clipboard+=unnamed
 " Enable syntax highlighting
 syntax on
 " Highlight current line
@@ -30,6 +32,8 @@ set nostartofline
 set ruler
 " Show the current mode
 set showmode
+" Enable line numbers¬
+set number¬
 " Use relative line numbers
 if exists("&relativenumber")
 	set relativenumber
