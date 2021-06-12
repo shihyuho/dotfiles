@@ -33,7 +33,7 @@ set ruler
 " Show the current mode
 set showmode
 " Enable line numbers¬
-set number¬
+set number
 " Disable error bells
 set noerrorbells
 " Use relative line numbers

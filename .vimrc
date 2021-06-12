@@ -27,6 +27,12 @@ Plug 'easymotion/vim-easymotion'
 " Automatic input method switching for vim
 Plug 'rlue/vim-barbaric'
 
+" The NERDTree is a file system explorer for the Vim editor.
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
 " Use the Material Dark theme
@@ -143,3 +149,7 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+set guifont=MesloLGS_Nerd_Font_Mono:h11
