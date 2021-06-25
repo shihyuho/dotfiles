@@ -1,6 +1,20 @@
+" Change mapleader
+let mapleader=","
+
 " enable auto-switch feature
 set keep-english-in-normal
-set keep-english-in-normal-and-restore-in-insert
+" set keep-english-in-normal-and-restore-in-insert
+
+" Press `f` to activate AceJump
+map <Space> :action AceAction<CR>
+
+" IdeaVim Emulated plugins: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
+" vim-surround
+set surround
+" vim-highlightedyank
+set highlightedyank
+" vim-paragraph-motion
+set vim-paragraph-motion
 
 set esckeys
 " Allow backspace in insert mode
@@ -9,9 +23,6 @@ set backspace=indent,eol,start
 set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
-" Change mapleader
-let mapleader=","
-
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard+=unnamed
 " Enable syntax highlighting

@@ -15,6 +15,12 @@ Plug 'jiangmiao/auto-pairs'
 " Surround
 Plug 'tpope/vim-surround'
 
+" Vim Paragraph Motion
+Plug 'dbakker/vim-paragraph-motion'
+
+" Make the yanked region apparent!
+Plug 'machakann/vim-highlightedyank'
+
 "Repeat
 Plug 'tpope/vim-repeat'
 
@@ -153,3 +159,8 @@ endif
 " NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 set guifont=MesloLGS_Nerd_Font_Mono:h11
+
+" vim-highlightedyank
+if !exists('##TextYankPost')
+  map y <Plug>(highlightedyank)
+endif
