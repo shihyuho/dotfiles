@@ -164,3 +164,8 @@ set guifont=MesloLGS_Nerd_Font_Mono:h11
 if !exists('##TextYankPost')
   map y <Plug>(highlightedyank)
 endif
+
+" Change cursor mode: https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes#For_iTerm2_on_OS_X
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
