@@ -4,6 +4,7 @@ let mapleader=","
 " enable auto-switch feature
 set keep-english-in-normal
 " set keep-english-in-normal-and-restore-in-insert
+set nokeep-english-in-normal-and-restore-in-insert
 
 " Press `f` to activate AceJump
 map <Space> :action AceAction<CR>
