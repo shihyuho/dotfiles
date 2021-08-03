@@ -108,7 +108,7 @@ brew install tmux
 brew install fzf
 brew install fd
 brew install hub
-brew install golang
+brew install go
 
 # Remove outdated versions from the cellar.
 brew cleanup
