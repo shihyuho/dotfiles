@@ -110,6 +110,7 @@ brew install go
 brew install exa
 brew install helm
 brew install maven
+brew install --cask hiddenbar
 brew tap AdoptOpenJDK/openjdk
 brew install --cask adoptopenjdk8
 brew install --cask adoptopenjdk11
