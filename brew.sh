@@ -97,6 +97,7 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 brew install neofetch
+brew install hub
 
 # Tools for work
 brew install kubectl
