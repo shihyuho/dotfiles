@@ -97,7 +97,6 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 brew install neofetch
-brew install hub
 
 # Tools for work
 brew install kubectl
@@ -108,6 +107,8 @@ brew install jenv
 brew install tmux
 brew install fzf
 brew install fd
+brew install hub
+brew install golang
 
 # Remove outdated versions from the cellar.
 brew cleanup
