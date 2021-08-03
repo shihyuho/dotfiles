@@ -109,6 +109,7 @@ brew install fzf
 brew install fd
 brew install hub
 brew install go
+brew install exa
 
 # Remove outdated versions from the cellar.
 brew cleanup
