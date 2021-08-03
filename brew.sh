@@ -108,6 +108,7 @@ brew install fd
 brew install hub
 brew install go
 brew install exa
+brew install helm
 brew install maven
 brew tap AdoptOpenJDK/openjdk
 brew install --cask adoptopenjdk8
