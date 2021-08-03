@@ -101,15 +101,18 @@ brew install neofetch
 # Tools for work
 brew install kubectl
 brew install gh
-brew install oc
+brew install openshift-cli
 brew install tkn
-brew install jenv
 brew install tmux
 brew install fzf
 brew install fd
 brew install hub
 brew install go
 brew install exa
+brew install maven
+brew tap AdoptOpenJDK/openjdk
+brew install --cask adoptopenjdk8
+brew install --cask adoptopenjdk11
 
 # Remove outdated versions from the cellar.
 brew cleanup
