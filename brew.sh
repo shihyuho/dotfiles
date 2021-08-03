@@ -102,7 +102,6 @@ brew install neofetch
 brew install kubectl
 brew install gh
 brew install openshift-cli
-brew install tkn
 brew install tmux
 brew install fzf
 brew install fd
