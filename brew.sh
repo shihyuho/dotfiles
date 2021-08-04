@@ -106,14 +106,23 @@ brew install tmux
 brew install fzf
 brew install fd
 brew install hub
-brew install go
 brew install exa
 brew install helm
 brew install maven
 brew install --cask hiddenbar
+
+# Language
+brew install go
+brew install node
 brew tap AdoptOpenJDK/openjdk
 brew install --cask adoptopenjdk8
 brew install --cask adoptopenjdk11
+
+# Font
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+## for iTerm2, 請在去 Preferences > Profiles > Text > Change Font 修改字形
+brew install --cask font-fira-code-nerd-font
 
 # Remove outdated versions from the cellar.
 brew cleanup
