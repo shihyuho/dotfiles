@@ -110,6 +110,7 @@ brew install exa
 brew install helm
 brew install maven
 brew install --cask hiddenbar
+brew install --cask ngrok
 
 # Language
 brew install go
