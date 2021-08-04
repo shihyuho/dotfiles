@@ -3,8 +3,11 @@ call plug#begin('~/.vim/plugged')
 
 " Theme
 Plug 'itchyny/lightline.vim'
-Plug 'hzchirs/vim-material'
+" Plug 'hzchirs/vim-material'
 Plug 'drewtempelmeyer/palenight.vim'
+
+" Improved syntax highlighting for various languages
+Plug 'sheerun/vim-polyglot'
 
 " Vim HardTime
 Plug 'takac/vim-hardtime'
@@ -50,6 +53,9 @@ call plug#end()
 colorscheme onedark
 let g:airline_theme='onedark'
 let g:onedark_termcolors=256
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
 
 " Vim HardTime
 let g:hardtime_default_on = 1
