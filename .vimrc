@@ -42,9 +42,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 " Use the Material Dark theme
-set background=dark
-colorscheme vim-material
-let g:airline_theme='material'
+"set background=dark
+"colorscheme vim-material
+"let g:airline_theme='material'
+
+" Use Onedatd theme
+colorscheme onedark
+let g:airline_theme='onedark'
+let g:onedark_termcolors=256
 
 " Vim HardTime
 let g:hardtime_default_on = 1
