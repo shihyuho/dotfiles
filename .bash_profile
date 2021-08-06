@@ -15,6 +15,9 @@ source <(oc completion bash)
 eval "$(hub alias -s)"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+# Use GNU watch command instead of kubectl [...] --watch
+[ -f ~/.kubectl_aliases ] && source \
+   <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # https://github.com/junegunn/fzf#settings
 # Use ~~ as the trigger sequence instead of the default **
