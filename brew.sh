@@ -99,16 +99,18 @@ brew install zopfli
 brew install neofetch
 
 # Tools for work
-brew install kubectl
 brew install gh
 brew install openshift-cli
+brew install kubernetes-cli
 brew install tmux
 brew install fzf
 brew install fd
 brew install hub
 brew install exa
 brew install helm
+brew install kustomize
 brew install maven
+brew install watch
 brew install --cask hiddenbar
 brew install --cask ngrok
 
