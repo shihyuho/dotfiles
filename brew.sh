@@ -105,7 +105,7 @@ brew install kubernetes-cli
 brew install tmux
 brew install fzf
 brew install fd
-brew install hub
+brew install gh
 brew install exa
 brew install helm
 brew install kustomize
