@@ -90,3 +90,7 @@ jdk() {
   export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
   java -version
 }
+
+# iTerm2 shell integration
+# https://iterm2.com/documentation-shell-integration.html
+source ~/.iterm2_shell_integration.bash
