@@ -113,6 +113,7 @@ brew install maven
 brew install watch
 brew install --cask hiddenbar
 brew install --cask ngrok
+brew install --cask switchhosts
 
 # Language
 brew install go
