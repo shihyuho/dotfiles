@@ -111,6 +111,8 @@ brew install helm
 brew install kustomize
 brew install maven
 brew install watch
+brew install nnn
+brew install zoxide
 brew install --cask hiddenbar
 brew install --cask ngrok
 brew install --cask switchhosts
