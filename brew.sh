@@ -104,6 +104,8 @@ brew install openshift-cli
 brew install kubernetes-cli
 brew install tmux
 brew install fzf
+brew install ccat
+brew install ripgrep
 brew install fd
 brew install gh
 brew install exa

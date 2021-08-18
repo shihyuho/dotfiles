@@ -7,7 +7,8 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+## setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+source <(kubectl completion bash)
 
 # Tools for work
 eval "$(gh completion -s bash)"
@@ -18,11 +19,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -f ~/.kubectl_aliases ] && source \
    <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# https://github.com/junegunn/fzf#settings
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER=','
-# Options to fzf command
-export FZF_COMPLETION_OPTS='--border --info=inline'
 # https://docs.brew.sh/Shell-Completion
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
@@ -34,6 +30,8 @@ if type brew &>/dev/null; then
     done
   fi
 fi
+[ -f ~/.forgit.bash ] && source ~/.forgit.bash
+[ -f ~/.nnn.bash ] && source ~/.nnn.bash
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -97,35 +95,7 @@ eval "$(zoxide init bash)"
 
 # iTerm2 shell integration
 # https://iterm2.com/documentation-shell-integration.html
-source ~/.iterm2_shell_integration.bash
+[ -f ~/.iterm2_shell_integration ] && source ~/.iterm2_shell_integration.bash
 
-# nnn: https://github.com/jarun/nnn
-## cd on quit
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-## nnn plugins
-export NNN_PLUG='d:diffs;v:imgview;z:autojump'
+# ccat: https://github.com/owenthereal/ccat
+alias cat=ccat
