@@ -6,33 +6,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-# https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-## setup autocomplete in bash into the current shell, bash-completion package should be installed first.
-source <(kubectl completion bash)
-
-# Tools for work
-eval "$(gh completion -s bash)"
-source <(oc completion bash)
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
-# Use GNU watch command instead of kubectl [...] --watch
-[ -f ~/.kubectl_aliases ] && source \
-   <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# https://docs.brew.sh/Shell-Completion
-if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-    done
-  fi
-fi
-[ -f ~/.forgit.bash ] && source ~/.forgit.bash
-[ -f ~/.nnn.bash ] && source ~/.nnn.bash
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
@@ -78,8 +51,7 @@ fi;
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults;
 
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+##### For Work
 
 # Switch between different JDK versions
 # https://github.com/AdoptOpenJDK/homebrew-openjdk
@@ -95,7 +67,38 @@ eval "$(zoxide init bash)"
 
 # iTerm2 shell integration
 # https://iterm2.com/documentation-shell-integration.html
-[ -f ~/.iterm2_shell_integration ] && source ~/.iterm2_shell_integration.bash
+[ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
 
 # ccat: https://github.com/owenthereal/ccat
 alias cat=ccat
+
+# https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+## setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+source <(kubectl completion bash)
+source <(oc completion bash)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# kubectl-aliases: https://github.com/ahmetb/kubectl-aliases
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+## Use GNU watch command instead of kubectl [...] --watch
+[ -f ~/.kubectl_aliases ] && source \
+   <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
+
+# https://docs.brew.sh/Shell-Completion
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
+fi
+
+# GitHub CLI: https://github.com/cli/cli
+eval "$(gh completion -s bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.forgit.bash ] && source ~/.forgit.bash
+[ -f ~/.nnn.bash ] && source ~/.nnn.bash

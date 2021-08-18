@@ -27,5 +27,6 @@ n ()
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
+
 ## nnn plugins
 export NNN_PLUG='d:diffs;v:imgview;z:autojump'

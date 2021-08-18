@@ -115,6 +115,7 @@ brew install maven
 brew install watch
 brew install nnn
 brew install zoxide
+brew install telnet
 brew install --cask hiddenbar
 brew install --cask ngrok
 brew install --cask switchhosts
@@ -122,9 +123,9 @@ brew install --cask switchhosts
 # Language
 brew install go
 brew install node
-brew tap AdoptOpenJDK/openjdk
-brew install --cask adoptopenjdk8
-brew install --cask adoptopenjdk11
+brew tap homebrew/cask-versions
+brew install --cask temurin8
+brew install --cask temurin11
 
 # Font
 brew tap homebrew/cask-fonts
