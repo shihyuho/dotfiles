@@ -119,6 +119,7 @@ brew install telnet
 brew install --cask hiddenbar
 brew install --cask ngrok
 brew install --cask switchhosts
+brew install --cask dbeaver-community
 
 # Language
 brew install go
