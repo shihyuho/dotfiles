@@ -116,6 +116,7 @@ brew install watch
 brew install nnn
 brew install zoxide
 brew install telnet
+brew install redis
 brew install --cask hiddenbar
 brew install --cask ngrok
 brew install --cask switchhosts
