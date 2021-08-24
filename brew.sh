@@ -121,6 +121,8 @@ brew install --cask ngrok
 brew install --cask switchhosts
 brew install --cask dbeaver-community
 brew install --cask atom
+brew tap mkchoi212/fac https://github.com/mkchoi212/fac.git
+brew install fac
 
 # Language
 brew install go
