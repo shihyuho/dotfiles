@@ -121,6 +121,7 @@ brew install --cask hiddenbar
 brew install --cask ngrok
 brew install --cask switchhosts
 brew install --cask dbeaver-community
+brew install --cask atom
 
 # Language
 brew install go
