@@ -69,9 +69,6 @@ eval "$(zoxide init bash)"
 # https://iterm2.com/documentation-shell-integration.html
 [ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
 
-# ccat: https://github.com/owenthereal/ccat
-alias cat=ccat
-
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 ## setup autocomplete in bash into the current shell, bash-completion package should be installed first.
 source <(kubectl completion bash)
