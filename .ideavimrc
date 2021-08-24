@@ -1,21 +1,22 @@
-" Change mapleader
-let mapleader=","
+" Use comma as leader key, there are other modifier keys in this config,
+" like space, \, t(in normal mode for toggle something),
+" g(in normal mode for goto somewhere)
+let mapleader = ","
+let g:mapleader = ","
 
 " enable auto-switch feature
 set keep-english-in-normal
 " set keep-english-in-normal-and-restore-in-insert
 set nokeep-english-in-normal-and-restore-in-insert
 
-" Press `f` to activate AceJump
+" Press `space` to activate AceJump
 map <Space> :action AceAction<CR>
 
 " IdeaVim Emulated plugins: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
-" vim-surround
 set surround
-" vim-highlightedyank
 set highlightedyank
-" vim-paragraph-motion
 set vim-paragraph-motion
+set ideajoin
 
 set esckeys
 " Allow backspace in insert mode
@@ -55,4 +56,3 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
-
