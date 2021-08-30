@@ -33,6 +33,8 @@ syntax on
 set cursorline
 " Highlight searches
 set hlsearch
+" Clear highlights on hitting ESC twice
+nnoremap <esc><esc> :noh<return>
 " Ignore case of searches
 set ignorecase
 " Highlight dynamically as pattern is typed
