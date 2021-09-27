@@ -99,3 +99,6 @@ eval "$(gh completion -s bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.forgit.bash ] && source ~/.forgit.bash
 [ -f ~/.nnn.bash ] && source ~/.nnn.bash
+
+# https://formulae.brew.sh/formula/gnu-sed
+export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
