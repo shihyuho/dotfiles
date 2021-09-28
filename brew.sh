@@ -133,6 +133,7 @@ brew install node
 brew tap homebrew/cask-versions
 brew install --cask temurin8
 brew install --cask temurin11
+brew install --cask macdown
 
 # Font
 brew tap homebrew/cask-fonts
