@@ -128,6 +128,7 @@ brew install fac
 brew install jq
 brew install buildpacks/tap/pack
 brew install dive
+brew install --cask keycastr
 
 # Language
 brew install go
