@@ -129,6 +129,8 @@ brew install jq
 brew install buildpacks/tap/pack
 brew install dive
 brew install --cask keycastr
+brew install jsonnet
+brew install tldr
 
 # Language
 brew install go
