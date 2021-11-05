@@ -131,6 +131,7 @@ brew install dive
 brew install --cask keycastr
 brew install jsonnet
 brew install tldr
+brew install kafkacat
 
 # Language
 brew install go
