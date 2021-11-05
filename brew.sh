@@ -134,7 +134,7 @@ brew install tldr
 
 # Language
 brew install go
-brew install node
+brew install node@16
 brew tap homebrew/cask-versions
 brew install --cask temurin8
 brew install --cask temurin11
