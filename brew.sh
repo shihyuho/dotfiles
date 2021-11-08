@@ -99,6 +99,7 @@ brew install zopfli
 brew install neofetch
 
 # Tools for work
+brew install kube-ps1
 brew install gh
 brew install openshift-cli
 brew install kubernetes-cli
@@ -140,6 +141,7 @@ brew tap homebrew/cask-versions
 brew install --cask temurin8
 brew install --cask temurin11
 brew install --cask macdown
+brew install hugo
 
 # Font
 brew tap homebrew/cask-fonts
