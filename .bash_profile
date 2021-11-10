@@ -102,3 +102,6 @@ eval "$(gh completion -s bash)"
 
 # https://formulae.brew.sh/formula/gnu-sed
 export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+
+# https://github.com/kubernetes/kompose
+source <(kompose completion bash)
