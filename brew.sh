@@ -133,6 +133,7 @@ brew install --cask keycastr
 brew install jsonnet
 brew install tldr
 brew install kafkacat
+brew install kompose
 
 # Language
 brew install go
