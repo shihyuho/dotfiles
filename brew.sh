@@ -134,6 +134,7 @@ brew install jsonnet
 brew install tldr
 brew install kafkacat
 brew install kompose
+brew install marp-cli
 
 # Language
 brew install go
