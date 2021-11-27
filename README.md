@@ -33,3 +33,9 @@ When setting up a new Mac, you may want to set some sensible macOS defaults:
 ```bash
 ./brew.sh
 ```
+
+### Install Go executables
+
+```bash
+./go-install.sh
+```
