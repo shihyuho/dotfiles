@@ -144,6 +144,7 @@ brew install --cask temurin8
 brew install --cask temurin11
 brew install --cask macdown
 brew install hugo
+brew install --cask rectangle
 
 # Font
 brew tap homebrew/cask-fonts
