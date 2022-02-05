@@ -63,7 +63,7 @@ jdk() {
 
 # zoxide: A smarter cd command for your terminal
 # https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init bash)"
+eval "$(zoxide init bash --cmd j)"
 
 # iTerm2 shell integration
 # https://iterm2.com/documentation-shell-integration.html
