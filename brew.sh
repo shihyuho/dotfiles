@@ -139,7 +139,7 @@ brew install gnupg2
 
 # Language
 brew install go
-brew install node@16
+brew install nvm
 brew tap homebrew/cask-versions
 brew install --cask temurin8
 brew install --cask temurin11
