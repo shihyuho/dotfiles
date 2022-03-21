@@ -135,6 +135,7 @@ brew install tldr
 brew install kafkacat
 brew install kompose
 brew install marp-cli
+brew install gnupg2
 
 # Language
 brew install go
