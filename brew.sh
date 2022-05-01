@@ -137,6 +137,7 @@ brew install kompose
 brew install marp-cli
 brew install gnupg2
 brew install --cask fig
+brew install bitwarden-cli
 
 # Language
 brew install go
