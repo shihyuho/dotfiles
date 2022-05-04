@@ -138,6 +138,7 @@ brew install marp-cli
 brew install gnupg2
 brew install --cask fig
 brew install bitwarden-cli
+brew install pnpm
 
 # Language
 brew install go
