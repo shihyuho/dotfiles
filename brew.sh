@@ -124,8 +124,6 @@ brew install --cask switchhosts
 brew install --cask dbeaver-community
 brew install --cask openvpn-connect
 brew install --cask atom
-brew tap mkchoi212/fac https://github.com/mkchoi212/fac.git
-brew install fac
 brew install jq
 brew install buildpacks/tap/pack
 brew install dive
