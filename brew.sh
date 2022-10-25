@@ -137,6 +137,7 @@ brew install gnupg2
 brew install --cask fig
 brew install bitwarden-cli
 brew install pnpm
+brew install jesseduffield/lazygit/lazygit
 
 # Language
 brew install go
