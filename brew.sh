@@ -146,7 +146,6 @@ brew tap homebrew/cask-versions
 brew install --cask temurin8
 brew install --cask temurin11
 brew install --cask temurin17
-brew install --cask graalvm/tap/graalvm-ce-lts-java11
 brew install --cask graalvm/tap/graalvm-ce-java17
 brew install --cask macdown
 brew install hugo

@@ -57,7 +57,12 @@ complete -W "NSGlobalDomain" defaults;
 # https://github.com/AdoptOpenJDK/homebrew-openjdk
 jdk() {
   version=$1
-  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+	if [ -z "$version" ]
+	then
+		/usr/libexec/java_home -V
+	else
+  	export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+	fi
   java -version
 }
 
