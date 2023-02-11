@@ -150,6 +150,7 @@ brew install --cask graalvm/tap/graalvm-ce-java17
 brew install --cask macdown
 brew install hugo
 brew install --cask rectangle
+brew install --cask alt-tab
 
 # Font
 brew tap homebrew/cask-fonts
