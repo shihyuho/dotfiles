@@ -11,6 +11,7 @@ function doIt() {
 		--exclude "bootstrap.sh" \
 		--exclude "brew.sh" \
 		--exclude "go-install.sh" \
+		--exclude "init" \
 		--exclude "Makefile" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
