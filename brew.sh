@@ -147,6 +147,11 @@ brew install --cask jetbrains-toolbox
 brew install --cask snipaste
 brew install --cask spotify
 brew install --cask slack
+brew install --cask bitwarden
+brew install --cask alfred
+brew install --cask drawio
+brew install --cask sublime-text
+brew install --cask visual-studio-code
 
 # Language
 brew install go
