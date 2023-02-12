@@ -53,18 +53,22 @@ complete -W "NSGlobalDomain" defaults;
 
 ##### For Work
 
-# Switch between different JDK versions
+# Switch between different JDK versions === Deprecated, use SDKMAN now===
 # https://github.com/AdoptOpenJDK/homebrew-openjdk
-jdk() {
-  version=$1
-	if [ -z "$version" ]
-	then
-		/usr/libexec/java_home -V
-	else
-  	export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-	fi
-  java -version
-}
+# jdk() {
+#   version=$1
+# 	if [ -z "$version" ]
+# 	then
+# 		/usr/libexec/java_home -V
+# 	else
+#   	export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+# 	fi
+#   java -version
+# }
+# https://github.com/sdkman/homebrew-tap
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
 
 # zoxide: A smarter cd command for your terminal
 # https://github.com/ajeetdsouza/zoxide
@@ -128,7 +132,3 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
-
-# https://github.com/sdkman/homebrew-tap
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
