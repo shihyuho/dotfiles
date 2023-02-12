@@ -33,7 +33,7 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+# brew install wget --with-iri
 
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
@@ -138,6 +138,11 @@ brew install bitwarden-cli
 brew install pnpm
 brew install jesseduffield/lazygit/lazygit
 brew install ncdu
+brew install --cask macdown
+brew install hugo
+brew install --cask rectangle
+brew install --cask alt-tab
+brew install --cask iterm2
 
 # Language
 brew install go
@@ -146,11 +151,6 @@ brew tap homebrew/cask-versions
 brew install --cask temurin8
 brew install --cask temurin11
 brew install --cask temurin17
-brew install --cask graalvm/tap/graalvm-ce-java17
-brew install --cask macdown
-brew install hugo
-brew install --cask rectangle
-brew install --cask alt-tab
 
 # Font
 brew tap homebrew/cask-fonts
