@@ -150,10 +150,13 @@ brew install --cask spotify
 # Language
 brew install go
 brew install nvm
-brew tap homebrew/cask-versions
-brew install --cask temurin8
-brew install --cask temurin11
-brew install --cask temurin17
+brew tap sdkman/tap
+brew install sdkman-cli
+# brew tap homebrew/cask-versions
+# brew install --cask temurin8
+# brew install --cask temurin11
+# brew install --cask temurin17
+# brew install --cask graalvm/tap/graalvm-ce-java17
 
 # Font
 brew tap homebrew/cask-fonts
