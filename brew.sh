@@ -118,12 +118,10 @@ brew install zoxide
 brew install telnet
 brew install redis
 brew install subversion
-brew install --cask hiddenbar
 brew install --cask ngrok
 brew install --cask switchhosts
 brew install --cask dbeaver-community
 brew install --cask openvpn-connect
-brew install --cask atom
 brew install jq
 brew install buildpacks/tap/pack
 brew install dive
