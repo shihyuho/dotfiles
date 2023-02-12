@@ -152,17 +152,13 @@ brew install --cask alfred
 brew install --cask drawio
 brew install --cask sublime-text
 brew install --cask visual-studio-code
+brew install --cask lens
 
 # Language
 brew install go
 brew install nvm
 brew tap sdkman/tap
 brew install sdkman-cli
-# brew tap homebrew/cask-versions
-# brew install --cask temurin8
-# brew install --cask temurin11
-# brew install --cask temurin17
-# brew install --cask graalvm/tap/graalvm-ce-java17
 
 # Font
 brew tap homebrew/cask-fonts
