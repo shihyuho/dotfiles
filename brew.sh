@@ -146,6 +146,7 @@ brew install --cask iterm2
 brew install --cask jetbrains-toolbox
 brew install --cask snipaste
 brew install --cask spotify
+brew install --cask slack
 
 # Language
 brew install go
