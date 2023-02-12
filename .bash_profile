@@ -69,7 +69,6 @@ complete -W "NSGlobalDomain" defaults;
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
-
 # zoxide: A smarter cd command for your terminal
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init bash --cmd j)"
