@@ -144,6 +144,7 @@ brew install --cask rectangle
 brew install --cask alt-tab
 brew install --cask iterm2
 brew install --cask jetbrains-toolbox
+brew install --cask snipaste
 
 # Language
 brew install go
