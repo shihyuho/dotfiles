@@ -9,6 +9,9 @@ function doIt() {
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
+		--exclude "brew.sh" \
+		--exclude "go-install.sh" \
+		--exclude "Makefile" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		--exclude "rsync_exclude/" \

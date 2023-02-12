@@ -102,7 +102,7 @@ else
 fi;
 
 # https://github.com/jonmosco/kube-ps1
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+source "$HOME/.kube-ps1.sh"
 
 # Set the terminal title and prompt.
 PS1="\[\033]0;\W\007\]"; # working directory base name
@@ -120,7 +120,3 @@ export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
 export PS2;
-
-# Set Golang env, ref: https://golang.org/doc/gopath_code#GOPATH
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin

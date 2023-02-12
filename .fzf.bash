@@ -10,7 +10,7 @@ fi
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.bash"
+source "$HOME/.key-bindings.bash"
 
 # https://github.com/junegunn/fzf#settings
 # Use ~~ as the trigger sequence instead of the default **

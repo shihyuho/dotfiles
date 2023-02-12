@@ -53,6 +53,9 @@ complete -W "NSGlobalDomain" defaults;
 
 ##### For Work
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Switch between different JDK versions === Deprecated, use SDKMAN now===
 # https://github.com/AdoptOpenJDK/homebrew-openjdk
 # jdk() {
@@ -131,3 +134,8 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
+
+# Set Golang env, ref: https://golang.org/doc/gopath_code#GOPATH
+export PATH=/opt/homebrew/bin:$PATH
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOPATH/bin
