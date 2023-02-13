@@ -152,8 +152,8 @@ brew install --cask sublime-text
 brew install --cask visual-studio-code
 brew install --cask lens
 brew install ghq
-brew install --cask zoom
 brew install --cask webex
+brew install --cask microsoft-teams
 
 # Language
 brew install go
