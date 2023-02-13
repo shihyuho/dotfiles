@@ -165,5 +165,9 @@ brew install --cask font-fira-code
 ## for iTerm2, 請在去 Preferences > Profiles > Text > Change Font 修改字形
 brew install --cask font-fira-code-nerd-font
 
+# https://github.com/vChewing/vChewing-macOS
+brew tap windwords/vchewing
+brew install --cask vchewing
+
 # Remove outdated versions from the cellar.
 brew cleanup
