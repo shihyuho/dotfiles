@@ -74,7 +74,7 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 
 # zoxide: A smarter cd command for your terminal
 # https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init bash --cmd j)"
+eval "$(zoxide init bash --cmd z)"
 
 # iTerm2 shell integration
 # https://iterm2.com/documentation-shell-integration.html
@@ -143,4 +143,13 @@ export PATH=$PATH:$GOPATH/bin
 # Add scripts for JetBrains Toolbox
 export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
 
+# https://github.com/x-motemen/ghq
 export GHQ_ROOT="$HOME/code"
+function ghq-fzf() {
+  local selected_dir=$(ghq list -p | _fzf_comprun cd --query="$1")
+
+  if [ -n "$selected_dir" ]; then
+    cd "${selected_dir}"
+  fi
+}
+
