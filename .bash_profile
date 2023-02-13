@@ -142,3 +142,5 @@ export PATH=$PATH:$GOPATH/bin
 
 # Add scripts for JetBrains Toolbox
 export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
+
+export GHQ_ROOT="$HOME/code"

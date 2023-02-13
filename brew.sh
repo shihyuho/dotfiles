@@ -151,6 +151,7 @@ brew install --cask drawio
 brew install --cask sublime-text
 brew install --cask visual-studio-code
 brew install --cask lens
+brew install ghq
 
 # Language
 brew install go

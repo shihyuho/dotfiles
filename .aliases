@@ -16,8 +16,8 @@ alias -- -="cd -"
 # Shortcuts
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias ~gh="cd ~/code/github"
-alias g="git"
+alias ~c="cd ~/code"
+alias g="ghq"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
