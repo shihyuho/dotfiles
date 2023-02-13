@@ -156,3 +156,5 @@ function ghq-fzf() {
 	fi
 }
 
+# For docker run on Apple Silicon
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
