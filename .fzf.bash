@@ -8,15 +8,15 @@ fi
 # ---------------
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.bash" 2> /dev/null
 
-# Key bindings
-# ------------
-source "$HOME/.key-bindings.bash"
-
 # https://github.com/junegunn/fzf#settings
 # Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER=','
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --reverse --info=inline'
+
+# Key bindings
+# ------------
+source "$HOME/.key-bindings.bash"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.

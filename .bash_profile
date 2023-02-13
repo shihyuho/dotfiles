@@ -146,10 +146,13 @@ export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
 # https://github.com/x-motemen/ghq
 export GHQ_ROOT="$HOME/code"
 function ghq-fzf() {
-  local selected_dir=$(ghq list -p | _fzf_comprun cd --query="$1")
-
-  if [ -n "$selected_dir" ]; then
-    cd "${selected_dir}"
-  fi
+	if [ "$1" = "$HOME" ]; then
+		cd "$GHQ_ROOT"
+	else
+		local selected_dir=$(ghq list | fzf --query="$1" --preview "tree -C $GHQ_ROOT/{} | head -200" )
+		if [ -n "$selected_dir" ]; then
+			cd "$GHQ_ROOT/${selected_dir}"
+		fi
+	fi
 }
 
