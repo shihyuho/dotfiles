@@ -14,6 +14,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # https://github.com/x-motemen/ghq
+alias g="ghq"
 alias j="ghq-fzf"
 
 # Detect which `ls` flavor is in use
