@@ -108,13 +108,13 @@ source "$HOME/.kube-ps1.sh"
 # Set the terminal title and prompt.
 # https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 PROMPT="
-${grey}[%*] %B"; # newline
-PROMPT+="${userStyle}%n"; # username
-PROMPT+="${white} at ";
-PROMPT+="${hostStyle}%m"; # host
-PROMPT+="${white} in ";
-PROMPT+="${green}%~"; # working directory full path
-PROMPT+="\$(prompt_git \"${white} on ${violet}\" \"${blue}\") "; # Git repository details
+%F${grey}[%*]%f %B"; # newline
+PROMPT+="%F${userStyle}%n%f"; # username
+PROMPT+="%F${white} at %f";
+PROMPT+="%F${hostStyle}%m%f"; # host
+PROMPT+="%F${white} in %f";
+PROMPT+="%F${green}%~%f"; # working directory full path
+PROMPT+="%F\$(prompt_git \"${white} on ${violet}\" \"${blue}\") %f"; # Git repository details
 PROMPT+="\$(kube_ps1)"; # Kubernetes prompt
 PROMPT+="
 $ %b";
