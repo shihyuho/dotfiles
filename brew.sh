@@ -145,6 +145,7 @@ brew install ghq
 brew install --cask webex
 brew install --cask microsoft-teams
 brew install --cask notion
+brew install --cask mimestream
 brew install zsh-syntax-highlighting
 
 # Language
