@@ -4,10 +4,6 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
 
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.bash" 2> /dev/null
-
 # https://github.com/junegunn/fzf#settings
 # Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER=','
@@ -16,7 +12,7 @@ export FZF_COMPLETION_OPTS='--border --reverse --info=inline'
 
 # Key bindings
 # ------------
-source "$HOME/.key-bindings.bash"
+source "$HOME/.key-bindings.zsh"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.

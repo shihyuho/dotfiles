@@ -22,15 +22,6 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed
-# Install a modern version of Bash.
-brew install bash
-brew install bash-completion2
-
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
-fi;
 
 # Install `wget` with IRI support.
 # brew install wget --with-iri
@@ -113,7 +104,6 @@ brew install helm
 brew install kustomize
 brew install maven
 brew install watch
-brew install nnn
 brew install zoxide
 brew install telnet
 brew install redis
@@ -154,6 +144,8 @@ brew install --cask lens
 brew install ghq
 brew install --cask webex
 brew install --cask microsoft-teams
+brew install --cask notion
+brew install zsh-syntax-highlighting
 
 # Language
 brew install go

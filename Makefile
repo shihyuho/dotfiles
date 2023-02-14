@@ -7,3 +7,9 @@ help: ## Display this help.
 
 source: ## Update settings while avoiding the confirmation prompt.
 	set -- -f; source bootstrap.sh
+
+brew: ## Install Homebrew formulas.
+	./brew
+
+go-install: ## Install Go executables.
+	./go-install.sh

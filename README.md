@@ -20,15 +20,7 @@ Alternatively, to update while avoiding the confirmation prompt:
 set -- -f; source bootstrap.sh
 ```
 
-### Sensible macOS defaults (沒在用)
-
-When setting up a new Mac, you may want to set some sensible macOS defaults:
-
-```bash
-./.macos
-```
-
-### Install Homebrew formulae
+### Install Homebrew formulas
 
 ```bash
 ./brew.sh

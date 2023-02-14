@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 cd "$(dirname "${BASH_SOURCE}")";
 
@@ -15,9 +15,9 @@ function doIt() {
 		--exclude "Makefile" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
+		--exclude ".editorconfig" \
 		--exclude "rsync_exclude/" \
 		-avh --no-perms . ~;
-	source ~/.bash_profile;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
