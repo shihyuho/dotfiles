@@ -1,8 +1,6 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
-source $HOME/.exports
-
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 

@@ -1,7 +1,9 @@
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
-
+source $HOME/.exports
 source $HOME/.aliases
 source $HOME/.zsh_prompt
+
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 # Enabling the Zsh Completion System
 autoload -Uz compinit promptinit
