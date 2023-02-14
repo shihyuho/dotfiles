@@ -7,9 +7,9 @@ FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 # Enabling the Zsh Completion System
 autoload -Uz compinit promptinit
-
-# Case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+## case-insensitive (all) completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+compinit
 
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
