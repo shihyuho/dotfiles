@@ -88,8 +88,6 @@ brew install gh
 brew install exa
 brew install helm
 brew install kustomize
-brew install maven
-brew install watch
 brew install zoxide
 brew install telnet
 brew install redis
@@ -139,6 +137,7 @@ brew install go
 brew install nvm
 brew tap sdkman/tap
 brew install sdkman-cli
+sdk install java
 
 # Font
 brew tap homebrew/cask-fonts
