@@ -11,27 +11,14 @@ brew upgrade
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
-# Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
-ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+# Install GNU tools; see https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+brew install autoconf binutils coreutils diffutils ed findutils flex gawk \
+    gnu-indent gnu-sed gnu-tar gnu-which gpatch grep gzip less m4 make nano \
+    screen watch wdiff wget zip
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed
 
-# Install `wget` with IRI support.
-# brew install wget --with-iri
-
-# Install GnuPG to enable PGP-signing commits.
-brew install gnupg
-
-# Install more recent versions of some macOS tools.
-# brew install vim --with-override-system-vi
-brew install grep
 brew install openssh
 brew install screen
 brew install php
@@ -46,7 +33,6 @@ brew install woff2
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install aircrack-ng
 brew install bfg
-brew install binutils
 brew install binwalk
 brew install cifer
 brew install dex2jar
@@ -121,7 +107,6 @@ brew install tldr
 brew install kafkacat
 brew install kompose
 brew install marp-cli
-brew install gnupg2
 brew install bitwarden-cli
 brew install pnpm
 brew install jesseduffield/lazygit/lazygit
@@ -140,7 +125,6 @@ brew install --cask raycast
 brew install --cask drawio
 brew install --cask sublime-text
 brew install --cask visual-studio-code
-brew install --cask lens
 brew install ghq
 brew install --cask webex
 brew install --cask microsoft-teams
@@ -149,7 +133,6 @@ brew install --cask mimestream
 brew install zsh-syntax-highlighting
 brew install --cask beyond-compare
 brew install --cask aerial
-brew install glow
 
 # Language
 brew install go

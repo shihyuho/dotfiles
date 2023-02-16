@@ -2,6 +2,9 @@ source $HOME/.exports
 source $HOME/.aliases
 source $HOME/.zsh_prompt
 
+# Set GNU tools as default; see: https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+for d in $(brew --prefix)/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 

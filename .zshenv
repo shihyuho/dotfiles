@@ -13,9 +13,6 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 # https://iterm2.com/documentation-shell-integration.html
 [ -f $HOME/.iterm2_shell_integration.zsh ] && source $HOME/.iterm2_shell_integration.zsh
 
-# https://formulae.brew.sh/formula/gnu-sed
-export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-
 # FZF
 source "$HOME/.fzf.zsh"
 
@@ -46,7 +43,7 @@ function ghq-fzf() {
 	if [ "$1" = "$HOME" ]; then
 		cd "$GHQ_ROOT"
 	else
-		local selected_dir=$(ghq list | fzf --height ${FZF_TMUX_HEIGHT:-40%} --cycle --info=inline --reverse --border --select-1 --query="$1" --preview "(cat $GHQ_ROOT/{}/README.md 2>/dev/null || tree -C $GHQ_ROOT/{}) | head -100")
+		local selected_dir=$(ghq list | fzf --height ${FZF_TMUX_HEIGHT:-40%} --cycle --info=inline --reverse --border --select-1 --query="$1" --preview "(bat --style=plain --color=always $GHQ_ROOT/{}/README.md 2>/dev/null || tree -C $GHQ_ROOT/{}) | head -100")
 		if [ -n "$selected_dir" ]; then
 			cd "$GHQ_ROOT/${selected_dir}"
 		fi
@@ -55,4 +52,3 @@ function ghq-fzf() {
 
 # For docker run on Apple Silicon
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
-
