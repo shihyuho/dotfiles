@@ -136,7 +136,6 @@ brew install --cask snipaste
 brew install --cask spotify
 brew install --cask slack
 brew install --cask bitwarden
-# brew install --cask alfred
 brew install --cask raycast
 brew install --cask drawio
 brew install --cask sublime-text
@@ -149,6 +148,8 @@ brew install --cask notion
 brew install --cask mimestream
 brew install zsh-syntax-highlighting
 brew install --cask beyond-compare
+brew install --cask aerial
+brew install glow
 
 # Language
 brew install go

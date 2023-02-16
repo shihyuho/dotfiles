@@ -46,7 +46,7 @@ function ghq-fzf() {
 	if [ "$1" = "$HOME" ]; then
 		cd "$GHQ_ROOT"
 	else
-		local selected_dir=$(ghq list | fzf --select-1 --query="$1" --preview "tree -C $GHQ_ROOT/{} | head -200")
+		local selected_dir=$(ghq list | fzf --height ${FZF_TMUX_HEIGHT:-40%} --info=inline --reverse --border --select-1 --query="$1" --preview "(cat $GHQ_ROOT/{}/README.md 2>/dev/null || tree -C $GHQ_ROOT/{}) | head -100")
 		if [ -n "$selected_dir" ]; then
 			cd "$GHQ_ROOT/${selected_dir}"
 		fi
