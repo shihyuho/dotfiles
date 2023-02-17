@@ -43,11 +43,6 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh --cmd z)"
 
-# https://github.com/pyenv/pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # https://github.com/nvm-sh
 # https://github.com/nvm-sh/nvm#macos-troubleshooting
 export NVM_DIR="$HOME/.nvm"

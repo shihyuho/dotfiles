@@ -137,7 +137,6 @@ brew install --cask aerial
 # Language
 brew install go
 brew install nvm
-brew install pyenv
 
 # Font
 brew tap homebrew/cask-fonts
