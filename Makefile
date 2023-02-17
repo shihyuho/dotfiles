@@ -9,7 +9,7 @@ source: ## Update settings while avoiding the confirmation prompt.
 	set -- -f; source bootstrap.sh
 
 brew: ## Install Homebrew formulas.
-	./brew
+	sh brew.sh
 
 go-install: ## Install Go executables.
-	./go-install.sh
+	sh go-install.sh

@@ -42,3 +42,14 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # zoxide: A smarter cd command for your terminal
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh --cmd z)"
+
+# https://sdkman.io
+# SDKMAN 我們故意不用 homebrew 安裝, 其原因是 brew 安裝的 SDKMAN 沒辦法指定 SDKMAN_DIR
+# 又 homebrew 安裝的 SDKMAN_DIR 會預設在 homebrew 中該 formula 下, 造成日後更新 SDKMAN 時會遺失安裝過的 sdk
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR=$HOME/.sdkman
+if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
+  source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+else
+  echo "Warning: '${SDKMAN_DIR}/bin/sdkman-init.sh' not found. Run 'curl -s \"https://get.sdkman.io\" | bash' to install SDKMAN!"
+fi

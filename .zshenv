@@ -4,11 +4,6 @@ export PATH="$HOME/bin:$PATH";
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Switch between different JDK versions === Deprecated, use SDKMAN now===
-# https://github.com/sdkman/homebrew-tap
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
 # iTerm2 shell integration
 # https://iterm2.com/documentation-shell-integration.html
 [ -f $HOME/.iterm2_shell_integration.zsh ] && source $HOME/.iterm2_shell_integration.zsh

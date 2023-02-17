@@ -102,7 +102,7 @@ brew install dive
 brew install --cask keycastr
 brew install jsonnet
 brew install tldr
-brew install kafkacat
+brew install kcat
 brew install kompose
 brew install marp-cli
 brew install bitwarden-cli
@@ -135,9 +135,6 @@ brew install --cask aerial
 # Language
 brew install go
 brew install nvm
-brew tap sdkman/tap
-brew install sdkman-cli
-sdk install java
 
 # Font
 brew tap homebrew/cask-fonts
