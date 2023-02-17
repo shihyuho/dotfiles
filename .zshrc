@@ -43,6 +43,18 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh --cmd z)"
 
+# https://github.com/pyenv/pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# https://github.com/nvm-sh
+# https://github.com/nvm-sh/nvm#macos-troubleshooting
+export NVM_DIR="$HOME/.nvm"
+mkdir -p ${NVM_DIR}
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # https://sdkman.io
 # SDKMAN 我們故意不用 homebrew 安裝, 其原因是 brew 安裝的 SDKMAN 沒辦法指定 SDKMAN_DIR
 # 又 homebrew 安裝的 SDKMAN_DIR 會預設在 homebrew 中該 formula 下, 造成日後更新 SDKMAN 時會遺失安裝過的 sdk

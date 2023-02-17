@@ -19,6 +19,8 @@ brew install autoconf binutils coreutils diffutils ed findutils flex gawk \
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 
+# 有些 node 需要這個版本, 因此我們多安裝一個
+brew install python@3.10
 brew install openssh
 brew install screen
 brew install php
@@ -135,6 +137,7 @@ brew install --cask aerial
 # Language
 brew install go
 brew install nvm
+brew install pyenv
 
 # Font
 brew tap homebrew/cask-fonts
