@@ -126,13 +126,13 @@ brew install --cask drawio
 brew install --cask sublime-text
 brew install --cask visual-studio-code
 brew install ghq
-brew install --cask webex
 brew install --cask microsoft-teams
 brew install --cask notion
 brew install --cask mimestream
 brew install zsh-syntax-highlighting
 brew install --cask beyond-compare
 brew install --cask aerial
+brew isntall mkcert
 
 # Language
 brew install go
