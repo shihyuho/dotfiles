@@ -133,6 +133,9 @@ brew install zsh-syntax-highlighting
 brew install --cask beyond-compare
 brew install --cask aerial
 brew isntall mkcert
+brew install --cask iina
+brew install --cask keka
+brew install --cask kekaexternalhelper
 
 # Language
 brew install go
