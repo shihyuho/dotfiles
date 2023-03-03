@@ -136,6 +136,7 @@ brew isntall mkcert
 brew install --cask iina
 brew install --cask keka
 brew install --cask kekaexternalhelper
+brew install --cask appcleaner
 
 # Language
 brew install go

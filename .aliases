@@ -13,6 +13,7 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 alias dl="cd $HOME/Downloads"
+alias tmp="cd $HOME/tmp"
 
 # https://github.com/x-motemen/ghq
 alias g="ghq"
