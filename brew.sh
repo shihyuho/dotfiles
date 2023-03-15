@@ -137,6 +137,7 @@ brew install --cask keka
 brew install --cask kekaexternalhelper
 brew install --cask appcleaner
 brew install ansible
+brew install asciidoctor
 
 # Language
 brew install go
