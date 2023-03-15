@@ -107,7 +107,6 @@ brew install tldr
 brew install kcat
 brew install kompose
 brew install marp-cli
-brew install bitwarden-cli
 brew install pnpm
 brew install jesseduffield/lazygit/lazygit
 brew install ncdu
@@ -137,6 +136,7 @@ brew install --cask iina
 brew install --cask keka
 brew install --cask kekaexternalhelper
 brew install --cask appcleaner
+brew install ansible
 
 # Language
 brew install go
