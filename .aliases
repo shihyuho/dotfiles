@@ -16,7 +16,7 @@ alias dl="cd $HOME/Downloads"
 alias tmp="cd $HOME/tmp"
 
 # https://github.com/x-motemen/ghq
-alias g="ghq"
+alias g="ghq --look"
 # j stand for jump
 alias j="ghq-fzf"
 
