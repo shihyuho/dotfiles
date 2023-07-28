@@ -138,6 +138,9 @@ brew install --cask kekaexternalhelper
 brew install --cask appcleaner
 brew install ansible
 brew install asciidoctor
+brew tap spring-io/tap
+brew install spring-boot
+brew install orbstack
 
 # Language
 brew install go
