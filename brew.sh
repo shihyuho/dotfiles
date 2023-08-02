@@ -141,6 +141,7 @@ brew install asciidoctor
 brew tap spring-io/tap
 brew install spring-boot
 brew install orbstack
+brew install colima
 
 # Language
 brew install go
