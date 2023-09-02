@@ -142,6 +142,7 @@ brew tap spring-io/tap
 brew install spring-boot
 brew install orbstack
 brew install colima
+brew install derailed/k9s/k9s
 
 # Language
 brew install go

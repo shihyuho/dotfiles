@@ -23,6 +23,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # https://github.com/kubernetes/kompose
 source <(kompose completion zsh)
 
+# https://github.com/derailed/k9s
+source <(k9s completion zsh)
+
 # No duplicate history when reverse-searching my commands
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
