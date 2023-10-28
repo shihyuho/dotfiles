@@ -3,7 +3,13 @@ source $HOME/.aliases
 source $HOME/.zsh_prompt
 
 # Set GNU tools as default; see: https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
-for d in $(brew --prefix)/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+# for d in $(brew --prefix)/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+# libtool 會影響 node-sass 編譯, 因此我不要置換成 gnu 的
+for d in $(brew --prefix)/opt/*/libexec/gnubin; do
+	if [[ ! $d =~ "libtool" ]]; then
+		export PATH=$d:$PATH
+	fi
+done
 
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
