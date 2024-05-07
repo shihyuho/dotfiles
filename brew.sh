@@ -19,7 +19,7 @@ brew install autoconf binutils coreutils diffutils ed findutils flex gawk \
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 
-# 有些 node 需要這個版本, 因此我們多安裝一個
+# 有些 node 需要這個版本，因此我們多安裝一個
 brew install python@3.10
 brew install openssh
 brew install screen
@@ -143,6 +143,7 @@ brew install spring-boot
 brew install orbstack
 brew install colima
 brew install derailed/k9s/k9s
+brew install liquibase
 
 # Language
 brew install go
