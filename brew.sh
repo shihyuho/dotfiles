@@ -144,6 +144,7 @@ brew install orbstack
 brew install colima
 brew install derailed/k9s/k9s
 brew install liquibase
+brew install oha
 
 # Language
 brew install go
