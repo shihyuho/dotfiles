@@ -4,7 +4,7 @@ source $HOME/.zsh_prompt
 
 # Set GNU tools as default; see: https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
 # for d in $(brew --prefix)/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
-# libtool 會影響 node-sass 編譯, 因此我不要置換成 gnu 的
+# libtool 會影響 node-sass 編譯，因此我不要置換成 gnu 的
 for d in $(brew --prefix)/opt/*/libexec/gnubin; do
 	if [[ ! $d =~ "libtool" ]]; then
 		export PATH=$d:$PATH
@@ -59,9 +59,14 @@ mkdir -p ${NVM_DIR}
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+# https://github.com/pyenv/pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # https://sdkman.io
-# SDKMAN 我們故意不用 homebrew 安裝, 其原因是 brew 安裝的 SDKMAN 沒辦法指定 SDKMAN_DIR
-# 又 homebrew 安裝的 SDKMAN_DIR 會預設在 homebrew 中該 formula 下, 造成日後更新 SDKMAN 時會遺失安裝過的 sdk
+# SDKMAN 我們故意不用 homebrew 安裝，其原因是 brew 安裝的 SDKMAN 沒辦法指定 SDKMAN_DIR
+# 又 homebrew 安裝的 SDKMAN_DIR 會預設在 homebrew 中該 formula 下，造成日後更新 SDKMAN 時會遺失安裝過的 sdk
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR=$HOME/.sdkman
 if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then

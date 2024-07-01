@@ -20,7 +20,9 @@ brew install autoconf binutils coreutils diffutils ed findutils flex gawk \
 brew install moreutils
 
 # 有些 node 需要這個版本，因此我們多安裝一個
-brew install python@3.10
+brew install pyenv
+pyenv install 3.10
+pyenv global 3.10
 brew install openssh
 brew install screen
 brew install php
