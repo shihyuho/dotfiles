@@ -96,7 +96,7 @@ brew install zoxide
 brew install telnet
 brew install redis
 brew install subversion
-brew install --cask ngrok
+brew install ngrok/ngrok/ngrok
 brew install --cask switchhosts
 brew install --cask dbeaver-community
 brew install --cask openvpn-connect
