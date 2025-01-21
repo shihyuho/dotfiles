@@ -72,5 +72,5 @@ export SDKMAN_DIR=$HOME/.sdkman
 if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
   source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 else
-  echo "Warning: '${SDKMAN_DIR}/bin/sdkman-init.sh' not found. Run 'curl -s \"https://get.sdkman.io\" | bash' to install SDKMAN!"
+  echo "Warning: '${SDKMAN_DIR}/bin/sdkman-init.sh' not found. Run 'curl -s \"https://get.sdkman.io\" | bash' to install SDKMAN, Visit https://sdkman.io for more details."
 fi

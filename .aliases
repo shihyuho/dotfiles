@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-alias lsa='exa --git -laa'
 alias l='exa --git -laa'
 alias ll='exa --git -l'
 alias la='exa --git -laa'
@@ -14,7 +13,6 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 alias dl="cd $HOME/Downloads"
 alias doc="cd $HOME/Documents"
-alias pj="cd $HOME/Documents/Projects"
 alias tmp="cd $HOME/tmp"
 
 # https://github.com/x-motemen/ghq

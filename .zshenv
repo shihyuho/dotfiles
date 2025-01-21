@@ -47,3 +47,15 @@ function ghq-fzf() {
 
 # For docker run on Apple Silicon
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+export PJ_ROOT="$HOME/Documents/Projects"
+function pj() {
+	if [ "$1" = "$HOME" ]; then
+		cd "$PJ_ROOT"
+	else
+		local selected_dir=$(find $PJ_ROOT -type d | fzf --height ${FZF_TMUX_HEIGHT:-40%} --cycle --info=inline --reverse --border --select-1 --query="$1" --preview "(exa --git -l -F {}) | head -100")
+		if [ -n "$selected_dir" ]; then
+			cd "${selected_dir}"
+		fi
+	fi
+}
