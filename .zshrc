@@ -2,17 +2,20 @@ source $HOME/.exports
 source $HOME/.aliases
 source $HOME/.zsh_prompt
 
+# Cache the Homebrew prefix to avoid running the command on every shell startup.
+: "${BREW_PREFIX:=$(brew --prefix)}"
+
 # Set GNU tools as default; see: https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
-# for d in $(brew --prefix)/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+# for d in ${BREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
 # libtool 會影響 node-sass 編譯，因此我不要置換成 gnu 的
-for d in $(brew --prefix)/opt/*/libexec/gnubin; do
+for d in ${BREW_PREFIX}/opt/*/libexec/gnubin; do
 	if [[ ! $d =~ "libtool" ]]; then
 		export PATH=$d:$PATH
 	fi
 done
 
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+FPATH="${BREW_PREFIX}/share/zsh/site-functions:${FPATH}"
 
 # Enabling the Zsh Completion System
 autoload -Uz compinit promptinit
@@ -46,7 +49,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Zsh syntax highlighting
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # zoxide: A smarter cd command for your terminal
 # https://github.com/ajeetdsouza/zoxide
@@ -56,8 +59,8 @@ eval "$(zoxide init zsh --cmd z)"
 # https://github.com/nvm-sh/nvm#macos-troubleshooting
 export NVM_DIR="$HOME/.nvm"
 mkdir -p ${NVM_DIR}
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ] && \. "${BREW_PREFIX}/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && \. "${BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # https://github.com/pyenv/pyenv
 export PYENV_ROOT="$HOME/.pyenv"

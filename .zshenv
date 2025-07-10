@@ -25,9 +25,9 @@ lg()
 }
 
 # Set Golang env, ref: https://golang.org/doc/gopath_code#GOPATH
-export PATH=/opt/homebrew/bin:$PATH
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin
+# Cache the GOPATH to avoid running 'go env' on every shell startup.
+: "${GOPATH:=$(go env GOPATH)}"
+export PATH="$PATH:$GOPATH/bin"
 
 # Add scripts for JetBrains Toolbox
 export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
