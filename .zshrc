@@ -77,3 +77,8 @@ if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
 else
   echo "Warning: '${SDKMAN_DIR}/bin/sdkman-init.sh' not found. Run 'curl -s \"https://get.sdkman.io\" | bash' to install SDKMAN, Visit https://sdkman.io for more details."
 fi
+
+# https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md
+# https://aistudio.google.com/apikey
+# https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw
+export GEMINI_API_KEY=AIzaSyD5W-4ft4AS6avthQSJDIgYlZmb4bLMgAE

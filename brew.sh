@@ -21,8 +21,8 @@ brew install moreutils
 
 # 有些 node 需要這個版本，因此我們多安裝一個
 brew install pyenv
-pyenv install 3.10
-pyenv global 3.10
+pyenv install 3.12
+pyenv global 3.12
 brew install openssh
 brew install screen
 brew install php
@@ -151,6 +151,7 @@ brew install oha
 # Language
 brew install go
 brew install nvm
+brew install oven-sh/bun/bun
 
 # Font
 brew tap homebrew/cask-fonts
@@ -161,6 +162,8 @@ brew install --cask font-fira-code-nerd-font
 # # https://github.com/vChewing/vChewing-macOS
 # brew tap windwords/vchewing
 # brew install --cask vchewing
+
+brew install --cask ghostty
 
 # Remove outdated versions from the cellar.
 brew cleanup
