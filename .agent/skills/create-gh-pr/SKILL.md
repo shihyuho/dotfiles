@@ -1,3 +1,12 @@
+---
+name: create-gh-pr
+description: Guides the creation of high-quality Pull Requests that adhere to repository standards, covering template discovery, drafting descriptions, and executing PR creation commands.
+allowed-tools:
+  - Read
+  - Bash(ls:*)
+  - Bash(gh:*)
+---
+
 # Pull Request 建立助手
 
 此技能旨在引導建立符合儲存庫（Repository）標準的高品質 Pull Request。
