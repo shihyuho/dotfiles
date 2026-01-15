@@ -6,7 +6,7 @@ allowed-tools:
   - Bash(make:*)
 ---
 
-# Makefile Executor
+# Makefile
 
 本 skill 旨在分析專案根目錄下的 `Makefile`，理解其中定義的 `targets`，並在適當的時機執行它們。
 
