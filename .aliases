@@ -51,3 +51,6 @@ alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'
 ## Use GNU watch command instead of kubectl [...] --watch
 [ -f $HOME/.kubectl_aliases ] && source \
    <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
+
+# kubectl-jqlogs: http://github.com/shihyuho/kubectl-jqlogs
+alias klo='kubectl jqlogs -f'
