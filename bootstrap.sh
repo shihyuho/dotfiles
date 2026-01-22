@@ -17,6 +17,7 @@ function doIt() {
 		--exclude "LICENSE-MIT.txt" \
 		--exclude ".editorconfig" \
 		--exclude "rsync_exclude/" \
+		--exclude ".agent" \
 		-avh --no-perms . ~;
 }
 

@@ -82,3 +82,7 @@ fi
 # https://aistudio.google.com/apikey
 # https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw
 export GEMINI_API_KEY=AIzaSyD5W-4ft4AS6avthQSJDIgYlZmb4bLMgAE
+
+# Antigravity
+export ANTIGRAVITY_PATH=${HOME}/.antigravity/antigravity/bin
+export PATH=${ANTIGRAVITY_PATH}:$PATH
