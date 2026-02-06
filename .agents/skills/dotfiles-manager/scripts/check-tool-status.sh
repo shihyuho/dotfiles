@@ -10,7 +10,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 TOOL_NAME="$1"
-DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)}"
 
 echo "🔍 Checking status of '$TOOL_NAME'..."
 echo ""

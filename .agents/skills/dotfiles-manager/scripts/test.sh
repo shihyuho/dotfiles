@@ -4,7 +4,8 @@
 
 set -e
 
-DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)}"
+MAX_STARTUP_SECONDS="${MAX_STARTUP_SECONDS:-1.0}"
 
 echo "🧪 Testing dotfiles configuration..."
 echo "DOTFILES_ROOT: $DOTFILES_ROOT"
@@ -33,10 +34,11 @@ echo "   Average: ${avg}s"
 
 if (( $(echo "$avg < 0.5" | bc -l) )); then
   echo "✅ Excellent! (< 0.5s)"
-elif (( $(echo "$avg < 1.0" | bc -l) )); then
-  echo "⚠️  Acceptable (< 1.0s)"
+elif (( $(echo "$avg < $MAX_STARTUP_SECONDS" | bc -l) )); then
+  echo "⚠️  Acceptable (< ${MAX_STARTUP_SECONDS}s)"
 else
-  echo "❌ Too slow (> 1.0s) - optimization needed"
+  echo "❌ Too slow (> ${MAX_STARTUP_SECONDS}s) - optimization needed"
+  exit 1
 fi
 echo ""
 
@@ -46,8 +48,15 @@ symlinks=(
   "$HOME/.zshrc:$DOTFILES_ROOT/zsh/rc.zsh"
   "$HOME/.zshenv:$DOTFILES_ROOT/zsh/env.zsh"
   "$HOME/.gitconfig:$DOTFILES_ROOT/git/config"
+  "$HOME/.gitalias:$DOTFILES_ROOT/git/aliases/gitalias"
+  "$HOME/.kubectl_aliases:$DOTFILES_ROOT/external/kubectl_aliases"
+  "$HOME/.kube-ps1.sh:$DOTFILES_ROOT/external/kube-ps1.sh"
+  "$HOME/.vim/autoload/plug.vim:$DOTFILES_ROOT/misc/vim/autoload/plug.vim"
+  "$HOME/.vim/colors/onedark.vim:$DOTFILES_ROOT/misc/vim/colors/onedark.vim"
+  "$HOME/.vim/syntax/json.vim:$DOTFILES_ROOT/misc/vim/syntax/json.vim"
 )
 
+symlink_failed=false
 for entry in "${symlinks[@]}"; do
   link="${entry%%:*}"
   target="${entry##*:}"
@@ -55,8 +64,14 @@ for entry in "${symlinks[@]}"; do
     echo "✅ $link → $target"
   else
     echo "❌ $link not properly linked"
+    symlink_failed=true
   fi
 done
 echo ""
+
+if [[ "$symlink_failed" == true ]]; then
+  echo "❌ Symlink verification failed"
+  exit 1
+fi
 
 echo "✨ Testing complete!"

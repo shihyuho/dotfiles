@@ -25,10 +25,12 @@ dotfiles/
 │   └── aliases/        # Categorized aliases
 ├── git/                # Git configuration
 ├── brew/               # Homebrew Brewfile
-├── misc/               # Other configs (tmux, vim, etc.)
+├── misc/               # Other configs (tmux, vimrc, vim runtime, etc.)
+├── external/           # External source assets (aliases, prompt helpers)
 ├── docs/               # Documentation
 ├── AGENTS.md           # AI agent guide
-└── install.sh          # Installation script
+├── install.sh          # Installation script
+└── uninstall.sh        # Uninstallation script
 ```
 
 ## 🚀 Quick Start
@@ -44,6 +46,14 @@ make setup
 # Or step by step:
 make install  # Create symlinks only
 make brew     # Install Homebrew packages only
+
+# First-time setup: create local secrets file
+cp .secrets.example ~/.secrets
+chmod 600 ~/.secrets
+# Then edit ~/.secrets and set required values
+
+# Uninstall managed symlinks (optional)
+make uninstall
 
 # Restart shell
 exec zsh
@@ -116,6 +126,9 @@ make test
 # Run all tests
 make test
 
+# Run CI-friendly tests
+make test-ci
+
 # Detailed startup analysis
 make measure-startup
 
@@ -131,6 +144,13 @@ Since using symlink mode, directly edit files in dotfiles repo:
 vim ~/dotfiles/zsh/core/30-prompt.zsh
 exec zsh  # Reload
 make test  # Verify changes
+```
+
+### Uninstalling Dotfiles
+
+```bash
+# Remove only symlinks managed by this repository
+make uninstall
 ```
 
 ### Updating External Aliases
@@ -166,12 +186,6 @@ AI agents can safely help with:
 ## 📜 License
 
 MIT
-
-## 🙏 Acknowledgments
-
-- [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles): Original inspiration
-- [ahmetb/kubectl-aliases](https://github.com/ahmetb/kubectl-aliases): kubectl aliases
-- [GitAlias/gitalias](https://github.com/GitAlias/gitalias): git alias collection
 
 ---
 

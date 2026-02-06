@@ -1,83 +1,82 @@
-# 優化啟動速度
+# Optimizing Shell Startup Speed
 
-## 測量當前速度
+## Measure Current Speed
 
-### 基本測試
+### Basic Test
 
 ```bash
-# 測試 5 次取平均
-for i in {1..5}; do 
+# Run 5 times and compare
+for i in {1..5}; do
   /usr/bin/time -p zsh -i -c exit 2>&1 | grep real
 done
 ```
 
-目標：< 0.5s，最多 1s
+Target: under 0.5s (maximum 1s)
 
-### 詳細分析
+### Detailed Profiling
 
-使用 `zprof` 分析瓶頸：
+Use `zprof` to identify bottlenecks:
 
 ```zsh
-# 在 ~/.zshrc 頂部添加
+# Add at the top of ~/.zshrc
 zmodload zsh/zprof
 
-# 在底部添加
+# Add at the bottom
 zprof
 ```
 
-執行 `zsh` 會顯示各函數耗時。
+Run `zsh` to view per-function timing.
 
-## 常見瓶頸與解決方案
+## Common Bottlenecks and Fixes
 
-### 1. 子程序執行
+### 1) Subprocesses on startup
 
-**問題**：每次啟動都執行 `$(brew --prefix)` 等命令
+**Issue**: Commands like `$(brew --prefix)` run every shell startup.
 
-❌ **錯誤範例**：
+Wrong:
 ```zsh
 PATH="$(brew --prefix)/bin:$PATH"
 ```
 
-✅ **正確做法**：
+Preferred:
 ```zsh
-# 硬編碼常見路徑
+# Hardcode common paths
 PATH="/opt/homebrew/bin:$PATH"  # Apple Silicon
 ```
 
-### 2. 大型檔案無條件載入
+### 2) Unconditional loading of large files
 
-**問題**：800 行 kubectl aliases 每次都載入
+**Issue**: Large alias files (for example, kubectl aliases) are always loaded.
 
-❌ **錯誤範例**：
+Wrong:
 ```zsh
 source ~/.kubectl_aliases
 ```
 
-✅ **正確做法**：
+Preferred:
 ```zsh
-# 條件載入
 if command -v kubectl >/dev/null 2>&1; then
   source ~/.kubectl_aliases
 fi
 
-# 或 lazy loading
+# Or lazy-load the file on demand
 kalias() {
   source ~/.kubectl_aliases
   unset -f kalias
 }
 ```
 
-### 3. 開發工具初始化
+### 3) Heavy dev-tool initialization
 
-**問題**：nvm, pyenv, sdkman 初始化耗時 50-200ms
+**Issue**: nvm/pyenv/sdkman can add 50-200ms during startup.
 
-❌ **錯誤範例**：
+Wrong:
 ```zsh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
-✅ **正確做法**（lazy loading）：
+Preferred (lazy loading):
 ```zsh
 export NVM_DIR="$HOME/.nvm"
 
@@ -86,23 +85,22 @@ _nvm_load() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 
-nvm() { _nvm_load; nvm "$@"; }
+nvm()  { _nvm_load; nvm "$@"; }
 node() { _nvm_load; node "$@"; }
-npm() { _nvm_load; npm "$@"; }
+npm()  { _nvm_load; npm "$@"; }
 ```
 
-### 4. 重複的 completion 初始化
+### 4) Rebuilding completion every time
 
-**問題**：每次都重建 completion cache
+**Issue**: `compinit` rebuilds completion cache too often.
 
-❌ **錯誤範例**：
+Wrong:
 ```zsh
 compinit
 ```
 
-✅ **正確做法**（智能快取）：
+Preferred (smart cache):
 ```zsh
-# 只在必要時重建
 if [[ ! -s "$ZSH_COMPDUMP" || "$HOME/.zshrc" -nt "$ZSH_COMPDUMP" ]]; then
   compinit -d "$ZSH_COMPDUMP"
 else
@@ -110,27 +108,24 @@ else
 fi
 ```
 
-### 5. 外部命令在 prompt 中執行
+### 5) Running external commands in prompt render
 
-**問題**：每次顯示 prompt 都執行 git status
+**Issue**: Prompt executes git commands every time it renders.
 
-❌ **錯誤範例**：
+Wrong:
 ```zsh
 PROMPT='$(git branch 2>/dev/null | grep "^\*" | cut -d " " -f2)'
 ```
 
-✅ **正確做法**（快取 + TTL）：
+Preferred (cache + TTL):
 ```zsh
 typeset -g __GIT_SEG=""
 typeset -g __GIT_LAST_TS=0
 
 _git_segment_update() {
   local now=$EPOCHSECONDS
-  # 2 秒內不更新
   [[ $(( now - __GIT_LAST_TS )) -lt 2 ]] && return
   __GIT_LAST_TS=$now
-  
-  # 更新 git info
   __GIT_SEG="$(git branch 2>/dev/null | grep '^\*' | cut -d ' ' -f2)"
 }
 
@@ -138,27 +133,27 @@ add-zsh-hook precmd _git_segment_update
 PROMPT='${__GIT_SEG}'
 ```
 
-## 優化檢查清單
+## Optimization Checklist
 
-每次修改後檢查：
+After each change, verify:
 
-- [ ] 無 `$(command)` 在啟動時執行
-- [ ] 大型檔案使用條件載入或 lazy loading
-- [ ] 開發工具使用 lazy loading
-- [ ] Completion cache 正確設定
-- [ ] Prompt 使用快取機制
-- [ ] 啟動時間 < 0.5s
+- [ ] No `$(command)` executed during startup
+- [ ] Large files are conditionally loaded or lazy-loaded
+- [ ] Dev tools use lazy loading
+- [ ] Completion cache is configured correctly
+- [ ] Prompt uses cached data where possible
+- [ ] Startup time is under 0.5s
 
-## 效能基準
+## Performance Budget
 
-| 項目 | 耗時 | 優化建議 |
-|------|------|----------|
-| PATH 設定 | < 5ms | 硬編碼路徑 |
-| Completion init | < 50ms | 智能快取 |
-| History 設定 | < 5ms | - |
-| Prompt 設定 | < 10ms | 快取 git info |
-| Syntax highlighting | < 20ms | 最後載入 |
-| 條件載入工具 | < 10ms/tool | 使用 `command -v` |
-| Lazy loading setup | < 5ms/tool | 函數包裝 |
+| Item | Target | Recommendation |
+|------|--------|----------------|
+| PATH setup | < 5ms | Hardcode common paths |
+| Completion init | < 50ms | Smart cache |
+| History setup | < 5ms | Keep simple |
+| Prompt setup | < 10ms | Cache git info |
+| Syntax highlighting | < 20ms | Load last |
+| Conditional tool load | < 10ms/tool | Use `command -v` |
+| Lazy-load wrappers | < 5ms/tool | Function wrappers |
 
-**總計目標**：< 150ms（核心）+ < 50ms（工具）= < 200ms
+Overall target: under 150ms (core) + under 50ms (tools) = under 200ms

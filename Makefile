@@ -1,4 +1,4 @@
-.PHONY: help install brew test check-tool check-deps update-aliases measure-startup
+.PHONY: help install uninstall brew test test-ci check-tool check-deps update-aliases measure-startup
 
 DOTFILES_ROOT := $(shell pwd)
 SCRIPTS_DIR := .agents/skills/dotfiles-manager/scripts
@@ -14,6 +14,9 @@ help: ## Show this help message
 install: ## Install dotfiles (create symlinks)
 	@./install.sh
 
+uninstall: ## Uninstall dotfiles (remove managed symlinks)
+	@./uninstall.sh
+
 brew: ## Install Homebrew packages from Brewfile
 	@brew bundle --file=brew/Brewfile
 
@@ -25,6 +28,9 @@ setup: install brew ## Complete setup (install + brew)
 
 test: ## Run all tests (syntax + startup speed + symlinks)
 	@$(SCRIPTS_DIR)/test.sh
+
+test-ci: ## Run CI-friendly tests (relaxed startup threshold)
+	@MAX_STARTUP_SECONDS=1.0 $(SCRIPTS_DIR)/test.sh
 
 measure-startup: ## Measure detailed startup speed with zprof
 	@$(SCRIPTS_DIR)/measure-startup.sh

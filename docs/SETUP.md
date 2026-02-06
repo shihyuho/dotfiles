@@ -1,45 +1,60 @@
-# Dotfiles 安裝指南
+# Dotfiles Setup Guide
 
-## 快速開始
+## Quick Start
 
-### 1. Clone Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/shihyuho/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-### 2. 執行安裝腳本
+### 2. Run installation
 
 ```bash
-./install.sh
+make install
 ```
 
-這將建立 symlinks：
-- `~/.zshrc` → `dotfiles/zsh/rc.zsh`
-- `~/.zshenv` → `dotfiles/zsh/env.zsh`
-- `~/.gitconfig` → `dotfiles/git/config`
-- 以及其他配置檔
+This creates symlinks such as:
+- `~/.zshrc` -> `dotfiles/zsh/rc.zsh`
+- `~/.zshenv` -> `dotfiles/zsh/env.zsh`
+- `~/.gitconfig` -> `dotfiles/git/config`
+- `~/.gitalias` -> `dotfiles/git/aliases/gitalias`
+- `~/.kubectl_aliases` -> `dotfiles/external/kubectl_aliases`
+- `~/.kube-ps1.sh` -> `dotfiles/external/kube-ps1.sh`
+- and other configuration files
 
-### 3. 安裝 Homebrew 套件
+### 3. Install Homebrew packages
 
 ```bash
-brew bundle --file=~/dotfiles/brew/Brewfile
+make brew
 ```
 
-### 4. 重啟 Shell
+### 4. Create your local secrets file
+
+```bash
+cp ~/dotfiles/.secrets.example ~/.secrets
+chmod 600 ~/.secrets
+```
+
+Then edit `~/.secrets` and set required variables:
+
+- `GEMINI_API_KEY`
+- `MCP_GITHUB_PERSONAL_ACCESS_TOKEN`
+
+### 5. Restart your shell
 
 ```bash
 exec zsh
 ```
 
-## 可選安裝
+## Optional Setup
 
 ### nvm (Node.js)
 
 ```bash
-# nvm 已透過 Homebrew 安裝
-# 使用時會自動初始化（lazy loading）
+# nvm is installed via Homebrew
+# It initializes on demand (lazy loading)
 nvm install --lts
 nvm use --lts
 ```
@@ -47,7 +62,7 @@ nvm use --lts
 ### pyenv (Python)
 
 ```bash
-# pyenv 已透過 Homebrew 安裝
+# pyenv is installed via Homebrew
 pyenv install 3.12
 pyenv global 3.12
 ```
@@ -56,72 +71,77 @@ pyenv global 3.12
 
 ```bash
 curl -s "https://get.sdkman.io" | bash
-# 重啟 shell 後使用
+# Use after restarting your shell
 sdk list java
 sdk install java
 ```
 
-## 在新機器上同步
+## Sync on a New Machine
 
-由於使用 symlink 模式，只需：
+Because this repo uses symlink mode, you only need to:
 
-1. Clone repository
-2. 執行 `./install.sh`
-3. 安裝 Homebrew 套件
+1. Clone the repository
+2. Run `make install`
+3. Install Homebrew packages with `make brew`
 
-修改會立即反映，無需手動同步。
+Changes are reflected immediately, with no manual sync step.
 
-## 測試安裝
+## Verify Installation
 
 ```bash
-# 測試啟動速度
+# Run full verification
+make test
+
+# Or run startup speed test directly
 for i in {1..5}; do /usr/bin/time -p zsh -i -c exit 2>&1 | grep real; done
 
-# 測試工具是否可用
+# Verify tools are available
 kubectl version --client
 gh --version
 ```
 
-## 疑難排解
+## Troubleshooting
 
-### Symlink 未生效
+### Symlink not applied
 
 ```bash
 ls -la ~/.zshrc
-# 應該顯示: .zshrc -> /path/to/dotfiles/zsh/rc.zsh
+# Expected: .zshrc -> /path/to/dotfiles/zsh/rc.zsh
 ```
 
-如果不是 symlink，重新執行 `./install.sh`。
+If it is not a symlink, run `make install` again.
 
-### 工具未找到
+### Tool not found
 
-檢查 PATH：
+Check PATH:
+
 ```bash
 echo $PATH
 ```
 
-確認 Homebrew 已正確設定：
+Confirm Homebrew is set up correctly:
+
 ```bash
 which brew
 brew doctor
 ```
 
-### 啟動速度慢
+### Slow startup
 
-使用 `zprof` 分析：
+Use `zprof` for analysis:
 
 ```zsh
-# 在 ~/.zshrc 頂部添加
+# Add at the top of ~/.zshrc
 zmodload zsh/zprof
 
-# 在底部添加
+# Add at the bottom
 zprof
 ```
 
-執行 `zsh` 查看分析結果。
+Run `zsh` and inspect the profiling output.
 
-## 更多資訊
+## More Information
 
-- **架構說明**: `AGENTS.md`
-- **工具清單**: `docs/TOOLS.md`
+- **Architecture guide**: `AGENTS.md`
+- **Tool list**: `docs/TOOLS.md`
 - **GitHub**: https://github.com/shihyuho/dotfiles

@@ -1,0 +1,26 @@
+name: Verify Dotfiles
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Linux dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y zsh bc
+
+      - name: Install dotfiles symlinks
+        run: make install
+
+      - name: Run CI verification
+        run: make test-ci

@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # ---
 # Prompt configuration with cached git info
-# Source: Based on original .zsh_prompt
+# Source: Based on previous prompt implementation
 # ---
 
 # Detect ls flavor for colors

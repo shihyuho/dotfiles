@@ -184,7 +184,7 @@
 	defaultBranch = main
 
 [include]
-  path = .gitalias
+  path = ~/.gitalias
 
 [user]
 	name = Shihyu Ho

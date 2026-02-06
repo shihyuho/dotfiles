@@ -2,16 +2,23 @@
 set -e
 
 DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)}"
+TARGET="${1:-all}"
 
-echo "📥 Updating external aliases..."
-echo "DOTFILES_ROOT: $DOTFILES_ROOT"
-echo ""
+if [[ "$TARGET" != "kubectl" && "$TARGET" != "gitalias" && "$TARGET" != "all" ]]; then
+  echo "Usage: $0 [kubectl|gitalias|all]"
+  exit 1
+fi
 
-echo "1️⃣  Updating kubectl-aliases..."
-curl -sSL -o /tmp/kubectl_aliases \
-  https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
+TMP_KUBECTL="$(mktemp)"
+TMP_GITALIAS="$(mktemp)"
+trap 'rm -f "$TMP_KUBECTL" "$TMP_GITALIAS"' EXIT
 
-cat << EOF > ~/.kubectl_aliases
+update_kubectl_aliases() {
+  echo "1️⃣  Updating kubectl-aliases..."
+  curl -sSL -o "$TMP_KUBECTL" \
+    https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
+
+  cat << EOF > "$HOME/.kubectl_aliases"
 # ---
 # Tool: kubectl-aliases
 # Source: https://github.com/ahmetb/kubectl-aliases
@@ -20,15 +27,17 @@ cat << EOF > ~/.kubectl_aliases
 # ---
 
 EOF
-cat /tmp/kubectl_aliases >> ~/.kubectl_aliases
-echo "✅ kubectl-aliases updated"
-echo ""
+  cat "$TMP_KUBECTL" >> "$HOME/.kubectl_aliases"
+  echo "✅ kubectl-aliases updated"
+  echo ""
+}
 
-echo "2️⃣  Updating gitalias..."
-curl -sSL -o /tmp/gitalias \
-  https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt
+update_gitalias() {
+  echo "2️⃣  Updating gitalias..."
+  curl -sSL -o "$TMP_GITALIAS" \
+    https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt
 
-cat << EOF > "$DOTFILES_ROOT/git/aliases/gitalias"
+  cat << EOF > "$DOTFILES_ROOT/git/aliases/gitalias"
 # ---
 # Tool: gitalias
 # Source: https://github.com/GitAlias/gitalias
@@ -37,9 +46,23 @@ cat << EOF > "$DOTFILES_ROOT/git/aliases/gitalias"
 # ---
 
 EOF
-cat /tmp/gitalias >> "$DOTFILES_ROOT/git/aliases/gitalias"
-echo "✅ gitalias updated"
+  cat "$TMP_GITALIAS" >> "$DOTFILES_ROOT/git/aliases/gitalias"
+  echo "✅ gitalias updated"
+  echo ""
+}
+
+echo "📥 Updating external aliases..."
+echo "DOTFILES_ROOT: $DOTFILES_ROOT"
+echo "TARGET: $TARGET"
 echo ""
+
+if [[ "$TARGET" == "kubectl" || "$TARGET" == "all" ]]; then
+  update_kubectl_aliases
+fi
+
+if [[ "$TARGET" == "gitalias" || "$TARGET" == "all" ]]; then
+  update_gitalias
+fi
 
 echo "3️⃣  Testing syntax..."
 if zsh -n ~/.zshrc 2>/dev/null; then
@@ -54,5 +77,4 @@ echo "✨ Alias update complete!"
 echo ""
 echo "Next steps:"
 echo "  1. Test aliases: zsh -i -c \"alias | grep kubectl | head -5\""
-echo "  2. Commit changes: git add ~/.kubectl_aliases git/aliases/gitalias"
-echo "  3. git commit -m \"Update external aliases to \$(date +%Y-%m-%d)\""
+echo "  2. If needed, run full validation: make test"

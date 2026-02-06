@@ -10,7 +10,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 TOOL_NAME="$1"
-DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)}"
 
 echo "🔍 Checking dependencies for '$TOOL_NAME'..."
 echo ""
@@ -91,7 +91,7 @@ if [ "$SAFE_TO_REMOVE" = true ]; then
   
   echo "   3. Update TOOLS.md: vim $DOTFILES_ROOT/docs/TOOLS.md"
   echo "   4. Test: zsh -n ~/.zshrc"
-  echo "   5. Commit changes"
+  echo "   5. (Optional) If requested, commit changes"
   echo "   6. (Optional) Uninstall: brew uninstall $TOOL_NAME"
 else
   echo "❌ UNSAFE TO REMOVE"

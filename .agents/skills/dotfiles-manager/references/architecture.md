@@ -1,62 +1,62 @@
-# Dotfiles 架構原則（通用版）
+# Dotfiles Architecture Principles (Generic)
 
-## 設計目標
-1. **效能**: Shell 啟動時間 < 0.5s（最多 1s）
-2. **模組化**: 配置按功能分類，易於維護
-3. **可移植**: 易於在不同機器間同步
-4. **可擴展**: 添加新工具不影響現有配置
+## Design Goals
+1. **Performance**: Shell startup time under 0.5s (maximum 1s)
+2. **Modularity**: Configuration is grouped by responsibility for easier maintenance
+3. **Portability**: Easy to sync across machines
+4. **Extensibility**: Adding tools should not break existing setup
 
-## 目錄結構約定
+## Directory Structure Convention
 
 ```
 dotfiles/
-├── AGENTS.md            # AI 代理指南（專案特定）
-├── zsh/                 # Zsh 配置
-│   ├── rc.zsh           # 主入口 (→ ~/.zshrc)
-│   ├── env.zsh          # 環境變數 (→ ~/.zshenv)
-│   ├── core/            # 核心配置（必載，按數字順序）
-│   ├── tools/           # 工具配置（條件載入）
-│   └── aliases/         # 別名分類
-├── git/                 # Git 配置
-├── brew/Brewfile        # Homebrew 配置
-└── docs/                # 文檔
+├── AGENTS.md            # AI agent guide (project-specific)
+├── zsh/                 # Zsh configuration
+│   ├── rc.zsh           # Main entry point (-> ~/.zshrc)
+│   ├── env.zsh          # Environment variables (-> ~/.zshenv)
+│   ├── core/            # Core config (always loaded, numeric order)
+│   ├── tools/           # Tool config (conditional loading)
+│   └── aliases/         # Alias categories
+├── git/                 # Git configuration
+├── brew/Brewfile        # Homebrew configuration
+└── docs/                # Documentation
 ```
 
-## 載入策略
+## Loading Strategy
 
-### 核心配置（zsh/core/）
-- 按檔名數字順序載入（00, 10, 20...）
-- 總耗時 < 100ms
-- 包含: PATH、completion、history、prompt
+### Core Configuration (`zsh/core/`)
+- Loaded in numeric filename order (`00`, `10`, `20`, ...)
+- Total startup cost should stay under 100ms
+- Includes PATH, completion, history, and prompt
 
-### 工具配置（zsh/tools/）
-- 條件載入（檢查工具是否存在）
-- 使用 `command -v <tool>` 檢查
+### Tool Configuration (`zsh/tools/`)
+- Conditional loading (only if tool exists)
+- Detect via `command -v <tool>`
 
-### 開發工具（zsh/tools/dev/）
-- Lazy loading（函數包裝延遲載入）
-- 減少啟動時間 50-200ms
+### Development Tools (`zsh/tools/dev/`)
+- Lazy loading (function wrapper with deferred init)
+- Usually saves 50-200ms startup time
 
-## 效能優化
+## Performance Optimization
 
-### ❌ 禁止
-- 啟動時執行子程序：`$(brew --prefix)`
-- 大型檔案無條件載入
-- 重複設定環境變數
+### Forbidden
+- Running subprocesses on startup, for example `$(brew --prefix)`
+- Unconditional loading of very large files
+- Repeatedly setting the same environment variables
 
-### ✅ 推薦
-- 硬編碼常見路徑
-- 使用快取機制
-- 條件載入 + lazy loading
+### Recommended
+- Hardcode common paths
+- Use cache where possible
+- Prefer conditional loading plus lazy loading
 
-## 測試標準
+## Test Standard
 
 ```bash
-# 啟動速度
+# Startup speed
 for i in {1..5}; do /usr/bin/time -p zsh -i -c exit 2>&1 | grep real; done
 
-# 語法檢查
+# Syntax check
 zsh -n ~/.zshrc
 ```
 
-目標: < 0.5s
+Target: under 0.5s

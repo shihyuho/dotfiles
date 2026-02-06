@@ -1,6 +1,6 @@
 # Dotfiles Agent Guide
 
-**Owner**: Matt Shih  
+**Owner**: ShihYu Ho
 **Repository**: https://github.com/shihyuho/dotfiles  
 **Last Updated**: 2026-02-06
 
@@ -21,6 +21,7 @@ dotfiles/
 ├── AGENTS.md                   # This file: AI agent guide
 ├── README.md                   # User documentation
 ├── install.sh                  # Symlink installation script
+├── uninstall.sh                # Symlink uninstallation script
 │
 ├── .agents/                    # AI collaboration tools (project-level)
 │   └── skills/
@@ -61,9 +62,14 @@ dotfiles/
 ├── brew/                       # Homebrew configuration
 │   └── Brewfile                # Package list
 │
+├── external/                   # External source assets (managed)
+│   ├── kubectl_aliases         # symlink → ~/.kubectl_aliases
+│   └── kube-ps1.sh             # symlink → ~/.kube-ps1.sh
+│
 ├── misc/                       # Other configs
 │   ├── tmux.conf               # symlink → ~/.tmux.conf
 │   ├── vimrc                   # symlink → ~/.vimrc
+│   ├── vim/                    # Vim runtime assets (autoload/colors/syntax)
 │   ├── editorconfig            # symlink → ~/.editorconfig
 │   ├── wgetrc                  # symlink → ~/.wgetrc
 │   └── curlrc                  # symlink → ~/.curlrc
@@ -150,13 +156,23 @@ This project uses **symlink mode** (`install.sh`). Files are symlinked from `~/d
 
 **When adding new config files that need to be symlinked to `~`**:
 - Update `install.sh` by adding a new `link_file` call
-- The symlink list is explicit - check existing `link_file` calls for reference
+- Update `uninstall.sh` by adding the matching `unlink_file` call
+- The symlink list is explicit - check existing calls in both scripts for reference
+
+**Sync rule for install/uninstall scripts**:
+- Any change to managed paths in `install.sh` MUST be mirrored in `uninstall.sh`
+- Any change to managed paths in `uninstall.sh` MUST be mirrored in `install.sh`
+- Treat both scripts as a paired contract; do not update only one side
 
 **Example**:
 ```bash
 # Add to install.sh
 link_file "$DOTFILES_ROOT/new/config.conf" "$HOME/.config.conf"
 ```
+
+### Documentation Language Policy
+
+- All generated or updated documentation files must be written in English.
 
 ---
 
@@ -384,6 +400,8 @@ git push
 - New config files must include file header metadata
 - Keep each module file < 100 lines (if exceeds, consider splitting)
 - Store sensitive info (API keys, tokens) in `~/.secrets` (not version controlled)
+- Any added/removed/renamed sensitive environment variable must be updated in `~/.secrets`
+- Keep `.secrets.example` in sync with the required sensitive variable list
 
 ## Tool List
 
