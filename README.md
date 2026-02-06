@@ -198,9 +198,3 @@ AI agents can safely help with:
 ## 📜 License
 
 MIT
-
----
-
-**Version**: 2.0  
-**Last Updated**: 2026-02-06  
-**Maintained by**: AI-assisted workflow
