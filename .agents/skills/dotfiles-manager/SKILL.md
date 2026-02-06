@@ -1,6 +1,6 @@
 ---
 name: dotfiles-manager
-description: Use when modifying dotfiles configuration in modular dotfiles setups: shell/tool modules, aliases, package lists, install/uninstall symlink flows, startup performance, and setup docs. Keeps changes safe, consistent, and verifiable with AGENTS.md rules.
+description: "Use when modifying dotfiles configuration in modular dotfiles setups: shell/tool modules, aliases, package lists, install/uninstall symlink flows, startup performance, and setup docs. Keeps changes safe, consistent, and verifiable with AGENTS.md rules."
 ---
 
 # Dotfiles Manager
