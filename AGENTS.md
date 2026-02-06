@@ -75,6 +75,7 @@ dotfiles/
 │   └── curlrc                  # symlink → ~/.curlrc
 │
 └── docs/                       # Documentation
+    ├── INSTALL.md              # AI installation playbook
     ├── TOOLS.md                # Tool list and sources
     └── SETUP.md                # Installation guide
 ```
@@ -465,6 +466,7 @@ Every configuration file must include:
 ## Related Resources
 
 - **dotfiles-manager skill**: .agents/skills/dotfiles-manager/ (project-level)
+- **AI Install Guide**: docs/INSTALL.md
 - **Tool List**: docs/TOOLS.md
 - **Installation Guide**: docs/SETUP.md
 

@@ -35,10 +35,22 @@ dotfiles/
 
 ## 🚀 Quick Start
 
+### AI-assisted Setup
+
+Tell Agent:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/shihyuho/dotfiles/refs/heads/main/docs/INSTALL.md
+```
+
+### Manual Setup
+
 ```bash
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.config/dotfiles}"
+
 # Clone repository
-git clone https://github.com/shihyuho/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/shihyuho/dotfiles.git "$DOTFILES_DIR"
+cd "$DOTFILES_DIR"
 
 # Complete setup (symlinks + Homebrew packages)
 make setup
@@ -48,7 +60,7 @@ make install  # Create symlinks only
 make brew     # Install Homebrew packages only
 
 # First-time setup: create local secrets file
-cp secrets.example ~/.secrets
+cp "$DOTFILES_DIR/secrets.example" ~/.secrets
 chmod 600 ~/.secrets
 # Then edit ~/.secrets and set required values
 
@@ -59,9 +71,7 @@ make uninstall
 exec zsh
 ```
 
-**See available commands**: `make help`
-
-See [`docs/SETUP.md`](docs/SETUP.md) for detailed installation guide.
+> See available commands: `make help`
 
 ## 🛠️ Main Tools
 
@@ -82,8 +92,9 @@ See [`docs/TOOLS.md`](docs/TOOLS.md) for complete tool list.
 ## 📖 Documentation
 
 - **[AGENTS.md](AGENTS.md)**: AI agent guide (architecture principles, modification rules)
+- **[docs/INSTALL.md](docs/INSTALL.md)**: AI installation playbook
+- **[docs/SETUP.md](docs/SETUP.md)**: Human installation guide
 - **[docs/TOOLS.md](docs/TOOLS.md)**: Tool list and sources
-- **[docs/SETUP.md](docs/SETUP.md)**: Installation guide
 
 ## 🎯 Design Principles
 
@@ -141,7 +152,8 @@ make check-tool TOOL=kubectl
 Since using symlink mode, directly edit files in dotfiles repo:
 
 ```bash
-vim ~/dotfiles/zsh/core/30-prompt.zsh
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.config/dotfiles}"
+vim "$DOTFILES_DIR/zsh/core/30-prompt.zsh"
 exec zsh  # Reload
 make test  # Verify changes
 ```

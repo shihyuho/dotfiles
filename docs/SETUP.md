@@ -1,48 +1,53 @@
-# Dotfiles Setup Guide
+# Dotfiles Setup Guide (User-Oriented)
+
+This guide is for users running a manual setup.
+If you are an AI agent, use [`INSTALL.md`](INSTALL.md) as the primary playbook.
 
 ## Quick Start
 
-### 1. Clone the repository
+### 1. Choose install directory
+
+Default:
 
 ```bash
-git clone https://github.com/shihyuho/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.config/dotfiles}"
 ```
 
-### 2. Run installation
+### 2. Clone repository
 
 ```bash
-make install
+git clone https://github.com/shihyuho/dotfiles.git "$DOTFILES_DIR"
+cd "$DOTFILES_DIR"
 ```
 
-This creates symlinks such as:
-- `~/.zshrc` -> `dotfiles/zsh/rc.zsh`
-- `~/.zshenv` -> `dotfiles/zsh/env.zsh`
-- `~/.gitconfig` -> `dotfiles/git/config`
-- `~/.gitalias` -> `dotfiles/git/aliases/gitalias`
-- `~/.kubectl_aliases` -> `dotfiles/external/kubectl_aliases`
-- `~/.kube-ps1.sh` -> `dotfiles/external/kube-ps1.sh`
-- and other configuration files
+### 3. Install
 
-### 3. Install Homebrew packages
+Recommended (full setup):
 
 ```bash
-make brew
+make setup
 ```
 
-### 4. Create your local secrets file
+Or step by step:
 
 ```bash
-cp ~/dotfiles/secrets.example ~/.secrets
+make install  # Create symlinks
+make brew     # Install Homebrew packages
+```
+
+### 4. Create local secrets
+
+```bash
+cp "$DOTFILES_DIR/secrets.example" ~/.secrets
 chmod 600 ~/.secrets
 ```
 
-Then edit `~/.secrets` and set required variables:
+Then edit `~/.secrets` and set required values:
 
 - `GEMINI_API_KEY`
 - `MCP_GITHUB_PERSONAL_ACCESS_TOKEN`
 
-### 5. Restart your shell
+### 5. Reload shell
 
 ```bash
 exec zsh
@@ -53,8 +58,7 @@ exec zsh
 ### nvm (Node.js)
 
 ```bash
-# nvm is installed via Homebrew
-# It initializes on demand (lazy loading)
+# nvm is installed via Homebrew and initializes on demand (lazy loading)
 nvm install --lts
 nvm use --lts
 ```
@@ -76,29 +80,19 @@ sdk list java
 sdk install java
 ```
 
-## Sync on a New Machine
-
-Because this repo uses symlink mode, you only need to:
-
-1. Clone the repository
-2. Run `make install`
-3. Install Homebrew packages with `make brew`
-
-Changes are reflected immediately, with no manual sync step.
-
 ## Verify Installation
 
 ```bash
-# Run full verification
 make test
-
-# Or run startup speed test directly
-for i in {1..5}; do /usr/bin/time -p zsh -i -c exit 2>&1 | grep real; done
-
-# Verify tools are available
 kubectl version --client
 gh --version
 ```
+
+Expected verification result:
+
+- Syntax check passes
+- Startup speed passes with every run `< 0.5s`
+- Managed symlinks are correct
 
 ## Troubleshooting
 
@@ -109,39 +103,29 @@ ls -la ~/.zshrc
 # Expected: .zshrc -> /path/to/dotfiles/zsh/rc.zsh
 ```
 
-If it is not a symlink, run `make install` again.
+If it is not a symlink, run:
+
+```bash
+make install
+```
 
 ### Tool not found
 
-Check PATH:
-
 ```bash
-echo $PATH
-```
-
-Confirm Homebrew is set up correctly:
-
-```bash
+echo "$PATH"
 which brew
 brew doctor
 ```
 
 ### Slow startup
 
-Use `zprof` for analysis:
-
-```zsh
-# Add at the top of ~/.zshrc
-zmodload zsh/zprof
-
-# Add at the bottom
-zprof
+```bash
+make measure-startup
 ```
-
-Run `zsh` and inspect the profiling output.
 
 ## More Information
 
-- **Architecture guide**: `AGENTS.md`
-- **Tool list**: `docs/TOOLS.md`
-- **GitHub**: https://github.com/shihyuho/dotfiles
+- AI install playbook: [`INSTALL.md`](INSTALL.md)
+- Tool list: [`TOOLS.md`](TOOLS.md)
+- Project rules: [`../AGENTS.md`](../AGENTS.md)
+- GitHub: https://github.com/shihyuho/dotfiles
