@@ -127,13 +127,13 @@ tool() { _tool_load; tool "$@"; }
 ### Performance Optimization Principles
 
 #### ❌ Forbidden
-- Executing subprocesses on startup: `$(brew --prefix)`, `$(git --version)`
+- Executing unconditional subprocesses on startup for common paths (for example always running `$(brew --prefix)`)
 - Unconditionally loading large files (> 100 lines and non-essential)
 - Repeatedly setting environment variables or PATH
 - Rebuilding cache on every shell startup (should check file timestamps)
 
 #### ✅ Recommended
-- Hardcode common paths (e.g., `/opt/homebrew` for Apple Silicon)
+- Use hardcoded fast paths for common cases (e.g., `/opt/homebrew`, `/usr/local`) with guarded fallback detection for non-standard environments
 - Use caching mechanisms (completion cache, git info cache)
 - Conditional loading + lazy loading
 - Use zsh built-in functions instead of external commands
@@ -243,28 +243,17 @@ link_file "$DOTFILES_ROOT/new/config.conf" "$HOME/.config.conf"
 Example: Updating kubectl aliases
 
 ```bash
-cd ~/dotfiles/zsh/tools
+cd ~/dotfiles
 
-# Download latest version
-curl -o kubectl-aliases-full.zsh \
-  https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
+# Update managed external alias assets
+make update-aliases TARGET=kubectl
 
-# Add file header metadata
-cat << 'EOF' > temp.zsh
-# ---
-# Tool: kubectl-aliases
-# Source: https://github.com/ahmetb/kubectl-aliases
-# Purpose: 800+ kubectl shortcuts
-# Updated: $(date +%Y-%m-%d)
-# ---
-
-EOF
-cat kubectl-aliases-full.zsh >> temp.zsh
-mv temp.zsh kubectl-aliases-full.zsh
+# Files are managed under external/
+ls -l external/kubectl_aliases
 
 # Commit changes
-git add kubectl-aliases-full.zsh
-git commit -m "Update kubectl-aliases to $(date +%Y-%m-%d)"
+git add external/kubectl_aliases
+git commit -m "Update kubectl aliases"
 ```
 
 ### Cleaning Up Unused Tools
@@ -402,6 +391,7 @@ git push
 - Store sensitive info (API keys, tokens) in `~/.secrets` (not version controlled)
 - Any added/removed/renamed sensitive environment variable must be updated in `~/.secrets`
 - Keep `.secrets.example` in sync with the required sensitive variable list
+- Before creating any git commit, review `AGENTS.md` and `README.md` and update them when the current session changed workflows, structure, or operational rules
 
 ## Tool List
 
@@ -416,7 +406,7 @@ git push
 ### Backup Tools (Kept but Rarely Used)
 
 - **Python**: pyenv (backup, might need in future)
-- **Git Aliases**: .gitalias (1780 lines, optional loading)
+- **Git Aliases**: `git/aliases/gitalias` (symlinked to `~/.gitalias`)
 
 ### Removed Tools
 

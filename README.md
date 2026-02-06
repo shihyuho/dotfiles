@@ -88,7 +88,7 @@ See [`docs/TOOLS.md`](docs/TOOLS.md) for complete tool list.
 ## 🎯 Design Principles
 
 1. **Performance First**: Startup speed < 0.5s
-   - Hardcode common paths (avoid `$(brew --prefix)`)
+   - Use fast-path defaults for common Homebrew prefixes with fallback detection for non-standard installs
    - Smart caching (completion, git info)
    - Lazy loading for dev tools
 
