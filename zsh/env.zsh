@@ -8,23 +8,35 @@
 # Add ~/bin to PATH
 export PATH="$HOME/bin:$PATH"
 
-# Homebrew (hardcoded for performance - avoid $(brew --prefix))
+# Homebrew prefix detection
+# Fast path: common install locations
+# Fallback: query `brew --prefix` for non-standard installs
 if [[ -d "/opt/homebrew" ]]; then
   # Apple Silicon
   export HOMEBREW_PREFIX="/opt/homebrew"
-  export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
   export HOMEBREW_REPOSITORY="/opt/homebrew"
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-  export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
-  export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 elif [[ -d "/usr/local/Homebrew" ]]; then
   # Intel Mac
   export HOMEBREW_PREFIX="/usr/local"
-  export HOMEBREW_CELLAR="/usr/local/Cellar"
   export HOMEBREW_REPOSITORY="/usr/local/Homebrew"
-  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-  export MANPATH="/usr/local/share/man${MANPATH+:$MANPATH}:"
-  export INFOPATH="/usr/local/share/info:${INFOPATH:-}"
+elif command -v brew >/dev/null 2>&1; then
+  _brew_prefix="$(brew --prefix 2>/dev/null)"
+  if [[ -n "$_brew_prefix" && -d "$_brew_prefix" ]]; then
+    export HOMEBREW_PREFIX="$_brew_prefix"
+    if [[ -d "${HOMEBREW_PREFIX}/Homebrew" ]]; then
+      export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+    else
+      export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
+    fi
+  fi
+  unset _brew_prefix
+fi
+
+if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+  export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:$PATH"
+  export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+  export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 fi
 
 # iTerm2 shell integration

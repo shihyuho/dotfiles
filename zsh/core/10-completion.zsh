@@ -43,14 +43,20 @@ _zsh_gen_completion opencode 'opencode completion'
 # Initialize completion system
 autoload -Uz compinit promptinit
 
+# Resolve dotfiles root for cache invalidation checks
+_dotfiles_root="${DOTFILES_ROOT:-${${(%):-%N}:A:h:h:h}}"
+_dotfiles_rc="${_dotfiles_root}/zsh/rc.zsh"
+
 # Smart caching: only rebuild when necessary
 if [[ ! -s "$ZSH_COMPDUMP" \
-   || "${HOME}/code/github.com/shihyuho/dotfiles/zsh/rc.zsh" -nt "$ZSH_COMPDUMP" \
+   || "${_dotfiles_rc}" -nt "$ZSH_COMPDUMP" \
    || "${BREW_PREFIX}/share/zsh/site-functions" -nt "$ZSH_COMPDUMP" ]]; then
   compinit -d "$ZSH_COMPDUMP"
 else
   compinit -C -d "$ZSH_COMPDUMP"
 fi
+
+unset _dotfiles_root _dotfiles_rc
 
 # Completion styles
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case-insensitive
