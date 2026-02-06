@@ -71,7 +71,7 @@ make uninstall
 exec zsh
 ```
 
-> See available commands: `make help`
+See available commands: `make help`
 
 ## 🛠️ Main Tools
 
