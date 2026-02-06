@@ -52,6 +52,12 @@
   - Source: https://github.com/junegunn/fzf
   - Config: `zsh/tools/fzf.zsh`
 
+- **zsh keybindings**: Word navigation and deletion key normalization
+  - Source: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
+  - Config: `zsh/tools/keybindings.zsh`
+  - Terminal Reference: https://iterm2.com/documentation-preferences-profiles-keys.html
+  - Notes: Normalizes Option/Meta word movement and backward word deletion across terminals
+
 - **zoxide**: Smarter cd command
   - Source: https://github.com/ajeetdsouza/zoxide
   - Config: `zsh/tools/zoxide.zsh`

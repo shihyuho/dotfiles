@@ -25,6 +25,7 @@ _load_tool_if_exists() {
 _load_tool_if_exists kubectl "${DOTFILES_ROOT}/zsh/tools/kubectl.zsh"
 _load_tool_if_exists docker "${DOTFILES_ROOT}/zsh/tools/docker.zsh"
 _load_tool_if_exists fzf "${DOTFILES_ROOT}/zsh/tools/fzf.zsh"
+source "${DOTFILES_ROOT}/zsh/tools/keybindings.zsh"
 _load_tool_if_exists zoxide "${DOTFILES_ROOT}/zsh/tools/zoxide.zsh"
 _load_tool_if_exists lazygit "${DOTFILES_ROOT}/zsh/tools/lazygit.zsh"
 _load_tool_if_exists ghq "${DOTFILES_ROOT}/zsh/tools/ghq.zsh"
