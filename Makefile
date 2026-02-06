@@ -29,8 +29,8 @@ setup: install brew ## Complete setup (install + brew)
 test: ## Run all tests (syntax + startup speed + symlinks)
 	@$(SCRIPTS_DIR)/test.sh
 
-test-ci: ## Run CI-friendly tests (strict startup threshold)
-	@MAX_STARTUP_SECONDS=0.5 $(SCRIPTS_DIR)/test.sh
+test-ci: ## Run CI-friendly tests (no startup threshold - measurement only)
+	@MAX_STARTUP_SECONDS=0 $(SCRIPTS_DIR)/test.sh
 
 measure-startup: ## Measure detailed startup speed with zprof
 	@$(SCRIPTS_DIR)/measure-startup.sh

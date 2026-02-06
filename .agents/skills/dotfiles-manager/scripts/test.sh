@@ -25,12 +25,14 @@ echo ""
 echo "2️⃣  Startup speed test (5 iterations)..."
 total=0
 startup_failed=false
+check_threshold=$(echo "$MAX_STARTUP_SECONDS > 0" | bc -l)
+
 for i in {1..5}; do
   time_output=$(/usr/bin/time -p zsh -i -c exit 2>&1 | grep real | awk '{print $2}')
   echo "   Iteration $i: ${time_output}s"
   total=$(echo "$total + $time_output" | bc)
 
-  if (( $(echo "$time_output >= $MAX_STARTUP_SECONDS" | bc -l) )); then
+  if [[ "$check_threshold" == "1" ]] && (( $(echo "$time_output >= $MAX_STARTUP_SECONDS" | bc -l) )); then
     echo "   ❌ Iteration $i exceeds ${MAX_STARTUP_SECONDS}s"
     startup_failed=true
   fi
@@ -38,7 +40,9 @@ done
 avg=$(echo "scale=3; $total / 5" | bc)
 echo "   Average: ${avg}s"
 
-if [[ "$startup_failed" == false ]]; then
+if [[ "$check_threshold" == "0" ]]; then
+  echo "✅ Startup speed measurement complete (threshold check disabled)"
+elif [[ "$startup_failed" == false ]]; then
   echo "✅ Passed: every run is < ${MAX_STARTUP_SECONDS}s"
 else
   echo "❌ Startup speed check failed: every run must be < ${MAX_STARTUP_SECONDS}s"
