@@ -62,6 +62,17 @@ link_file "$DOTFILES_ROOT/misc/wgetrc" "$HOME/.wgetrc"
 link_file "$DOTFILES_ROOT/misc/curlrc" "$HOME/.curlrc"
 
 echo ""
+echo "🤖 Installing dotfiles-manager skill..."
+SKILL_DIR="$HOME/.config/opencode/skills/dotfiles-manager"
+if [[ -d "$DOTFILES_ROOT/skills/dotfiles-manager" ]]; then
+  mkdir -p "$SKILL_DIR"
+  cp -r "$DOTFILES_ROOT/skills/dotfiles-manager/"* "$SKILL_DIR/"
+  echo "✓  Skill installed: $SKILL_DIR"
+else
+  echo "⚠️  Skill not found in dotfiles, skipping"
+fi
+
+echo ""
 echo "✨ Dotfiles installation complete!"
 echo ""
 echo "Next steps:"
