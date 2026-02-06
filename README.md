@@ -180,7 +180,7 @@ AI agents can safely help with:
 ## 📊 Performance
 
 - Startup time: **0.16-0.22s** (tested on M2 MacBook Air)
-- Target: < 0.5s (max 1s)
+- Target: every run < 0.5s
 - Lazy loading saves: ~200ms (nvm + pyenv + sdkman)
 
 ## 📜 License

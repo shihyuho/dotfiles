@@ -7,7 +7,7 @@
 ## Project Overview
 
 This is a modular dotfiles management system designed with the following goals:
-- ⚡ Startup speed < 0.5s (max 1s)
+- ⚡ Startup speed < 0.5s (every run)
 - 📁 Clear modular structure
 - 🔗 Symlink mode (changes take effect immediately)
 - 🤖 AI-friendly (easy for AI to help maintain)
@@ -278,11 +278,11 @@ Must run after every modification:
 
 2. **Startup speed test**
    ```bash
-   # Test 5 times and average
+   # Test 5 times
    for i in {1..5}; do 
      /usr/bin/time -p zsh -i -c exit 2>&1 | grep real
    done
-   # Target: < 0.5s, max 1s
+   # Target: every run must be < 0.5s
    ```
 
 3. **Functionality test**
