@@ -390,7 +390,7 @@ git push
 - Keep each module file < 100 lines (if exceeds, consider splitting)
 - Store sensitive info (API keys, tokens) in `~/.secrets` (not version controlled)
 - Any added/removed/renamed sensitive environment variable must be updated in `~/.secrets`
-- Keep `.secrets.example` in sync with the required sensitive variable list
+- Keep `secrets.example` in sync with the required sensitive variable list
 - Before creating any git commit, review `AGENTS.md` and `README.md` and update them when the current session changed workflows, structure, or operational rules
 
 ## Tool List

@@ -89,7 +89,7 @@ echo "    OpenCode will automatically detect them when working in this directory
 echo ""
 echo "Next steps:"
 echo "  1. Install Homebrew packages: brew bundle --file=$DOTFILES_ROOT/brew/Brewfile"
-echo "  2. Create local secrets file: cp $DOTFILES_ROOT/.secrets.example ~/.secrets && chmod 600 ~/.secrets"
+echo "  2. Create local secrets file: cp $DOTFILES_ROOT/secrets.example ~/.secrets && chmod 600 ~/.secrets"
 echo "  3. Edit ~/.secrets and set required variables"
 echo "  4. Restart your shell: exec zsh"
 echo "  5. (Optional) Install nvm, pyenv, sdkman - see docs/SETUP.md"

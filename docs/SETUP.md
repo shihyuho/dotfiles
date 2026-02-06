@@ -33,7 +33,7 @@ make brew
 ### 4. Create your local secrets file
 
 ```bash
-cp ~/dotfiles/.secrets.example ~/.secrets
+cp ~/dotfiles/secrets.example ~/.secrets
 chmod 600 ~/.secrets
 ```
 

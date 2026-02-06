@@ -48,7 +48,7 @@ make install  # Create symlinks only
 make brew     # Install Homebrew packages only
 
 # First-time setup: create local secrets file
-cp .secrets.example ~/.secrets
+cp secrets.example ~/.secrets
 chmod 600 ~/.secrets
 # Then edit ~/.secrets and set required values
 
