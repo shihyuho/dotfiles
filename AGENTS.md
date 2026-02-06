@@ -4,220 +4,236 @@
 **Repository**: https://github.com/shihyuho/dotfiles  
 **Last Updated**: 2026-02-06
 
-## 專案概述
+## Project Overview
 
-這是一個模組化的 dotfiles 管理系統，設計目標：
-- ⚡ 啟動速度 < 0.5s（最多 1s）
-- 📁 清晰的模組化結構
-- 🔗 Symlink 模式（修改即生效）
-- 🤖 AI 友好（方便未來由 AI 協助維護）
+This is a modular dotfiles management system designed with the following goals:
+- ⚡ Startup speed < 0.5s (max 1s)
+- 📁 Clear modular structure
+- 🔗 Symlink mode (changes take effect immediately)
+- 🤖 AI-friendly (easy for AI to help maintain)
 
-## 架構原則
+## Architecture Principles
 
-### 目錄結構
+### Directory Structure
 
 ```
 dotfiles/
-├── AGENTS.md                   # 本文件：AI 代理指南
-├── README.md                   # 使用者文檔
-├── install.sh                  # Symlink 安裝腳本
+├── AGENTS.md                   # This file: AI agent guide
+├── README.md                   # User documentation
+├── install.sh                  # Symlink installation script
 │
-├── .agents/                    # AI 協作工具（project-level）
+├── .agents/                    # AI collaboration tools (project-level)
 │   └── skills/
-│       └── dotfiles-manager/   # 專用 skill
+│       └── dotfiles-manager/   # Dedicated skill
 │
-├── zsh/                        # Zsh 配置模組
-│   ├── rc.zsh                  # 主入口 (→ ~/.zshrc)
-│   ├── env.zsh                 # 環境變數 (→ ~/.zshenv)
-│   ├── core/                   # 核心配置（必載，按數字順序）
+├── zsh/                        # Zsh configuration modules
+│   ├── rc.zsh                  # Main entry point (→ ~/.zshrc)
+│   ├── env.zsh                 # Environment variables (→ ~/.zshenv)
+│   ├── core/                   # Core configs (always loaded, numeric order)
 │   │   ├── 00-path.zsh
 │   │   ├── 10-completion.zsh
 │   │   ├── 20-history.zsh
 │   │   ├── 30-prompt.zsh
 │   │   └── 90-syntax-highlighting.zsh
-│   ├── tools/                  # 工具配置（條件載入）
+│   ├── tools/                  # Tool configs (conditional loading)
 │   │   ├── kubectl.zsh
 │   │   ├── docker.zsh
 │   │   ├── fzf.zsh
 │   │   ├── zoxide.zsh
 │   │   ├── lazygit.zsh
 │   │   ├── ghq.zsh
-│   │   └── dev/                # 開發工具（lazy loading）
+│   │   └── dev/                # Dev tools (lazy loading)
 │   │       ├── nvm.zsh
 │   │       ├── pyenv.zsh
 │   │       ├── sdkman.zsh
 │   │       └── go.zsh
-│   └── aliases/                # 別名分類
+│   └── aliases/                # Categorized aliases
 │       ├── common.zsh
 │       └── navigation.zsh
 │
-├── git/                        # Git 配置
+├── git/                        # Git configuration
 │   ├── config                  # symlink → ~/.gitconfig
 │   ├── ignore                  # symlink → ~/.gitignore
 │   ├── attributes              # symlink → ~/.gitattributes
 │   └── aliases/
-│       └── gitalias            # 可選：1780+ git 別名
+│       └── gitalias            # Optional: 1780+ git aliases
 │
-├── brew/                       # Homebrew 配置
-│   └── Brewfile                # 套件清單
+├── brew/                       # Homebrew configuration
+│   └── Brewfile                # Package list
 │
-├── misc/                       # 其他配置
+├── misc/                       # Other configs
 │   ├── tmux.conf               # symlink → ~/.tmux.conf
 │   ├── vimrc                   # symlink → ~/.vimrc
 │   ├── editorconfig            # symlink → ~/.editorconfig
 │   ├── wgetrc                  # symlink → ~/.wgetrc
 │   └── curlrc                  # symlink → ~/.curlrc
 │
-└── docs/                       # 文檔
-    ├── TOOLS.md                # 工具清單與來源
-    └── SETUP.md                # 安裝指南
+└── docs/                       # Documentation
+    ├── TOOLS.md                # Tool list and sources
+    └── SETUP.md                # Installation guide
 ```
 
-### 載入規則
+### Loading Rules
 
-#### 1. 核心配置 (zsh/core/*.zsh)
-- **載入方式**: 按檔名數字順序（00, 10, 20...）
-- **時機**: Shell 啟動時必定載入
-- **效能要求**: 總耗時 < 100ms
-- **內容**: PATH、completion、history、prompt 等基礎功能
+#### 1. Core Configuration (zsh/core/*.zsh)
+- **Loading method**: Numeric filename order (00, 10, 20...)
+- **Timing**: Always loaded on shell startup
+- **Performance requirement**: Total time < 100ms
+- **Content**: PATH, completion, history, prompt, etc.
 
-**命名規範**:
-- `00-path.zsh`: 最先載入（PATH 設定）
-- `10-completion.zsh`: 補全系統
-- `20-history.zsh`: 歷史記錄
-- `30-prompt.zsh`: 提示符
-- `90-syntax-highlighting.zsh`: 最後載入（語法高亮）
+**Naming convention**:
+- `00-path.zsh`: Loaded first (PATH setup)
+- `10-completion.zsh`: Completion system
+- `20-history.zsh`: History management
+- `30-prompt.zsh`: Prompt configuration
+- `90-syntax-highlighting.zsh`: Loaded last (syntax highlighting)
 
-#### 2. 工具配置 (zsh/tools/*.zsh)
-- **載入方式**: 條件載入（只在工具存在時）
-- **檢查方式**: `command -v <tool> >/dev/null 2>&1`
-- **適用**: kubectl, docker, fzf, zoxide 等外部工具
+#### 2. Tool Configuration (zsh/tools/*.zsh)
+- **Loading method**: Conditional loading (only when tool exists)
+- **Check method**: `command -v <tool> >/dev/null 2>&1`
+- **Usage**: kubectl, docker, fzf, zoxide, etc.
 
-**範例**:
+**Example**:
 ```zsh
 # zsh/rc.zsh
 _load_tool_if_exists kubectl "${DOTFILES_ROOT}/zsh/tools/kubectl.zsh"
 ```
 
-#### 3. 開發工具 (zsh/tools/dev/*.zsh)
-- **載入方式**: Lazy loading（函數包裝延遲載入）
-- **原因**: nvm, pyenv, sdkman 初始化耗時 50-200ms
-- **適用**: 不常用但需要時必須可用的工具
+#### 3. Development Tools (zsh/tools/dev/*.zsh)
+- **Loading method**: Lazy loading (function wrapper deferred loading)
+- **Reason**: nvm, pyenv, sdkman initialization takes 50-200ms
+- **Usage**: Infrequently used but essential tools
 
-**實作模式**:
+**Implementation pattern**:
 ```zsh
 # Lazy loading pattern
 export TOOL_DIR="$HOME/.tool"
 
 _tool_load() {
   unset -f tool
-  # 實際初始化（耗時操作）
+  # Actual initialization (expensive operation)
   eval "$(tool init)"
 }
 
 tool() { _tool_load; tool "$@"; }
 ```
 
-### 效能優化原則
+### Performance Optimization Principles
 
-#### ❌ 禁止
-- 在啟動時執行子程序：`$(brew --prefix)`, `$(git --version)`
-- 大型檔案無條件載入（> 100 行且非必要）
-- 重複設定環境變數或 PATH
-- 在每次 shell 啟動時重建快取（應檢查檔案時間戳）
+#### ❌ Forbidden
+- Executing subprocesses on startup: `$(brew --prefix)`, `$(git --version)`
+- Unconditionally loading large files (> 100 lines and non-essential)
+- Repeatedly setting environment variables or PATH
+- Rebuilding cache on every shell startup (should check file timestamps)
 
-#### ✅ 推薦
-- 硬編碼常見路徑（如 `/opt/homebrew` for Apple Silicon）
-- 使用快取機制（completion cache, git info cache）
-- 條件載入 + lazy loading
-- 使用 zsh 內建函數而非外部指令
+#### ✅ Recommended
+- Hardcode common paths (e.g., `/opt/homebrew` for Apple Silicon)
+- Use caching mechanisms (completion cache, git info cache)
+- Conditional loading + lazy loading
+- Use zsh built-in functions instead of external commands
 
-#### 快取策略
+#### Caching Strategy
 ```zsh
-# 範例：只在需要時重建快取
+# Example: Rebuild cache only when needed
 if [[ ! -s "$CACHE_FILE" || "$SOURCE_FILE" -nt "$CACHE_FILE" ]]; then
-  # 重建快取
+  # Rebuild cache
 else
-  # 使用快取
+  # Use cache
 fi
 ```
 
-## 修改規則
+## Modification Rules
 
-### 新增工具配置
+### Installation Method
 
-**完整流程**:
+This project uses **symlink mode** (`install.sh`). Files are symlinked from `~/dotfiles/` to `~`, so changes take effect immediately without re-installation.
 
-1. **添加到 Brewfile**
+**When adding new config files that need to be symlinked to `~`**:
+- Update `install.sh` by adding a new `link_file` call
+- The symlink list is explicit - check existing `link_file` calls for reference
+
+**Example**:
+```bash
+# Add to install.sh
+link_file "$DOTFILES_ROOT/new/config.conf" "$HOME/.config.conf"
+```
+
+---
+
+### Adding Tool Configuration
+
+**Complete workflow**:
+
+1. **Add to Brewfile**
    ```bash
-   # 編輯 brew/Brewfile
-   brew "<tool-name>"  # CLI 工具
-   # 或
-   cask "<app-name>"   # GUI 應用
+   # Edit brew/Brewfile
+   brew "<tool-name>"  # CLI tool
+   # or
+   cask "<app-name>"   # GUI application
    
-   # 安裝
+   # Install
    brew bundle --file=~/dotfiles/brew/Brewfile
    ```
 
-2. **建立配置檔**
+2. **Create configuration file**
    ```bash
-   # 在 zsh/tools/<tool>.zsh 建立檔案
-   # 必須包含檔案頭元數據：
+   # Create file at zsh/tools/<tool>.zsh
+   # Must include file header metadata:
    # ---
-   # Tool: <工具名稱>
-   # Source: <GitHub URL 或官方網站>
-   # Purpose: <用途說明>
+   # Tool: <tool name>
+   # Source: <GitHub URL or official website>
+   # Purpose: <purpose description>
    # Updated: <YYYY-MM-DD>
    # ---
    ```
 
-3. **註冊載入邏輯**
+3. **Register loading logic**
    ```zsh
-   # 在 zsh/rc.zsh 添加
+   # Add to zsh/rc.zsh
    _load_tool_if_exists <tool> "${DOTFILES_ROOT}/zsh/tools/<tool>.zsh"
    ```
 
-4. **更新文檔**
-   - 在 `docs/TOOLS.md` 添加工具說明
-   - 記錄來源、用途、配置檔位置
+4. **Update documentation**
+   - Add tool description to `docs/TOOLS.md`
+   - Record source, purpose, configuration file location
 
-5. **測試驗證**
+5. **Test and verify**
    ```bash
-   # 語法檢查
+   # Syntax check
    zsh -n ~/.zshrc
    
-   # 啟動速度測試
+   # Startup speed test
    for i in {1..5}; do /usr/bin/time -p zsh -i -c exit 2>&1 | grep real; done
    
-   # 功能測試
+   # Functionality test
    zsh -i -c "<tool> --version"
    ```
 
-### 新增別名
+### Adding Aliases
 
-- 常用別名 → `zsh/aliases/common.zsh`
-- 導航別名 → `zsh/aliases/navigation.zsh`
-- 工具專屬 → `zsh/tools/<tool>.zsh`
+- Common aliases → `zsh/aliases/common.zsh`
+- Navigation aliases → `zsh/aliases/navigation.zsh`
+- Tool-specific → `zsh/tools/<tool>.zsh`
 
-### 修改 PATH
+### Modifying PATH
 
-- **只在以下位置修改 PATH**:
-  - `zsh/env.zsh`: 早期必須的 PATH（Homebrew, ~/bin）
-  - `zsh/core/00-path.zsh`: 次要 PATH（GNU tools, Krew）
-- **避免在多個檔案重複設定**
+- **Only modify PATH in these locations**:
+  - `zsh/env.zsh`: Early essential PATH (Homebrew, ~/bin)
+  - `zsh/core/00-path.zsh`: Secondary PATH (GNU tools, Krew)
+- **Avoid duplicating settings across multiple files**
 
-### 更新外部來源檔案
+### Updating External Source Files
 
-範例：更新 kubectl aliases
+Example: Updating kubectl aliases
 
 ```bash
 cd ~/dotfiles/zsh/tools
 
-# 下載最新版
+# Download latest version
 curl -o kubectl-aliases-full.zsh \
   https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
 
-# 添加檔案頭元數據
+# Add file header metadata
 cat << 'EOF' > temp.zsh
 # ---
 # Tool: kubectl-aliases
@@ -230,215 +246,224 @@ EOF
 cat kubectl-aliases-full.zsh >> temp.zsh
 mv temp.zsh kubectl-aliases-full.zsh
 
-# 提交變更
+# Commit changes
 git add kubectl-aliases-full.zsh
 git commit -m "Update kubectl-aliases to $(date +%Y-%m-%d)"
 ```
 
-### 清理未使用工具
+### Cleaning Up Unused Tools
 
-1. **確認不使用**: 詢問使用者或檢查最後使用時間
-2. **檢查依賴**: `brew uses --installed <tool>`
-3. **從 Brewfile 移除**: 編輯 `brew/Brewfile`
-4. **移除配置**: 刪除 `zsh/tools/<tool>.zsh` 和 `zsh/rc.zsh` 中的載入邏輯
-5. **更新文檔**: 從 `docs/TOOLS.md` 移除或標記為已移除
-6. **提交變更**: 記錄清理原因
+1. **Confirm not in use**: Ask user or check last usage time
+2. **Check dependencies**: `brew uses --installed <tool>`
+3. **Remove from Brewfile**: Edit `brew/Brewfile`
+4. **Remove configuration**: Delete `zsh/tools/<tool>.zsh` and loading logic in `zsh/rc.zsh`
+5. **Update documentation**: Remove or mark as removed in `docs/TOOLS.md`
+6. **Commit changes**: Record cleanup reason
 
-## 測試與驗證
+## Testing and Verification
 
-### 必須執行的測試
+### Required Tests
 
-每次修改後必須執行：
+Must run after every modification:
 
-1. **語法檢查**
+1. **Syntax check**
    ```bash
    zsh -n ~/.zshrc
    ```
 
-2. **啟動速度測試**
+2. **Startup speed test**
    ```bash
-   # 測試 5 次取平均
+   # Test 5 times and average
    for i in {1..5}; do 
      /usr/bin/time -p zsh -i -c exit 2>&1 | grep real
    done
-   # 目標: < 0.5s，最多 1s
+   # Target: < 0.5s, max 1s
    ```
 
-3. **功能測試**
+3. **Functionality test**
    ```bash
-   # 測試實際載入
+   # Test actual loading
    zsh -i -c exit
    
-   # 測試工具可用性
+   # Test tool availability
    zsh -i -c "<tool> --version"
    ```
 
-4. **Symlink 驗證**
+4. **Symlink verification**
    ```bash
    ls -la ~ | grep "dotfiles"
    ```
 
-### 效能分析
+### Performance Analysis
 
-如需深入分析效能瓶頸：
+For deep performance bottleneck analysis:
 
 ```zsh
-# 在 ~/.zshrc 頂部添加
+# Add to top of ~/.zshrc
 zmodload zsh/zprof
 
-# 在底部添加
+# Add to bottom
 zprof
 ```
 
-執行 `zsh -i -c exit` 會顯示各函數耗時。
+Running `zsh -i -c exit` will show timing for each function.
 
-## 常見任務
+## Common Tasks
 
-### 添加新的 Homebrew 工具
+### Adding New Homebrew Tool
 
 ```bash
-# 1. 編輯 Brewfile
+# 1. Edit Brewfile
 echo 'brew "<tool>"' >> ~/dotfiles/brew/Brewfile
 
-# 2. 安裝
-brew bundle --file=~/dotfiles/brew/Brewfile
+# 2. Install
+make brew
 
-# 3. 如需配置，建立 zsh/tools/<tool>.zsh
-# 4. 更新 docs/TOOLS.md
+# 3. Check status
+make check-tool TOOL=<tool>
+
+# 4. Create config if needed: zsh/tools/<tool>.zsh
+# 5. Update docs/TOOLS.md
+# 6. Test
+make test
 ```
 
-### 在新機器上安裝
+### Installing on New Machine
 
 ```bash
 # 1. Clone repository
 git clone https://github.com/shihyuho/dotfiles.git ~/dotfiles
 
-# 2. 執行安裝腳本
+# 2. Complete setup
 cd ~/dotfiles
-./install.sh
+make setup
 
-# 3. 安裝 Homebrew 套件
-brew bundle --file=~/dotfiles/brew/Brewfile
+# Or step by step:
+make install  # Create symlinks
+make brew     # Install Homebrew packages
 
-# 4. 安裝 nvm, pyenv, sdkman 等（如需要）
-# 詳見 docs/SETUP.md
+# 3. Install nvm, pyenv, sdkman, etc. (if needed)
+# See docs/SETUP.md for details
+
+# 4. Verify installation
+make test
 ```
 
-### 更新配置
+### Updating Configuration
 
-由於使用 symlink 模式，直接編輯 dotfiles repo 中的檔案即可，無需額外同步步驟。
+Since using symlink mode, directly edit files in dotfiles repo - no additional sync steps needed.
 
 ```bash
-# 編輯配置
+# Edit configuration
 vim ~/dotfiles/zsh/core/30-prompt.zsh
 
-# 重新載入（或開新 shell）
+# Reload (or open new shell)
 exec zsh
 
-# 提交變更
+# Commit changes
 cd ~/dotfiles
 git add zsh/core/30-prompt.zsh
 git commit -m "Update prompt configuration"
 git push
 ```
 
-## 安全規則
+## Safety Rules
 
-### ❌ 絕不可以
+### ❌ Never
 
-- 刪除 `zsh/core/` 下的任何檔案（除非完全理解其用途）
-- 直接修改 symlink 目標（如 `~/.zshrc`）而非原始檔案
-- 在版本控制中提交 `.secrets` 檔案
-- 在沒有測試的情況下提交變更
-- 在不了解載入順序的情況下隨意調整檔名
+- Delete any files under `zsh/core/` (unless fully understanding their purpose)
+- Directly modify symlink targets (like `~/.zshrc`) instead of original files
+- Commit `.secrets` files to version control
+- Commit changes without testing
+- Randomly adjust filenames without understanding loading order
 
-### ✅ 必須遵守
+### ✅ Must Follow
 
-- 每次修改後測試啟動速度
-- 外部來源必須註明 URL 和更新日期
-- 新配置檔必須包含檔案頭元數據
-- 保持每個模組檔案 < 100 行（如果超過，考慮拆分）
-- 敏感資訊（API keys, tokens）放在 `~/.secrets`（不納入版控）
+- Test startup speed after every modification
+- External sources must include URL and update date
+- New config files must include file header metadata
+- Keep each module file < 100 lines (if exceeds, consider splitting)
+- Store sensitive info (API keys, tokens) in `~/.secrets` (not version controlled)
 
-## 工具清單
+## Tool List
 
-### 必要工具（經常使用）
+### Essential Tools (Frequently Used)
 
 - **Kubernetes**: kubectl, k9s, helm, kustomize
-- **容器**: Docker
+- **Container**: Docker
 - **Git**: git, lazygit, gh, ghq
-- **Shell 增強**: fzf, zoxide, exa, ripgrep
-- **開發語言**: Go, Node.js (nvm), Java (sdkman)
+- **Shell Enhancement**: fzf, zoxide, exa, ripgrep
+- **Development Languages**: Go, Node.js (nvm), Java (sdkman)
 
-### 備用工具（保留但不常用）
+### Backup Tools (Kept but Rarely Used)
 
-- **Python**: pyenv（備用，未來可能需要）
-- **Git 別名**: .gitalias（1780 行，選用載入）
+- **Python**: pyenv (backup, might need in future)
+- **Git Aliases**: .gitalias (1780 lines, optional loading)
 
-### 已移除工具
+### Removed Tools
 
-- OrbStack, Colima（改用 Docker Desktop）
-- 字型工具（sfnt2woff 等，不再從事相關工作）
+- OrbStack, Colima (switched to Docker Desktop)
+- Font tools (sfnt2woff etc., no longer doing related work)
 
-詳細清單見 `docs/TOOLS.md`。
+See `docs/TOOLS.md` for detailed list.
 
-## 配置檔格式標準
+## Configuration File Format Standard
 
-每個配置檔必須包含：
+Every configuration file must include:
 
 ```zsh
 #!/usr/bin/env zsh
 # ---
-# Tool: <工具名稱>
-# Source: <來源 URL>
-# Purpose: <用途說明>
+# Tool: <tool name>
+# Source: <source URL>
+# Purpose: <purpose description>
 # Updated: <YYYY-MM-DD>
 # [Optional] Lazy Loading: Yes/No
-# [Optional] Notes: <額外說明>
+# [Optional] Notes: <additional notes>
 # ---
 
-# 實際配置內容
+# Actual configuration content
 ```
 
-## 疑難排解
+## Troubleshooting
 
-### 啟動速度變慢
+### Startup Speed Slowing Down
 
-1. 使用 `zprof` 分析瓶頸
-2. 檢查是否有 `$(command)` 在每次啟動執行
-3. 考慮將耗時工具改為 lazy loading
-4. 檢查快取機制是否正常運作
+1. Use `zprof` to analyze bottlenecks
+2. Check for `$(command)` executing on every startup
+3. Consider converting expensive tools to lazy loading
+4. Check if caching mechanism is working properly
 
-### 配置未生效
+### Configuration Not Taking Effect
 
-1. 檢查 symlink: `ls -la ~/.zshrc`
-2. 檢查條件載入邏輯（工具是否在 PATH）
-3. 手動測試：`source ~/dotfiles/zsh/tools/<tool>.zsh`
-4. 檢查語法錯誤：`zsh -n ~/.zshrc`
+1. Check symlink: `ls -la ~/.zshrc`
+2. Check conditional loading logic (is tool in PATH)
+3. Manual test: `source ~/dotfiles/zsh/tools/<tool>.zsh`
+4. Check syntax errors: `zsh -n ~/.zshrc`
 
-### 衝突或重複定義
+### Conflicts or Duplicate Definitions
 
-1. 使用 `type <command>` 查看定義來源
-2. 檢查是否在多個檔案定義同一 alias/function
-3. 確認載入順序是否正確
+1. Use `type <command>` to see definition source
+2. Check if same alias/function is defined in multiple files
+3. Verify loading order is correct
 
-## 版本歷史
+## Version History
 
-| 日期 | 版本 | 變更內容 |
-|------|------|----------|
-| 2026-02-06 | 2.0 | 重構為模組化架構，symlink 模式，AI 友好設計 |
-| 2023-02-14 | 1.0 | 初始版本（單一 .zshrc 配置） |
+| Date | Version | Changes |
+|------|---------|---------|
+| 2026-02-06 | 2.0 | Refactored to modular architecture, symlink mode, AI-friendly design |
+| 2023-02-14 | 1.0 | Initial version (single .zshrc configuration) |
 
-## 相關資源
+## Related Resources
 
 - **dotfiles-manager skill**: .agents/skills/dotfiles-manager/ (project-level)
-- **工具清單**: docs/TOOLS.md
-- **安裝指南**: docs/SETUP.md
+- **Tool List**: docs/TOOLS.md
+- **Installation Guide**: docs/SETUP.md
 
 ---
 
 **Note for AI Agents**: 
-- 修改前請先閱讀本文件全部內容
-- 每次修改後必須執行測試章節的所有測試
-- 不確定時請詢問使用者而非猜測
-- 記錄所有重要變更
+- Read this entire document before making modifications
+- Execute all tests from the Testing section after every modification
+- Ask user when uncertain instead of guessing
+- Record all important changes
