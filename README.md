@@ -87,7 +87,7 @@ exec zsh
 3. **AI 友好**: 
    - 包含詳細的 `AGENTS.md`
    - 配置檔包含元數據（來源、用途、更新日期）
-   - 專用 skill：`~/.config/opencode/skills/dotfiles-manager/`
+   - 專用 skill：`.agents/skills/dotfiles-manager/` (project-level)
 
 ## 🔧 維護
 

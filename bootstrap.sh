@@ -17,9 +17,21 @@ function doIt() {
 		--exclude "LICENSE-MIT.txt" \
 		--exclude ".editorconfig" \
 		--exclude "rsync_exclude/" \
-		--exclude ".agent" \
-		--exclude ".backup" \
+		--exclude ".agents/" \
+		--exclude "zsh/" \
+		--exclude "git/" \
+		--exclude "brew/" \
+		--exclude "misc/" \
+		--exclude "docs/" \
+		--exclude "skills/" \
+		--exclude "install.sh" \
+		--exclude "AGENTS.md" \
 		-avh --no-perms . ~;
+	
+	echo ""
+	echo "⚠️  WARNING: This bootstrap method is deprecated!"
+	echo "Please use the new installation method:"
+	echo "  cd ~/dotfiles && ./install.sh"
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

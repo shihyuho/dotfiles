@@ -22,6 +22,10 @@ dotfiles/
 ├── README.md                   # 使用者文檔
 ├── install.sh                  # Symlink 安裝腳本
 │
+├── .agents/                    # AI 協作工具（project-level）
+│   └── skills/
+│       └── dotfiles-manager/   # 專用 skill
+│
 ├── zsh/                        # Zsh 配置模組
 │   ├── rc.zsh                  # 主入口 (→ ~/.zshrc)
 │   ├── env.zsh                 # 環境變數 (→ ~/.zshenv)
@@ -427,10 +431,9 @@ git push
 
 ## 相關資源
 
-- **dotfiles-manager skill**: ~/.config/opencode/skills/dotfiles-manager/
+- **dotfiles-manager skill**: .agents/skills/dotfiles-manager/ (project-level)
 - **工具清單**: docs/TOOLS.md
 - **安裝指南**: docs/SETUP.md
-- **原始 dotfiles**: .backup/ 目錄
 
 ---
 
