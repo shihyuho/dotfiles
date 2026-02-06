@@ -4,44 +4,36 @@
 - `$DOTFILES_ROOT` is set
 - You have read `$DOTFILES_ROOT/AGENTS.md` to understand project architecture
 
+Execution rule: use scripts under `.agents/skills/dotfiles-manager/scripts/` for terminal operations.
+Code snippets below are file-content examples unless they explicitly call a script.
+
 ## Step 1: Check Current Tool Status
 
 ```bash
-command -v <TOOL_NAME> >/dev/null 2>&1 && echo "installed" || echo "not installed"
-
-[[ -f "$ZSH_DIR/tools/<TOOL_NAME>.zsh" ]] && echo "config already exists"
+bash .agents/skills/dotfiles-manager/scripts/check-tool-status.sh <TOOL_NAME>
 ```
 
 ## Step 2: Add to Brewfile
 
 ```bash
-cd "$BREW_DIR"
+# Edit Brewfile and add under an appropriate section:
+# brew "<tool>"   # CLI tool
+# cask "<tool>"   # GUI application
 
-# Edit Brewfile and add under an appropriate section
-# Format:
-# brew "<tool>"          # CLI tool
-# cask "<tool>"          # GUI application
-
-brew bundle --file="$BREW_DIR/Brewfile"
+bash .agents/skills/dotfiles-manager/scripts/install-brew-bundle.sh
 ```
 
 ## Step 3: Create Configuration File
 
 ```bash
-cat > "$ZSH_DIR/tools/<TOOL_NAME>.zsh" << 'EOF'
-#!/usr/bin/env zsh
-# ---
-# Tool: <TOOL_NAME>
-# Source: <GitHub URL or official website>
-# Purpose: <short description>
-# Updated: <YYYY-MM-DD>
-# ---
-
-# Configuration content
-export <TOOL>_CONFIG="value"
-alias <alias>='<command>'
-EOF
+bash .agents/skills/dotfiles-manager/scripts/create-tool-config.sh \
+  <TOOL_NAME> \
+  <SOURCE_URL> \
+  "<short description>" \
+  tools
 ```
+
+Then edit the created file and add actual configuration content.
 
 **Configuration file principles:**
 - Header metadata is required (source, purpose, update date)
@@ -76,24 +68,19 @@ Edit `$DOCS_DIR/TOOLS.md` and add a tool entry:
 ## Step 6: Test and Verify
 
 ```bash
-# 1. Syntax check
-zsh -n ~/.zshrc
+bash .agents/skills/dotfiles-manager/scripts/test.sh
+bash .agents/skills/dotfiles-manager/scripts/check-tool-status.sh <TOOL_NAME>
 
-# 2. Startup speed test (5 iterations)
-for i in {1..5}; do
-  /usr/bin/time -p zsh -i -c exit 2>&1 | grep real
-done
-
-# 3. Functional test
+# Optional functional check
 zsh -i -c "<TOOL_NAME> --version"
 ```
 
-Target startup time: under 0.5s (maximum 1s)
+Target startup time: every run must be under 0.5s
 
 ## Common Scenarios
 
 ### Scenario 1: Simple CLI tool (for example, bat)
-```bash
+```zsh
 # Brewfile
 brew "bat"
 
@@ -106,13 +93,13 @@ _load_tool_if_exists bat "${DOTFILES_ROOT}/zsh/tools/bat.zsh"
 ```
 
 ### Scenario 2: Tool that requires initialization (for example, zoxide)
-```bash
+```zsh
 # zsh/tools/zoxide.zsh
 eval "$(zoxide init zsh --cmd z)"
 ```
 
 ### Scenario 3: Lazy-loaded tool (for example, nvm)
-```bash
+```zsh
 # zsh/tools/dev/nvm.zsh
 export NVM_DIR="$HOME/.nvm"
 

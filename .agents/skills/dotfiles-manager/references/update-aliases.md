@@ -4,6 +4,8 @@
 
 Use this workflow when upstream alias sources changed and you want to refresh local alias files.
 
+Execution rule: use `.agents/skills/dotfiles-manager/scripts/update-aliases.sh` as the workflow entrypoint.
+
 ## Managed Alias Sources
 
 - `kubectl-aliases`: `https://github.com/ahmetb/kubectl-aliases` -> `$HOME/.kubectl_aliases`
@@ -15,57 +17,23 @@ Use the built-in script:
 
 ```bash
 # Update both
-.agents/skills/dotfiles-manager/scripts/update-aliases.sh all
+bash .agents/skills/dotfiles-manager/scripts/update-aliases.sh all
 
 # Update one source only
-.agents/skills/dotfiles-manager/scripts/update-aliases.sh kubectl
-.agents/skills/dotfiles-manager/scripts/update-aliases.sh gitalias
+bash .agents/skills/dotfiles-manager/scripts/update-aliases.sh kubectl
+bash .agents/skills/dotfiles-manager/scripts/update-aliases.sh gitalias
 ```
 
-## Manual Workflow (if script customization is needed)
+## Script-First Rule
 
-### Step 1: Download upstream files
-
-```bash
-curl -sSL -o /tmp/kubectl_aliases \
-  https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
-
-curl -sSL -o /tmp/gitalias \
-  https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt
-```
-
-### Step 2: Write local files with metadata headers
-
-```bash
-cat << EOF > "$HOME/.kubectl_aliases"
-# ---
-# Tool: kubectl-aliases
-# Source: https://github.com/ahmetb/kubectl-aliases
-# Purpose: 800+ kubectl shortcuts
-# Updated: $(date +%Y-%m-%d)
-# ---
-
-EOF
-cat /tmp/kubectl_aliases >> "$HOME/.kubectl_aliases"
-
-cat << EOF > "$DOTFILES_ROOT/git/aliases/gitalias"
-# ---
-# Tool: gitalias
-# Source: https://github.com/GitAlias/gitalias
-# Purpose: 1780+ git aliases
-# Updated: $(date +%Y-%m-%d)
-# ---
-
-EOF
-cat /tmp/gitalias >> "$DOTFILES_ROOT/git/aliases/gitalias"
-```
+Do not copy manual curl/cat steps into workflow execution.
+If customization is needed, update `scripts/update-aliases.sh` and keep the workflow entrypoint script-based.
 
 ### Step 3: Verify
 
 ```bash
-zsh -n ~/.zshrc
+bash .agents/skills/dotfiles-manager/scripts/test.sh
 zsh -i -c "alias | grep kubectl | head -5"
-make test
 ```
 
 ## Performance Notes

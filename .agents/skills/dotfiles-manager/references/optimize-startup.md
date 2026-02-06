@@ -1,31 +1,24 @@
 # Optimizing Shell Startup Speed
 
+Execution rule: run provided scripts for measurement/verification. Non-script code blocks are config examples for file edits.
+
 ## Measure Current Speed
 
 ### Basic Test
 
 ```bash
-# Run 5 times and compare
-for i in {1..5}; do
-  /usr/bin/time -p zsh -i -c exit 2>&1 | grep real
-done
+bash .agents/skills/dotfiles-manager/scripts/test.sh
 ```
 
-Target: under 0.5s (maximum 1s)
+Target: every run must be under 0.5s
 
 ### Detailed Profiling
 
 Use `zprof` to identify bottlenecks:
 
-```zsh
-# Add at the top of ~/.zshrc
-zmodload zsh/zprof
-
-# Add at the bottom
-zprof
+```bash
+bash .agents/skills/dotfiles-manager/scripts/measure-startup.sh
 ```
-
-Run `zsh` to view per-function timing.
 
 ## Common Bottlenecks and Fixes
 

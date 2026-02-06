@@ -1,11 +1,23 @@
 ---
 name: dotfiles-manager
-description: Use when working in this modular dotfiles repository to add/remove tools, update external aliases, troubleshoot startup speed, or keep symlink-based configuration safe and consistent with AGENTS.md.
+description: Use when modifying dotfiles configuration in modular dotfiles setups: shell/tool modules, aliases, package lists, install/uninstall symlink flows, startup performance, and setup docs. Keeps changes safe, consistent, and verifiable with AGENTS.md rules.
 ---
 
 # Dotfiles Manager
 
 Manage this repository's modular dotfiles setup with safe, repeatable workflows.
+
+## Dotfiles Trigger Scope
+
+Use this skill for dotfiles-configuration tasks, including:
+
+- Updating shell configs, tool modules, aliases, env/bootstrap scripts, and package manifests
+- Managing symlink contracts and install/uninstall lifecycle safely
+- Dotfiles-focused renames/refactors/cleanup and setup-document updates
+- Startup performance tuning, troubleshooting, and verification/test runs
+- Any dotfiles change where project rules in `AGENTS.md` should be enforced
+
+If unsure whether a task is dotfiles-related, load this skill first and then route to the matching reference workflow.
 
 ## Quick Routing
 
@@ -54,6 +66,8 @@ Use `make measure-startup` when startup performance regresses.
 
 ## Built-in Utility Scripts
 
+- `.agents/skills/dotfiles-manager/scripts/create-tool-config.sh <tool> <source-url> <purpose> [tools|dev]`: generate tool config skeleton with required metadata
+- `.agents/skills/dotfiles-manager/scripts/install-brew-bundle.sh`: install packages from `brew/Brewfile`
 - `.agents/skills/dotfiles-manager/scripts/test.sh`: syntax + startup + symlink checks
 - `.agents/skills/dotfiles-manager/scripts/check-tool-status.sh <tool>`: tool install/config/load status
 - `.agents/skills/dotfiles-manager/scripts/check-dependencies.sh <tool>`: safe removal checks

@@ -1,7 +1,9 @@
 # Dotfiles Architecture Principles (Generic)
 
+Execution rule: use script entrypoints under `.agents/skills/dotfiles-manager/scripts/` for runnable checks.
+
 ## Design Goals
-1. **Performance**: Shell startup time under 0.5s (maximum 1s)
+1. **Performance**: Shell startup time under 0.5s (every run)
 2. **Modularity**: Configuration is grouped by responsibility for easier maintenance
 3. **Portability**: Easy to sync across machines
 4. **Extensibility**: Adding tools should not break existing setup
@@ -52,11 +54,7 @@ dotfiles/
 ## Test Standard
 
 ```bash
-# Startup speed
-for i in {1..5}; do /usr/bin/time -p zsh -i -c exit 2>&1 | grep real; done
-
-# Syntax check
-zsh -n ~/.zshrc
+bash .agents/skills/dotfiles-manager/scripts/test.sh
 ```
 
 Target: under 0.5s

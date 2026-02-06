@@ -4,6 +4,8 @@
 
 Use this workflow when removing a tool from dotfiles, Brewfile, and loading logic.
 
+Execution rule: use scripts under `.agents/skills/dotfiles-manager/scripts/` for terminal checks and verification.
+
 ## Safe Removal Workflow
 
 ### Step 1: Confirm removal intent
@@ -14,14 +16,7 @@ Use this workflow when removing a tool from dotfiles, Brewfile, and loading logi
 ### Step 2: Dependency and reference checks (required)
 
 ```bash
-.agents/skills/dotfiles-manager/scripts/check-dependencies.sh <tool-name>
-```
-
-Manual checks if needed:
-
-```bash
-brew uses --installed <tool-name>
-grep -r "<tool-name>" "$DOTFILES_ROOT/zsh/"
+bash .agents/skills/dotfiles-manager/scripts/check-dependencies.sh <tool-name>
 ```
 
 If dependency check is unsafe, stop and report impact.
@@ -36,8 +31,7 @@ If dependency check is unsafe, stop and report impact.
 ### Step 4: Verify
 
 ```bash
-zsh -n ~/.zshrc
-make test
+bash .agents/skills/dotfiles-manager/scripts/test.sh
 ```
 
 ## Safety Checklist
@@ -48,7 +42,7 @@ make test
 - [ ] Tool config file removed
 - [ ] Load logic removed from `zsh/rc.zsh`
 - [ ] Documentation updated in `docs/TOOLS.md`
-- [ ] Verification passed (`zsh -n ~/.zshrc`, `make test`)
+- [ ] Verification passed (`bash .agents/skills/dotfiles-manager/scripts/test.sh`)
 
 ## Optional Git Step
 
