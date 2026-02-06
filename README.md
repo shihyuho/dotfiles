@@ -62,7 +62,7 @@ make brew     # Install Homebrew packages only
 # First-time setup: create local secrets file
 cp "$DOTFILES_DIR/secrets.example" ~/.secrets
 chmod 600 ~/.secrets
-# Then edit ~/.secrets and set required values
+# Then edit ~/.secrets and set sensitive values
 
 # Uninstall managed symlinks (optional)
 make uninstall
