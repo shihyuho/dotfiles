@@ -107,6 +107,8 @@ brew "fzf"       # Fuzzy finder
 brew "ripgrep"   # Better grep
 brew "fd"        # Better find
 brew "zoxide"    # Smarter cd
+brew "zellij"    # Terminal multiplexer (tmux alternative)
+brew "yazi"      # Terminal file manager (ranger alternative)
 brew "bat"       # Better cat (if you want it)
 
 # Git tools
@@ -131,13 +133,15 @@ brew "asciidoctor"
 brew "kcat"  # Kafka CLI
 
 # File tools
-brew "p7zip"
+brew "sevenzip"
 brew "pigz"
 brew "pv"
 brew "rename"
 brew "zopfli"
 
 # Media tools
+brew "ffmpeg"
+brew "poppler"  # PDF tools
 brew "imagemagick"
 brew "gs"  # Ghostscript
 
@@ -149,7 +153,7 @@ brew "rlwrap"
 brew "ssh-copy-id"
 brew "vbindiff"
 brew "neofetch"
-brew "ngrok/ngrok/ngrok"
+# brew "ngrok/ngrok/ngrok"
 brew "mkcert"
 
 # ============================================================================
@@ -193,53 +197,53 @@ brew "zsh-syntax-highlighting"
 # Development
 cask "iterm2"
 cask "visual-studio-code"
-cask "sublime-text"
-cask "jetbrains-toolbox"
-cask "ghostty"
+# cask "sublime-text"
+# cask "jetbrains-toolbox"
+# cask "ghostty"
 
 # Productivity
-cask "raycast"
-cask "rectangle"     # Window manager
-cask "alt-tab"       # Better app switcher
-cask "notion"
-cask "obsidian"      # If you use it
-cask "snipaste"      # Screenshot tool
+# cask "raycast"
+# cask "rectangle"     # Window manager
+# cask "alt-tab"       # Better app switcher
+# cask "notion"
+# cask "obsidian"      # If you use it
+# cask "snipaste"      # Screenshot tool
 
 # Communication
-cask "slack"
-cask "microsoft-teams"
-cask "zoom"          # If needed
+# cask "slack"
+# cask "microsoft-teams"
+# cask "zoom"          # If needed
 
 # Utilities
-cask "appcleaner"
-cask "keka"          # Archive utility
-cask "kekaexternalhelper"
-cask "keycastr"      # Show keystrokes
-cask "macdown"       # Markdown editor
-cask "iina"          # Video player
-cask "spotify"
-cask "bitwarden"     # Password manager
+# cask "appcleaner"
+# cask "keka"          # Archive utility
+# cask "kekaexternalhelper"
+# cask "keycastr"      # Show keystrokes
+# cask "macdown"       # Markdown editor
+# cask "iina"          # Video player
+# cask "spotify"
+# cask "bitwarden"     # Password manager
 
 # Database & Dev Tools
-cask "dbeaver-community"
-cask "beyond-compare"
-cask "drawio"
+# cask "dbeaver-community"
+# cask "beyond-compare"
+# cask "drawio"
 
 # System
-cask "switchhosts"   # Hosts file manager
-cask "openvpn-connect"
-cask "aerial"        # Screensaver
+# cask "switchhosts"   # Hosts file manager
+# cask "openvpn-connect"
+# cask "aerial"        # Screensaver
 
 # Email
-cask "mimestream"    # Gmail client
+# cask "mimestream"    # Gmail client
 
 # ============================================================================
 # Fonts
 # ============================================================================
 
 tap "homebrew/cask-fonts"
-cask "font-fira-code"
-cask "font-fira-code-nerd-font"
+# cask "font-fira-code"
+# cask "font-fira-code-nerd-font"
 
 # ============================================================================
 # Notes

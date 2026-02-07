@@ -29,6 +29,8 @@ source "${DOTFILES_ROOT}/zsh/tools/keybindings.zsh"
 _load_tool_if_exists zoxide "${DOTFILES_ROOT}/zsh/tools/zoxide.zsh"
 _load_tool_if_exists lazygit "${DOTFILES_ROOT}/zsh/tools/lazygit.zsh"
 _load_tool_if_exists ghq "${DOTFILES_ROOT}/zsh/tools/ghq.zsh"
+_load_tool_if_exists zellij "${DOTFILES_ROOT}/zsh/tools/zellij.zsh"
+_load_tool_if_exists yazi "${DOTFILES_ROOT}/zsh/tools/yazi.zsh"
 
 # Load development tools (lazy loading)
 source "${DOTFILES_ROOT}/zsh/tools/dev/nvm.zsh"
