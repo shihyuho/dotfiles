@@ -1,0 +1,33 @@
+# Ghostty Configuration
+# https://ghostty.org/docs/config
+
+# Keybinding Fixes for Zellij (macOS)
+# Treat left option as Alt/Meta
+macos-option-as-alt = left
+
+# Unbind default Alt+Left/Right to allow Zellij to receive them
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
+# Map Command+Left/Right to Home/End (send hex codes)
+# \x1bOH = Home, \x1bOF = End (common sequences)
+keybind = cmd+left=text:\x1bOH
+keybind = cmd+right=text:\x1bOF
+
+# Theme
+theme = Material Darker
+
+# Font
+font-family = "Fira Code"
+font-size = 14
+font-feature = calt
+font-feature = liga
+
+# Window
+window-padding-x = 4
+window-padding-y = 4
+window-decoration = true
+window-save-state = always
+
+# Shell integration
+shell-integration = zsh
