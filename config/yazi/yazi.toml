@@ -1,0 +1,49 @@
+# Yazi Configuration
+# https://yazi-rs.github.io/docs/configuration/yazi
+
+[manager]
+layout         = [ 1, 4, 3 ]
+sort_by        = "alphabetical"
+sort_sensitive = false
+sort_reverse   = false
+sort_dir_first = true
+linemode       = "size"
+show_hidden    = false
+show_symlink   = true
+
+[preview]
+tab_size       = 2
+max_width      = 600
+max_height     = 900
+cache_dir      = ""
+image_filter   = "lanczos3"
+image_quality  = 75
+sixel_fraction = 15
+ueberzug_scale = 1
+ueberzug_offset = [ 0, 0, 0, 0 ]
+
+[opener]
+edit = [
+    { run = '${EDITOR:-vi} "$@"', block = true, desc = "Edit" },
+]
+play = [
+    { run = 'iina "$@"', orphan = true, desc = "Play" },
+    { run = 'mpv "$@"', orphan = true, desc = "Play (mpv)" },
+]
+open = [
+    { run = 'open "$@"', desc = "Open" },
+]
+
+[open]
+rules = [
+    { name = "*/", use = [ "edit", "open", "play" ] },
+    { mime = "text/*", use = [ "edit" ] },
+    { mime = "image/*", use = [ "open" ] },
+    { mime = "video/*", use = [ "play", "open" ] },
+    { mime = "audio/*", use = [ "play", "open" ] },
+    { mime = "inode/x-empty", use = [ "edit" ] },
+    { mime = "application/json", use = [ "edit" ] },
+]
+
+[log]
+enabled = false
