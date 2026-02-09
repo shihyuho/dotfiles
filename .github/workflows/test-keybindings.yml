@@ -1,0 +1,76 @@
+name: Test Keybindings
+
+on:
+  push:
+    paths:
+      - 'config/zellij/**'
+      - 'config/ghostty/**'
+      - '.agents/scripts/test-keybindings.sh'
+      - '.github/workflows/test-keybindings.yml'
+  pull_request:
+    paths:
+      - 'config/zellij/**'
+      - 'config/ghostty/**'
+      - '.agents/scripts/test-keybindings.sh'
+  workflow_dispatch:
+
+jobs:
+  test-configs:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install Zellij (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install zellij
+          zellij --version
+      
+      - name: Install Zellij (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          # Install from GitHub releases
+          ZELLIJ_VERSION="0.43.1"
+          wget "https://github.com/zellij-org/zellij/releases/download/v${ZELLIJ_VERSION}/zellij-x86_64-unknown-linux-musl.tar.gz"
+          tar -xzf zellij-x86_64-unknown-linux-musl.tar.gz
+          sudo mv zellij /usr/local/bin/
+          zellij --version
+      
+      - name: Validate Zellij Config
+        run: |
+          # Create symlink to test config
+          mkdir -p ~/.config/zellij
+          ln -sf "$PWD/config/zellij/config.kdl" ~/.config/zellij/config.kdl
+          
+          # Validate syntax
+          zellij setup --check
+          
+          # Check if config is well-defined
+          if ! zellij setup --check 2>&1 | grep -q "Well defined"; then
+            echo "❌ Zellij config validation failed"
+            exit 1
+          fi
+          echo "✅ Zellij config is well-defined"
+      
+      - name: Test Zellij Keybinding Definitions
+        run: |
+          bash .agents/scripts/test-keybindings.sh zellij
+      
+      - name: Test Ghostty Config Syntax
+        run: |
+          bash .agents/scripts/test-keybindings.sh ghostty
+      
+      - name: Test Keybinding Consistency
+        run: |
+          bash .agents/scripts/test-keybindings.sh consistency
+      
+      - name: Generate Test Report
+        if: always()
+        run: |
+          bash .agents/scripts/test-keybindings.sh report

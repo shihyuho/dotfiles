@@ -300,6 +300,65 @@ Must run after every modification:
    ls -la ~ | grep "dotfiles"
    ```
 
+5. **Keybinding tests**
+   ```bash
+   # Test Zellij and Ghostty keybinding configurations
+   make test-keybindings
+   ```
+
+### CI/CD Testing Policy
+
+**All GitHub Actions workflows MUST test on both platforms:**
+- ✅ `macos-latest` - Primary development environment
+- ✅ `ubuntu-latest` - Linux compatibility
+
+**All workflows MUST support manual triggering:**
+- Add `workflow_dispatch:` to the `on:` section
+- Enables running tests on-demand via GitHub UI
+
+**Implementation pattern:**
+```yaml
+on:
+  push:
+  pull_request:
+  workflow_dispatch:  # Enable manual triggering
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Platform-specific setup (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          # macOS-specific commands (e.g., brew install)
+      
+      - name: Platform-specific setup (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          # Ubuntu-specific commands (e.g., apt-get install)
+```
+
+**Existing workflows:**
+- `.github/workflows/verify.yml` - Dotfiles installation and basic tests
+- `.github/workflows/test-keybindings.yml` - Keybinding configuration tests
+
+**Manually triggering workflows:**
+1. Go to GitHub repository → Actions tab
+2. Select the workflow from the left sidebar
+3. Click "Run workflow" button
+4. Choose branch and click "Run workflow"
+
+**When creating new workflows:**
+1. Use matrix strategy with both OS platforms
+2. Add `workflow_dispatch:` trigger for manual runs
+3. Add platform-specific installation steps with `if: matrix.os == 'os-name'`
+4. Test locally before committing (use `act` or GitHub Actions)
+5. Ensure all tests are idempotent and can run on both platforms
+
 ### Performance Analysis
 
 For deep performance bottleneck analysis:

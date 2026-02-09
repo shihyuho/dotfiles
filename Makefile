@@ -1,7 +1,8 @@
-.PHONY: help install uninstall brew test test-ci check-tool check-deps update-aliases measure-startup
+.PHONY: help install uninstall brew test test-ci test-keybindings check-tool check-deps update-aliases measure-startup
 
 DOTFILES_ROOT := $(shell pwd)
 SCRIPTS_DIR := .agents/skills/dotfiles-manager/scripts
+TEST_SCRIPTS_DIR := .agents/scripts
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
@@ -34,6 +35,9 @@ test-ci: ## Run CI-friendly tests (no startup threshold - measurement only)
 
 measure-startup: ## Measure detailed startup speed with zprof
 	@$(SCRIPTS_DIR)/measure-startup.sh
+
+test-keybindings: ## Test keybinding configurations (Zellij + Ghostty)
+	@$(TEST_SCRIPTS_DIR)/test-keybindings.sh all
 
 ##@ Tool Management
 

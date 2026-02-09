@@ -9,10 +9,36 @@ macos-option-as-alt = left
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 
-# Map Command+Left/Right to Home/End (send hex codes)
-# \x1bOH = Home, \x1bOF = End (common sequences)
-keybind = cmd+left=text:\x1bOH
-keybind = cmd+right=text:\x1bOF
+# Explicitly unbind Ghostty defaults that conflict with Zellij
+# These ensure Alt+<key> combinations pass through to Zellij
+keybind = alt+f=unbind
+keybind = alt+h=unbind
+keybind = alt+j=unbind
+keybind = alt+k=unbind
+keybind = alt+l=unbind
+keybind = alt+n=unbind
+keybind = alt+w=unbind
+keybind = alt+i=unbind
+keybind = alt+o=unbind
+keybind = alt+p=unbind
+
+# Map Command+Left/Right to Home/End
+# Try Ctrl+A/E (Emacs-style) which is more universally supported
+# These work in most shells and applications including OpenCode
+keybind = cmd+left=text:\x01
+keybind = cmd+right=text:\x05
+
+# Alternative: If you prefer Home/End sequences, uncomment these instead:
+# keybind = cmd+left=text:\x1b[H
+# keybind = cmd+right=text:\x1b[F
+
+# Enable system clipboard integration
+# Command+C/V for copy/paste (use OSC 52 clipboard passthrough)
+clipboard-read = allow
+clipboard-write = allow
+
+# Let Command+C always copy to system clipboard
+copy-on-select = false
 
 # Theme
 theme = Material Darker
