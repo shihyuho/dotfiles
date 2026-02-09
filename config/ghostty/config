@@ -37,6 +37,11 @@ keybind = cmd+right=text:\x05
 clipboard-read = allow
 clipboard-write = allow
 
+# Explicitly bind Command+C/V to clipboard actions
+# This ensures it works even inside TUI apps like OpenCode
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+
 # Let Command+C always copy to system clipboard
 copy-on-select = false
 
@@ -44,7 +49,7 @@ copy-on-select = false
 theme = Material Darker
 
 # Font
-font-family = "Fira Code"
+font-family = "FiraCode Nerd Font"
 font-size = 14
 font-feature = calt
 font-feature = liga

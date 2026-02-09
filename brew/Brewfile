@@ -181,7 +181,7 @@ brew "tcpflow"
 brew "tcpreplay"
 brew "tcptrace"
 brew "ucspi-tcp"
-brew "xpdf"
+# brew "xpdf"  # Removed: Conflicts with poppler. Poppler is more widely used and already provides all PDF CLI tools.
 brew "xz"
 
 # ============================================================================
@@ -242,8 +242,7 @@ cask "visual-studio-code"
 # ============================================================================
 
 tap "homebrew/cask-fonts"
-# cask "font-fira-code"
-# cask "font-fira-code-nerd-font"
+cask "font-fira-code-nerd-font"
 
 # ============================================================================
 # Notes
