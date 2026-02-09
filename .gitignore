@@ -16,3 +16,12 @@ Thumbs.db
 .vscode
 
 .secrets
+
+# AI Agent Planning Files
+findings.md
+progress.md
+task_plan.md
+.agent/
+
+# Backup Files
+*.backup_*
