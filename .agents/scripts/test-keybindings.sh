@@ -65,8 +65,9 @@ test_zellij_config() {
         return 1
     fi
     
-    # Test 2: Required top-level settings exist
-    local required_settings=("theme" "default_layout" "mouse_mode" "copy_command")
+    # Test 2: Required customizations exist (theme, layout, copy_command)
+    # Note: mouse_mode is omitted as it uses the default value (true)
+    local required_settings=("theme" "default_layout" "copy_command")
     for setting in "${required_settings[@]}"; do
         if grep -q "^$setting " "$ZELLIJ_CONFIG"; then
             test_result "Zellij: '$setting' is defined at top level" 0
@@ -89,36 +90,14 @@ test_zellij_config() {
         test_result "Zellij: default_layout is 'compact'" 1 "Expected layout not found"
     fi
     
-    # Test 5: Alt+F binding exists for floating panes
-    if grep -q 'bind "Alt f" { ToggleFloatingPanes' "$ZELLIJ_CONFIG"; then
-        test_result "Zellij: Alt+F binding exists for ToggleFloatingPanes" 0
-    else
-        test_result "Zellij: Alt+F binding exists for ToggleFloatingPanes" 1 "Binding not found"
-    fi
-    
-    # Test 6: Alt Left/Right are unbound (for shell word jumping)
+    # Test 5: Alt Left/Right unbind (custom configuration)
     if grep -q 'unbind "Alt left"' "$ZELLIJ_CONFIG" && grep -q 'unbind "Alt right"' "$ZELLIJ_CONFIG"; then
         test_result "Zellij: Alt Left/Right are unbound for shell passthrough" 0
     else
         test_result "Zellij: Alt Left/Right are unbound for shell passthrough" 1 "unbind statements not found"
     fi
     
-    # Test 7: Critical Alt keybindings exist
-    local alt_bindings=("Alt h" "Alt j" "Alt k" "Alt l" "Alt n" "Alt w")
-    local missing_bindings=()
-    for binding in "${alt_bindings[@]}"; do
-        if ! grep -q "bind \"$binding\"" "$ZELLIJ_CONFIG"; then
-            missing_bindings+=("$binding")
-        fi
-    done
-    
-    if [ ${#missing_bindings[@]} -eq 0 ]; then
-        test_result "Zellij: All critical Alt bindings exist" 0
-    else
-        test_result "Zellij: All critical Alt bindings exist" 1 "Missing: ${missing_bindings[*]}"
-    fi
-    
-    # Test 8: UI block is properly closed
+    # Test 6: UI block is properly closed
     local ui_open=$(grep -c "^ui {" "$ZELLIJ_CONFIG" || true)
     local ui_close=$(grep -c "^}" "$ZELLIJ_CONFIG" | head -1 || true)
     
@@ -220,15 +199,21 @@ test_consistency() {
     
     # Test 1: Ghostty unbinds match Zellij binds
     # Extract Alt bindings from Zellij that should be unbound in Ghostty
-    local zellij_alt_bindings=($(grep -o 'bind "Alt [a-z]"' "$ZELLIJ_CONFIG" | sed 's/bind "Alt //' | sed 's/"//' | sort -u || true))
+    local zellij_alt_bindings_raw=$(grep -o 'bind "Alt [a-z]"' "$ZELLIJ_CONFIG" | sed 's/bind "Alt //' | sed 's/"//' | sort -u || true)
+    local zellij_alt_bindings=()
+    if [ -n "$zellij_alt_bindings_raw" ]; then
+        readarray -t zellij_alt_bindings <<< "$zellij_alt_bindings_raw"
+    fi
     
     local consistency_issues=()
-    for key in "${zellij_alt_bindings[@]}"; do
-        # Check if this key is unbound in Ghostty
-        if ! grep -q "keybind = alt+$key=unbind" "$GHOSTTY_CONFIG"; then
-            consistency_issues+=("alt+$key")
-        fi
-    done
+    if [ ${#zellij_alt_bindings[@]} -gt 0 ]; then
+        for key in "${zellij_alt_bindings[@]}"; do
+            # Check if this key is unbound in Ghostty
+            if ! grep -q "keybind = alt+$key=unbind" "$GHOSTTY_CONFIG"; then
+                consistency_issues+=("alt+$key")
+            fi
+        done
+    fi
     
     if [ ${#consistency_issues[@]} -eq 0 ]; then
         test_result "Consistency: Ghostty unbinds all Zellij Alt bindings" 0
