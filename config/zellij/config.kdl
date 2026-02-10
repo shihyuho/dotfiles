@@ -44,6 +44,6 @@ show_startup_tips false
 
 ui {
     pane_frames {
-        hide_session_name true
+        hide_session_name false
     }
 }

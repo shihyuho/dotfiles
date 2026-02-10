@@ -7,5 +7,6 @@
 # ---
 
 alias zj="zellij"
-alias za="zellij attach"
-alias zls="zellij list-sessions"
+alias zjac="zellij attach --create"
+alias zjls="zellij list-sessions"
+alias zjda="zellij delete-all-sessions"
