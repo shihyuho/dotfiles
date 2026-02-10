@@ -231,6 +231,7 @@ cask "visual-studio-code"
 
 # System
 # cask "switchhosts"   # Hosts file manager
+cask "karabiner-elements"
 # cask "openvpn-connect"
 # cask "aerial"        # Screensaver
 

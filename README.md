@@ -25,6 +25,8 @@ dotfiles/
 │   └── aliases/        # Categorized aliases
 ├── git/                # Git configuration
 ├── brew/               # Homebrew Brewfile
+├── manual/             # Manual install configs (see manual/README.md)
+│   └── karabiner/      # Karabiner-Elements rules
 ├── misc/               # Other configs (tmux, vimrc, vim runtime, etc.)
 ├── external/           # External source assets (aliases, prompt helpers)
 ├── docs/               # Documentation

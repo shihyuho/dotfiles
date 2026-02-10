@@ -66,6 +66,13 @@ dotfiles/
 │   ├── kubectl_aliases         # symlink → ~/.kubectl_aliases
 │   └── kube-ps1.sh             # symlink → ~/.kube-ps1.sh
 │
+├── manual/                     # Manual install configs (not symlinked)
+│   └── karabiner/              # Karabiner-Elements configuration
+│       ├── README.md           # Installation instructions
+│       └── assets/
+│           └── complex_modifications/
+│               └── prevent_chinese_input.json
+│
 ├── misc/                       # Other configs
 │   ├── tmux.conf               # symlink → ~/.tmux.conf
 │   ├── vimrc                   # symlink → ~/.vimrc

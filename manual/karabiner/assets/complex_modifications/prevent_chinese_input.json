@@ -1,0 +1,109 @@
+{
+  "title": "Auto-switch to English when holding left modifier keys",
+  "rules": [
+    {
+      "description": "Switch to English when left Ctrl/Option/Command is pressed (auto switch back on release)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "select_input_source": {
+                "language": "en"
+              }
+            },
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "select_input_source": {
+                "language": "zh-Hant"
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "zh-Hant"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_option"
+          },
+          "to": [
+            {
+              "select_input_source": {
+                "language": "en"
+              }
+            },
+            {
+              "key_code": "left_option"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "select_input_source": {
+                "language": "zh-Hant"
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "zh-Hant"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command"
+          },
+          "to": [
+            {
+              "select_input_source": {
+                "language": "en"
+              }
+            },
+            {
+              "key_code": "left_command"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "select_input_source": {
+                "language": "zh-Hant"
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "zh-Hant"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
