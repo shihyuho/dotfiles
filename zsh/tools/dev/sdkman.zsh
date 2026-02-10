@@ -11,7 +11,7 @@
 export SDKMAN_DIR="$HOME/.sdkman"
 
 _sdkman_load() {
-  unset -f sdk
+  unset -f sdk java javac mvn gradle ant tomcat
   if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
     source "${SDKMAN_DIR}/bin/sdkman-init.sh"
   else
@@ -21,4 +21,10 @@ _sdkman_load() {
   fi
 }
 
-sdk() { _sdkman_load; sdk "$@"; }
+sdk()    { _sdkman_load; sdk "$@"; }
+java()   { _sdkman_load; java "$@"; }
+javac()  { _sdkman_load; javac "$@"; }
+mvn()    { _sdkman_load; mvn "$@"; }
+gradle() { _sdkman_load; gradle "$@"; }
+ant()    { _sdkman_load; ant "$@"; }
+tomcat() { _sdkman_load; tomcat "$@"; }
