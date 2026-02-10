@@ -64,6 +64,6 @@ window-save-state = always
 shell-integration = zsh
 
 # Auto-start Zellij
-# Automatically attach to 'default' session or create it if it doesn't exist
+# Create a new session with random name each time (independent windows)
 # Use full path because Ghostty doesn't load shell PATH yet
-command = /opt/homebrew/bin/zellij attach --create default
+command = /opt/homebrew/bin/zellij
