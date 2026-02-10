@@ -12,7 +12,7 @@
           "to": [
             {
               "select_input_source": {
-                "language": "en"
+                "input_source_id": "com.apple.keylayout.ABC"
               }
             },
             {
@@ -22,7 +22,7 @@
           "to_after_key_up": [
             {
               "select_input_source": {
-                "language": "zh-Hant"
+                "input_mode_id": "com.apple.inputmethod.TCIM.Zhuyin"
               }
             }
           ],
@@ -31,7 +31,7 @@
               "type": "input_source_if",
               "input_sources": [
                 {
-                  "language": "zh-Hant"
+                  "input_mode_id": "^com\\.apple\\.inputmethod\\.TCIM\\.Zhuyin"
                 }
               ]
             }
@@ -45,7 +45,7 @@
           "to": [
             {
               "select_input_source": {
-                "language": "en"
+                "input_source_id": "com.apple.keylayout.ABC"
               }
             },
             {
@@ -55,7 +55,7 @@
           "to_after_key_up": [
             {
               "select_input_source": {
-                "language": "zh-Hant"
+                "input_mode_id": "com.apple.inputmethod.TCIM.Zhuyin"
               }
             }
           ],
@@ -64,7 +64,7 @@
               "type": "input_source_if",
               "input_sources": [
                 {
-                  "language": "zh-Hant"
+                  "input_mode_id": "^com\\.apple\\.inputmethod\\.TCIM\\.Zhuyin"
                 }
               ]
             }
@@ -78,7 +78,7 @@
           "to": [
             {
               "select_input_source": {
-                "language": "en"
+                "input_source_id": "com.apple.keylayout.ABC"
               }
             },
             {
@@ -88,7 +88,7 @@
           "to_after_key_up": [
             {
               "select_input_source": {
-                "language": "zh-Hant"
+                "input_mode_id": "com.apple.inputmethod.TCIM.Zhuyin"
               }
             }
           ],
@@ -97,7 +97,7 @@
               "type": "input_source_if",
               "input_sources": [
                 {
-                  "language": "zh-Hant"
+                  "input_mode_id": "^com\\.apple\\.inputmethod\\.TCIM\\.Zhuyin"
                 }
               ]
             }
