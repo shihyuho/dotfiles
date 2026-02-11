@@ -54,6 +54,27 @@ export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 # ghq
 export GHQ_ROOT="$HOME/code"
 
+# SDKMAN lazy shim for non-interactive zsh
+: "${SDKMAN_DIR:=$HOME/.sdkman}"
+
+_sdkman_load_for_noninteractive() {
+  local init_script="${SDKMAN_DIR}/bin/sdkman-init.sh"
+  unset -f java javac mvn gradle ant tomcat 2>/dev/null
+  if [[ -s "$init_script" ]]; then
+    source "$init_script"
+  else
+    print -u2 "Warning: '${init_script}' not found."
+    return 127
+  fi
+}
+
+for _sdkman_cmd in java javac mvn gradle ant tomcat; do
+  if ! command -v "$_sdkman_cmd" >/dev/null 2>&1; then
+    eval "${_sdkman_cmd}() { _sdkman_load_for_noninteractive || return \$?; command ${_sdkman_cmd} \"\$@\"; }"
+  fi
+done
+unset _sdkman_cmd
+
 # Docker (for Apple Silicon)
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
