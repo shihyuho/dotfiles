@@ -2,15 +2,9 @@
 description: "Create or update Harvest topic MOCs from existing context notes with confirmation-first behavior."
 ---
 
-Manage MOCs for the Harvest second brain.
+Invoke the `harvest` skill and execute MOC management behavior from `Workflow` Phase 3 Step 6 in `skills/harvest/SKILL.md`.
 
-## Steps
-
-1. Read `docs/notes/00-INDEX.md` and `docs/notes/contexts/`.
-2. Identify candidate topics (prefer topics with 3+ related contexts and no MOC).
-3. Propose one or more target MOCs and ask for confirmation.
-4. Create or update `docs/notes/mocs/<topic>.md` using `references/MOC_TEMPLATE.md` conventions.
-5. Update `docs/notes/00-INDEX.md` Topics section.
+Use confirmation-first behavior for any file writes.
 
 ## Rules
 

@@ -4,6 +4,8 @@ description: "Audit Harvest second brain consistency and report fix candidates w
 
 Run a read-first health check for Harvest notes.
 
+Use `skills/harvest/SKILL.md` and `skills/harvest/references/context-template.md` as the source of truth for validation criteria.
+
 ## Checks
 
 1. Structure checks:
@@ -11,7 +13,7 @@ Run a read-first health check for Harvest notes.
    - `docs/notes/contexts/`
    - `docs/notes/mocs/`
 2. Context integrity:
-   - required frontmatter fields (`type`, `context_id`, `created`, `updated`)
+   - required frontmatter and section structure from the harvest context template
    - malformed or missing section anchors
 3. Link integrity:
    - broken links from index/MOCs to context files

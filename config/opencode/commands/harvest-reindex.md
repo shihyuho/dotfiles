@@ -2,18 +2,12 @@
 description: "Rebuild Harvest 00-INDEX.md from contexts and MOCs with a preview-before-write safety step."
 ---
 
-Recompute and repair Harvest index metadata from existing notes.
+Invoke the `harvest` skill and run index rebuild behavior using the index update responsibilities defined in `skills/harvest/SKILL.md` (`Workflow` Phase 3 Step 5 and Phase 4 Step 4) and `skills/harvest/references/index-template.md`.
 
 ## Steps
 
 1. Read `docs/notes/00-INDEX.md`, `docs/notes/contexts/`, and `docs/notes/mocs/`.
-2. Recalculate index sections using `references/INDEX_TEMPLATE.md` structure:
-   - Stats
-   - Recent Updates (top 5)
-   - Topics (MOCs)
-   - Key Decisions
-   - Open Questions
-   - Recent Lessons
+2. Recompute index content from current notes according to skill-defined behavior.
 3. Show a concise diff-style preview (what will change).
 4. Ask for confirmation before writing.
 5. Apply updates only after confirmation.
