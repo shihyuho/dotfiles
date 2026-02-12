@@ -42,6 +42,16 @@ source "${DOTFILES_ROOT}/zsh/tools/dev/go.zsh"
 source "${DOTFILES_ROOT}/zsh/aliases/common.zsh"
 source "${DOTFILES_ROOT}/zsh/aliases/navigation.zsh"
 
+# Auto-start Zellij in Ghostty interactive shells.
+# Use a dedicated per-shell session name to avoid interactive attach prompts.
+# Exiting Zellij returns to the same shell instead of closing Ghostty.
+if [[ -o interactive ]] \
+  && [[ "${TERM_PROGRAM:-}" == "ghostty" ]] \
+  && [[ -z "${ZELLIJ:-}" ]] \
+  && [[ -z "${DISABLE_AUTO_ZELLIJ:-}" ]] then
+  zj
+fi
+
 # Load secrets (not tracked in git)
 [ -f "$HOME/.secrets" ] && source "$HOME/.secrets"
 
