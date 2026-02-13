@@ -1,7 +1,7 @@
 ---
 description: Git commit
 agent: build
-model: google/antigravity-gemini-3-flash
+model: openai/gpt-5.1-codex-mini
 ---
 
 Use the `git-commit` skill to commit changes.
