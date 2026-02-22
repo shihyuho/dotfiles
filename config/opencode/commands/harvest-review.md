@@ -1,13 +1,17 @@
 ---
-description: "Review relevant Harvest lessons before work using existing index and lessons MOC."
+description: "Evaluate harvest note quality and write a reusable report file."
 ---
 
-Invoke the `harvest` skill and execute only `Workflow` Phase 1 Step 2 (mandatory lesson review) from `skills/harvest/SKILL.md`.
+Invoke the `harvest:harvest` skill and follow it exactly as presented.
 
-## Output
+Treat this command as a review entrypoint.
 
-- 3 to 7 bullets max
-- each bullet includes: `LL-*` (if available) + lesson title + why relevant + context link
-- if no lessons match, state that clearly and suggest running `/harvest-capture` after the task
+Use `skills/harvest/SKILL.md` as the single source of truth, specifically:
 
-Do not write or modify files in this command.
+- `## Deterministic Workflow (Required)`
+- `## Review Report Mode (Required)`
+- `## Verification Checklist`
+
+Write one report file under `docs/notes/harvest-quality/` using the review template contract.
+
+Do not redefine review criteria or report schema in this command.

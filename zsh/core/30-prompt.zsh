@@ -35,19 +35,22 @@ _git_segment_update() {
   command git rev-parse --is-inside-work-tree &>/dev/null || return
 
   local s head branch dirty=""
+  local -a status_lines
   s="$(GIT_OPTIONAL_LOCKS=0 command git status --porcelain=v1 -b 2>/dev/null)" || return
-  head="${${(f)s}[1]}"
+  status_lines=("${(@f)s}")
+  head="${status_lines[1]}"
   branch="${head#\#\# }"
   branch="${branch%%...*}"
 
   # Any files in status output = dirty (including untracked)
-  [[ "${#${(f)s}}" -gt 1 ]] && dirty=" [*]"
+  [[ "${#status_lines[@]}" -gt 1 ]] && dirty=" [*]"
 
   __GIT_SEG="%F{15} on %f%F{61}${branch}%f%F{33}${dirty}%f"
 }
 
 add-zsh-hook precmd _git_segment_update
 add-zsh-hook chpwd  _git_segment_update
+_git_segment_update
 
 # Color setup
 if tput setaf 1 &> /dev/null; then
@@ -108,7 +111,7 @@ PROMPT+="%F${white} at %f"
 PROMPT+="%F${hostStyle}%m%f"  # host
 PROMPT+="%F${white} in %f"
 PROMPT+="%F${green}%~%f"  # working directory
-PROMPT+="%F\${__GIT_SEG}%f"  # Git info (cached)
+PROMPT+="\${__GIT_SEG}"  # Git info (cached)
 if command -v kubectl >/dev/null 2>&1; then
   PROMPT+="\$(kube_ps1)"  # Kubernetes prompt
 fi
