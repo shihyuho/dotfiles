@@ -54,9 +54,18 @@ export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 # ghq
 export GHQ_ROOT="$HOME/code"
 
-# SDKMAN lazy shim for non-interactive zsh
+# SDKMAN: export candidate binaries to PATH so they are available in
+# non-interactive shells (e.g. /bin/sh invoked by make).
 : "${SDKMAN_DIR:=$HOME/.sdkman}"
 
+if [[ -d "${SDKMAN_DIR}/candidates" ]]; then
+  for _sdk_candidate_dir in "${SDKMAN_DIR}"/candidates/*/current/bin(N); do
+    [[ -d "$_sdk_candidate_dir" ]] && export PATH="$_sdk_candidate_dir:$PATH"
+  done
+  unset _sdk_candidate_dir
+fi
+
+# SDKMAN lazy shim for interactive zsh (full sdk command support)
 _sdkman_load_for_noninteractive() {
   local init_script="${SDKMAN_DIR}/bin/sdkman-init.sh"
   unset -f java javac mvn gradle ant tomcat 2>/dev/null

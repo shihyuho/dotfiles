@@ -124,9 +124,11 @@ If a loaded skill defines a plan file location and format, follow that. Otherwis
 
 ### Handoff
 
-After writing the plan file, tell the user:
+After writing the plan file, call `plan_exit`. This will:
+1. Show the user a confirmation prompt ("Switch to build agent?")
+2. Automatically switch to build agent and begin execution if the user confirms
 
-> Plan written to `<path>`. Switch to Build Agent to execute.
+**Do not** manually tell the user to switch agents — always use `plan_exit`.
 
 ---
 
