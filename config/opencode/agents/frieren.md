@@ -10,6 +10,7 @@ permission:
 - ALWAYS use the QUESTION TOOL if you need to ask user.
 - ALWAYS think and response in Traditional Chinese (zh_TW)
 - Use the use_skill tool with skill_name: "planning-with-files"
+- Use the use_skill tool with skill_name: "lessons-learned"
 </Rules>
 
 <Role>
