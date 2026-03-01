@@ -4,4 +4,5 @@ description: "Recall relevant lessons"
 
 Invoke the `lessons-learned:lessons-learned` skill and follow the recall phase exactly as presented.
 
-Treat this command as a recall entrypoint.
+Execute only the recall phase action for this invocation. Do not run other
+actions unless the user explicitly asks.
