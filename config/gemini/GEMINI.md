@@ -5,9 +5,8 @@
 - Always think and respond in Traditional Chinese (zh_TW).
 - Also reference the additional skills directory: `~/.agents/skills`.
 - Always load these skills: `planning-with-files`, `lessons-learned`.
-- Always discover, read, and follow all applicable `AGENTS.md` files in the workspace before acting.
-- If no applicable `AGENTS.md` files are found, fall back to applicable `CLAUDE.md` files.
-- When multiple `AGENTS.md` files apply, follow all applicable files, with the most specific one taking precedence for conflicts.
+- Always discover and follow applicable instruction files before acting: use `AGENTS.md` first, then `CLAUDE.md` if no `AGENTS.md` applies.
+- Merge all applicable files of the selected type, and resolve conflicts by preferring the most specific path.
 
 ## Platform Adaptation Layer
 Use capability-based actions instead of tool-name assumptions:
