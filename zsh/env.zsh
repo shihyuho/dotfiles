@@ -8,6 +8,9 @@
 # Add ~/bin to PATH
 export PATH="$HOME/bin:$PATH"
 
+# Add user-local binaries to PATH
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
 # Homebrew prefix detection
 # Fast path: common install locations
 # Fallback: query `brew --prefix` for non-standard installs
