@@ -4,8 +4,6 @@ description: "Initialize lessons-learned setup"
 
 Run setup for project instruction files.
 
-## Required Flow
-
 1. **Detect project instruction files**
    - Check `AGENTS.md` and `CLAUDE.md` at the project root.
    - Treat every existing file as a target file.

@@ -61,6 +61,7 @@ link_file "$DOTFILES_ROOT/external/kube-ps1.sh" "$HOME/.kube-ps1.sh"
 
 echo ""
 echo "📂 Linking misc configurations..."
+link_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 link_file "$DOTFILES_ROOT/config/zellij" "$HOME/.config/zellij"
 link_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 link_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"

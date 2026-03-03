@@ -69,6 +69,7 @@ unlink_file "$DOTFILES_ROOT/external/kube-ps1.sh" "$HOME/.kube-ps1.sh"
 
 echo ""
 echo "📂 Removing misc configuration links..."
+unlink_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 unlink_file "$DOTFILES_ROOT/config/zellij" "$HOME/.config/zellij"
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 unlink_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"
