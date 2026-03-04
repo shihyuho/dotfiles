@@ -28,3 +28,7 @@ alias ifactive="ifconfig | pcregrep -M -o '^[^\\t:]+:([^\\n]|\\n\\t)*status: act
 # ghq shortcuts
 alias g="ghq"
 alias j="ghq-fzf"  # j for jump
+
+# opencode shortcuts
+alias o="opencode"
+alias oc="opencode --continue"
