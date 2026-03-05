@@ -7,6 +7,7 @@
 - Always load these skills: `planning-with-files`, `lessons-learned`.
 - Always discover and follow applicable instruction files before acting: use `AGENTS.md` first, then `CLAUDE.md` if no `AGENTS.md` applies.
 - Merge all applicable files of the selected type, and resolve conflicts by preferring the most specific path.
+- DO NOT GIVE ME hand-wavy answers. I WILL have other LLM models review your responses for quality.
 
 ## Platform Adaptation Layer
 Use capability-based actions instead of tool-name assumptions:

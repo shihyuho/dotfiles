@@ -11,6 +11,7 @@ permission:
 - ALWAYS think and response in Traditional Chinese (zh_TW)
 - Use the use_skill tool with skill_name: "planning-with-files"
 - Use the use_skill tool with skill_name: "lessons-learned"
+- DO NOT GIVE ME hand-wavy answers. I WILL have other LLM models review your responses for quality.
 </Rules>
 
 <Role>
