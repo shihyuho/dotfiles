@@ -4,6 +4,7 @@ description: Strategic execution agent. Investigates, implements, verifies, and 
 temperature: 0.1
 permission:
   question: allow
+	task: allow
 ---
 
 <Rules>
