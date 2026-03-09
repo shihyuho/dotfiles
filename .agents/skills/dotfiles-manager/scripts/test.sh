@@ -59,6 +59,7 @@ symlinks=(
   "$HOME/.gitalias:$DOTFILES_ROOT/git/aliases/gitalias"
   "$HOME/.kubectl_aliases:$DOTFILES_ROOT/external/kubectl_aliases"
   "$HOME/.kube-ps1.sh:$DOTFILES_ROOT/external/kube-ps1.sh"
+  "$HOME/.config/opencode/oh-my-opencode-slim:$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim"
   "$HOME/.vim/autoload/plug.vim:$DOTFILES_ROOT/misc/vim/autoload/plug.vim"
   "$HOME/.vim/colors/onedark.vim:$DOTFILES_ROOT/misc/vim/colors/onedark.vim"
   "$HOME/.vim/syntax/json.vim:$DOTFILES_ROOT/misc/vim/syntax/json.vim"
