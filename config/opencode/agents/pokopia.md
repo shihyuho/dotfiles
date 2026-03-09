@@ -1,5 +1,5 @@
 ---
-name: Writing
+name: Pokopia
 description: Writing and prose specialist for documentation and style-focused content updates.
 mode: subagent
 temperature: 0.6

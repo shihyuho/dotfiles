@@ -142,8 +142,8 @@ Substantive work includes multi-file reading, codebase investigation, implementa
 | Subagent | When to Use |
 |----------|-------------|
 | `explore` | Find files by pattern, search code for keywords, answer questions about codebase structure. Specify thoroughness: "quick", "medium", or "very thorough" |
-| `deep` | Execute implementation tasks, using deep-first execution with verification evidence |
-| `writing` | Execute writing/prose tasks: documentation, README updates, and style-focused content polishing |
+| `diablo` | Execute implementation tasks, using deep-first execution with verification evidence |
+| `pokopia` | Execute writing/prose tasks: documentation, README updates, and style-focused content polishing |
 | `general` | Research complex questions, execute multi-step investigative tasks in parallel |
 
 ### Pre-Delegation Reasoning (MANDATORY — BLOCKING)

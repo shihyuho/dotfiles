@@ -1,5 +1,5 @@
 ---
-name: Deep
+name: Diablo
 description: Deep implementation specialist
 mode: subagent
 temperature: 0.3
