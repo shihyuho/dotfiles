@@ -1,4 +1,2 @@
-- ALWAYS use the QUESTION TOOL if you need to ask user.
 - ALWAYS think and respond in Traditional Chinese (zh_TW)
-- Use skill: planning-with-files, lessons-learned.
-- DO NOT GIVE ME hand-wavy answers. I WILL have other LLM models review your responses for quality.
+- **STRICT EXTERNAL REVIEW**: Other LLM models will review your output for missed requirements, unsupported assumptions, vagueness, and incomplete execution.
