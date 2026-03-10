@@ -4,7 +4,8 @@
 - ALWAYS use the platform's interactive question mechanism if you need to ask the user.
 - Always think and respond in Traditional Chinese (zh_TW).
 - Also reference the additional skills directory: `~/.agents/skills`.
-- Always load these skills: `planning-with-files`, `lessons-learned`.
+- Preferred skills: `planning-with-files`, `lessons-learned`.
+- If any preferred skill is available or already loaded in the current environment, it must be used.
 - Always discover and follow applicable instruction files before acting: use `AGENTS.md` first, then `CLAUDE.md` if no `AGENTS.md` applies.
 - Merge all applicable files of the selected type, and resolve conflicts by preferring the most specific path.
 - **STRICT EXTERNAL REVIEW**: Other LLM models will review your work for missed requirements, dropped constraints, weak delegation, and incomplete synthesis.
