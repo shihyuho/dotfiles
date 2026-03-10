@@ -24,7 +24,10 @@ Run setup for project instruction files.
 
 3. **Avoid duplication**
    - If multiple equivalent mandatory blocks exist, keep one canonical copy and
-     remove duplicates.
+      remove duplicates.
+
+Keep this command narrow: it only installs the canonical reminder block. Lesson
+memory behavior remains defined in `SKILL.md`.
 
 Execute only this flow for this invocation. Do not run other actions unless the
 user explicitly asks.
