@@ -1,5 +1,9 @@
 # Dotfiles Agent Guide
 
+## UltraBrain
+
+**MUST** use the `ultrabrain` skill before any execution
+
 ## Purpose
 
 This repository is a modular dotfiles system for fast startup, safe symlink management, and predictable AI-assisted maintenance.
@@ -16,10 +20,6 @@ Primary targets:
 3. Keep startup cost low: prefer conditional loading, lazy loading, and caching.
 4. Never commit untested changes.
 5. Never commit secrets (`~/.secrets` is out of git).
-
-## Lessons Learned
-
-**MUST** use the `lessons-learned` skill before any execution
 
 ## Repository Map (High Level)
 
