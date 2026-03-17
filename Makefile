@@ -36,7 +36,7 @@ test-ci: ## Run CI-friendly tests (no startup threshold - measurement only)
 measure-startup: ## Measure detailed startup speed with zprof
 	@$(SCRIPTS_DIR)/measure-startup.sh
 
-test-keybindings: ## Test keybinding configurations (Zellij + Ghostty)
+test-keybindings: ## Test keybinding configurations (Ghostty)
 	@$(TEST_SCRIPTS_DIR)/test-keybindings.sh all
 
 ##@ Tool Management

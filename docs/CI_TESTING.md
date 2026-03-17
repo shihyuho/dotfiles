@@ -34,7 +34,7 @@ All CI workflows in this project MUST:
 
 ### 2. Test Keybindings (`.github/workflows/test-keybindings.yml`)
 
-**Purpose**: Validates Zellij and Ghostty keybinding configurations
+**Purpose**: Validates Ghostty keybinding configurations
 
 **Triggers**:
 - Push when keybinding files change
@@ -42,16 +42,11 @@ All CI workflows in this project MUST:
 - Manual (workflow_dispatch)
 
 **Tests**:
-- Zellij config syntax validation
 - Ghostty config syntax validation
 - Required settings presence
 - Cross-config consistency
 
 **Platforms**: macOS, Ubuntu
-
-**Platform-specific**:
-- macOS: Installs Zellij via Homebrew
-- Ubuntu: Installs Zellij from GitHub releases
 
 ---
 
@@ -187,7 +182,6 @@ make test
 ### Ubuntu
 - Uses apt-get for system packages
 - Requires explicit Zsh installation
-- Some tools installed from releases (e.g., Zellij)
 
 ---
 

@@ -72,11 +72,6 @@
 - **zsh-syntax-highlighting**: Syntax highlighting for zsh
   - Config: `zsh/core/90-syntax-highlighting.zsh`
 
-- **zellij**: Terminal multiplexer (tmux alternative)
-  - Source: https://zellij.dev
-  - Config: `zsh/tools/zellij.zsh`
-  - Managed symlink: `~/.config/zellij` -> `dotfiles/config/zellij`
-
 - **yazi**: Terminal file manager (ranger alternative)
   - Source: https://yazi-rs.github.io
   - Config: `zsh/tools/yazi.zsh`

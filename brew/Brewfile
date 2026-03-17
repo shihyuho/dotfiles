@@ -106,7 +106,7 @@ brew "fzf"       # Fuzzy finder
 brew "ripgrep"   # Better grep
 brew "fd"        # Better find
 brew "zoxide"    # Smarter cd
-brew "zellij"    # Terminal multiplexer (tmux alternative)
+
 brew "yazi"      # Terminal file manager (ranger alternative)
 brew "bat"       # Better cat (if you want it)
 

@@ -1,26 +1,8 @@
 # Ghostty Configuration
 # https://ghostty.org/docs/config
 
-# Keybinding Fixes for Zellij (macOS)
 # Treat left option as Alt/Meta
 macos-option-as-alt = left
-
-# Unbind default Alt+Left/Right to allow Zellij to receive them
-keybind = alt+left=unbind
-keybind = alt+right=unbind
-
-# Explicitly unbind Ghostty defaults that conflict with Zellij
-# These ensure Alt+<key> combinations pass through to Zellij
-keybind = alt+f=unbind
-keybind = alt+h=unbind
-keybind = alt+j=unbind
-keybind = alt+k=unbind
-keybind = alt+l=unbind
-keybind = alt+n=unbind
-keybind = alt+w=unbind
-keybind = alt+i=unbind
-keybind = alt+o=unbind
-keybind = alt+p=unbind
 
 # Map Command+Left/Right to Home/End
 # Try Ctrl+A/E (Emacs-style) which is more universally supported
@@ -62,6 +44,3 @@ window-save-state = always
 
 # Shell integration
 shell-integration = zsh
-
-# Start the default user shell.
-# Zsh config auto-starts Zellij in Ghostty; exiting Zellij returns to shell.

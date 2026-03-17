@@ -29,7 +29,6 @@ source "${DOTFILES_ROOT}/zsh/tools/keybindings.zsh"
 _load_tool_if_exists zoxide "${DOTFILES_ROOT}/zsh/tools/zoxide.zsh"
 _load_tool_if_exists lazygit "${DOTFILES_ROOT}/zsh/tools/lazygit.zsh"
 _load_tool_if_exists ghq "${DOTFILES_ROOT}/zsh/tools/ghq.zsh"
-_load_tool_if_exists zellij "${DOTFILES_ROOT}/zsh/tools/zellij.zsh"
 _load_tool_if_exists yazi "${DOTFILES_ROOT}/zsh/tools/yazi.zsh"
 
 # Load development tools (lazy loading)
@@ -41,16 +40,6 @@ source "${DOTFILES_ROOT}/zsh/tools/dev/go.zsh"
 # Load aliases
 source "${DOTFILES_ROOT}/zsh/aliases/common.zsh"
 source "${DOTFILES_ROOT}/zsh/aliases/navigation.zsh"
-
-# Auto-start Zellij in Ghostty interactive shells.
-# Use a dedicated per-shell session name to avoid interactive attach prompts.
-# Exiting Zellij returns to the same shell instead of closing Ghostty.
-if [[ -o interactive ]] \
-  && [[ "${TERM_PROGRAM:-}" == "ghostty" ]] \
-  && [[ -z "${ZELLIJ:-}" ]] \
-  && [[ -z "${DISABLE_AUTO_ZELLIJ:-}" ]] then
-  zj
-fi
 
 # Load secrets (not tracked in git)
 [ -f "$HOME/.secrets" ] && source "$HOME/.secrets"
