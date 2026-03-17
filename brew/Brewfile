@@ -196,6 +196,7 @@ brew "zsh-syntax-highlighting"
 # Development
 cask "iterm2"
 cask "visual-studio-code"
+cask "coteditor"  # Text editor
 # cask "sublime-text"
 # cask "jetbrains-toolbox"
 # cask "ghostty"
