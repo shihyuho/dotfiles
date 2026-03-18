@@ -1,6 +1,6 @@
 # Dotfiles Tool List
 
-**Last Updated**: 2026-03-18
+**Last Updated**: 2026-03-19
 
 ## Kubernetes & Container
 
@@ -78,13 +78,9 @@
   - Wrapper: `yy` (change directory on exit)
   - Managed symlink: `~/.config/yazi` -> `dotfiles/config/yazi`
 
-- **Ghostty**: Terminal emulator (external prerequisite for OCM helpers)
-  - Source: https://ghostty.org
-  - Config: `zsh/tools/ghostty.zsh`
-  - Provides:
-    - `ocm`: runs `opencode --continue` (continue previous session)
-    - `om`: runs `opencode` (fresh session)
-  - Behavior: Split focused pane, run OpenCode on left, `ocmonitor live --pick` on right
+- **om**: OpenCode monitor shortcut
+  - Command: `ocmonitor live --pick`
+  - Notes: Opens the ocmonitor live picker directly; `oc` remains `opencode --continue`
 
 ## Development Languages
 

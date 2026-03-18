@@ -32,3 +32,7 @@ alias j="ghq-fzf"  # j for jump
 # opencode shortcuts
 alias o="opencode"
 alias oc="opencode --continue"
+
+om() {
+  ocmonitor live --pick
+}
