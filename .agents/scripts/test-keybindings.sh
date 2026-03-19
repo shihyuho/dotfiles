@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 #
 # Keybinding Configuration Test Suite
-# Tests Zellij and Ghostty keybinding configurations for correctness and consistency
+# Tests Ghostty keybinding configuration for correctness
 #
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-ZELLIJ_CONFIG="$DOTFILES_ROOT/config/zellij/config.kdl"
 GHOSTTY_CONFIG="$DOTFILES_ROOT/config/ghostty/config"
 
 # Colors for output
@@ -52,88 +51,6 @@ test_result() {
 }
 
 #######################################
-# Test Zellij Configuration
-#######################################
-test_zellij_config() {
-    echo -e "\n${BLUE}=== Testing Zellij Configuration ===${NC}\n"
-    
-    # Test 1: Config file exists
-    if [ -f "$ZELLIJ_CONFIG" ]; then
-        test_result "Zellij config file exists" 0
-    else
-        test_result "Zellij config file exists" 1 "File not found: $ZELLIJ_CONFIG"
-        return 1
-    fi
-    
-    # Test 2: Required customizations exist (theme, layout, copy_command)
-    # Note: mouse_mode is omitted as it uses the default value (true)
-    local required_settings=("theme" "default_layout" "copy_command")
-    for setting in "${required_settings[@]}"; do
-        if grep -q "^$setting " "$ZELLIJ_CONFIG"; then
-            test_result "Zellij: '$setting' is defined at top level" 0
-        else
-            test_result "Zellij: '$setting' is defined at top level" 1 "Setting not found or incorrectly placed"
-        fi
-    done
-    
-    # Test 3: Theme is set correctly
-    if grep -q '^theme "catppuccin-macchiato"' "$ZELLIJ_CONFIG"; then
-        test_result "Zellij: theme is 'catppuccin-macchiato'" 0
-    else
-        test_result "Zellij: theme is 'catppuccin-macchiato'" 1 "Expected theme not found"
-    fi
-    
-    # Test 4: Default layout is compact
-    if grep -q '^default_layout "compact"' "$ZELLIJ_CONFIG"; then
-        test_result "Zellij: default_layout is 'compact'" 0
-    else
-        test_result "Zellij: default_layout is 'compact'" 1 "Expected layout not found"
-    fi
-    
-    # Test 5: Alt Left/Right unbind (custom configuration)
-    if grep -q 'unbind "Alt left"' "$ZELLIJ_CONFIG" && grep -q 'unbind "Alt right"' "$ZELLIJ_CONFIG"; then
-        test_result "Zellij: Alt Left/Right are unbound for shell passthrough" 0
-    else
-        test_result "Zellij: Alt Left/Right are unbound for shell passthrough" 1 "unbind statements not found"
-    fi
-    
-    # Test 6: UI block is properly closed
-    local ui_open=$(grep -c "^ui {" "$ZELLIJ_CONFIG" || true)
-    local ui_close=$(grep -c "^}" "$ZELLIJ_CONFIG" | head -1 || true)
-    
-    if [ "$ui_open" -eq 1 ]; then
-        test_result "Zellij: UI block opens exactly once" 0
-    else
-        test_result "Zellij: UI block opens exactly once" 1 "Found $ui_open ui blocks"
-    fi
-    
-    # Test 9: No settings incorrectly placed inside ui block
-    local incorrect_in_ui=()
-    if sed -n '/^ui {/,/^}/p' "$ZELLIJ_CONFIG" | grep -q "^    theme "; then
-        incorrect_in_ui+=("theme")
-    fi
-    if sed -n '/^ui {/,/^}/p' "$ZELLIJ_CONFIG" | grep -q "^    default_layout "; then
-        incorrect_in_ui+=("default_layout")
-    fi
-    if sed -n '/^ui {/,/^}/p' "$ZELLIJ_CONFIG" | grep -q "^    mouse_mode "; then
-        incorrect_in_ui+=("mouse_mode")
-    fi
-    
-    if [ ${#incorrect_in_ui[@]} -eq 0 ]; then
-        test_result "Zellij: No top-level settings incorrectly placed in ui block" 0
-    else
-        test_result "Zellij: No top-level settings incorrectly placed in ui block" 1 "Found in ui block: ${incorrect_in_ui[*]}"
-    fi
-    
-    # Test 10: copy_command is set to pbcopy (macOS)
-    if grep -q '^copy_command "pbcopy"' "$ZELLIJ_CONFIG"; then
-        test_result "Zellij: copy_command is 'pbcopy'" 0
-    else
-        test_result "Zellij: copy_command is 'pbcopy'" 1 "Expected pbcopy not found"
-    fi
-}
-
-#######################################
 # Test Ghostty Configuration
 #######################################
 test_ghostty_config() {
@@ -154,19 +71,11 @@ test_ghostty_config() {
         test_result "Ghostty: macos-option-as-alt is set to 'left'" 1 "Setting not found or incorrect"
     fi
     
-    # Test 3: Alt keys are unbound
-    local alt_unbinds=("alt+f" "alt+h" "alt+j" "alt+k" "alt+l" "alt+n" "alt+w" "alt+i" "alt+o" "alt+p")
-    local missing_unbinds=()
-    for key in "${alt_unbinds[@]}"; do
-        if ! grep -q "keybind = $key=unbind" "$GHOSTTY_CONFIG"; then
-            missing_unbinds+=("$key")
-        fi
-    done
-    
-    if [ ${#missing_unbinds[@]} -eq 0 ]; then
-        test_result "Ghostty: All required Alt keys are unbound" 0
+    # Test 3: Command+C/V clipboard bindings exist
+    if grep -q "keybind = cmd+c=copy_to_clipboard" "$GHOSTTY_CONFIG" && grep -q "keybind = cmd+v=paste_from_clipboard" "$GHOSTTY_CONFIG"; then
+        test_result "Ghostty: Command+C/V clipboard bindings exist" 0
     else
-        test_result "Ghostty: All required Alt keys are unbound" 1 "Missing unbinds: ${missing_unbinds[*]}"
+        test_result "Ghostty: Command+C/V clipboard bindings exist" 1 "Clipboard keybinds not found"
     fi
     
     # Test 4: Command+Left/Right mappings exist
@@ -183,49 +92,11 @@ test_ghostty_config() {
         test_result "Ghostty: Clipboard integration is enabled" 1 "Clipboard settings not found"
     fi
     
-    # Test 6: Alt+Left/Right are unbound (for word jumping)
-    if grep -q "keybind = alt+left=unbind" "$GHOSTTY_CONFIG" && grep -q "keybind = alt+right=unbind" "$GHOSTTY_CONFIG"; then
-        test_result "Ghostty: Alt+Left/Right are unbound for shell passthrough" 0
+    # Test 6: Split keybindings exist
+    if grep -q "keybind = cmd+d=new_split:right" "$GHOSTTY_CONFIG" && grep -q "keybind = cmd+shift+d=new_split:down" "$GHOSTTY_CONFIG"; then
+        test_result "Ghostty: Split keybindings exist" 0
     else
-        test_result "Ghostty: Alt+Left/Right are unbound for shell passthrough" 1 "unbind statements not found"
-    fi
-}
-
-#######################################
-# Test Configuration Consistency
-#######################################
-test_consistency() {
-    echo -e "\n${BLUE}=== Testing Configuration Consistency ===${NC}\n"
-    
-    # Test 1: Ghostty unbinds match Zellij binds
-    # Extract Alt bindings from Zellij that should be unbound in Ghostty
-    local zellij_alt_bindings_raw=$(grep -o 'bind "Alt [a-z]"' "$ZELLIJ_CONFIG" | sed 's/bind "Alt //' | sed 's/"//' | sort -u || true)
-    local zellij_alt_bindings=()
-    if [ -n "$zellij_alt_bindings_raw" ]; then
-        readarray -t zellij_alt_bindings <<< "$zellij_alt_bindings_raw"
-    fi
-    
-    local consistency_issues=()
-    if [ ${#zellij_alt_bindings[@]} -gt 0 ]; then
-        for key in "${zellij_alt_bindings[@]}"; do
-            # Check if this key is unbound in Ghostty
-            if ! grep -q "keybind = alt+$key=unbind" "$GHOSTTY_CONFIG"; then
-                consistency_issues+=("alt+$key")
-            fi
-        done
-    fi
-    
-    if [ ${#consistency_issues[@]} -eq 0 ]; then
-        test_result "Consistency: Ghostty unbinds all Zellij Alt bindings" 0
-    else
-        test_result "Consistency: Ghostty unbinds all Zellij Alt bindings" 1 "Missing Ghostty unbinds: ${consistency_issues[*]}"
-    fi
-    
-    # Test 2: Copy command consistency
-    if grep -q '^copy_command "pbcopy"' "$ZELLIJ_CONFIG"; then
-        test_result "Consistency: Both configs use pbcopy for clipboard" 0
-    else
-        test_result "Consistency: Both configs use pbcopy for clipboard" 1 "Zellij not using pbcopy"
+        test_result "Ghostty: Split keybindings exist" 1 "Split keybinds not found"
     fi
 }
 
@@ -262,26 +133,18 @@ main() {
     echo -e "${BLUE}╚════════════════════════════════════════╝${NC}"
     
     case "$test_type" in
-        zellij)
-            test_zellij_config
-            ;;
         ghostty)
             test_ghostty_config
-            ;;
-        consistency)
-            test_consistency
             ;;
         report)
             generate_report
             ;;
         all)
-            test_zellij_config
             test_ghostty_config
-            test_consistency
             generate_report
             ;;
         *)
-            echo "Usage: $0 {zellij|ghostty|consistency|report|all}"
+            echo "Usage: $0 {ghostty|report|all}"
             exit 1
             ;;
     esac
