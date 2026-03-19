@@ -60,13 +60,29 @@ link_file "$DOTFILES_ROOT/external/kubectl_aliases" "$HOME/.kubectl_aliases"
 link_file "$DOTFILES_ROOT/external/kube-ps1.sh" "$HOME/.kube-ps1.sh"
 
 echo ""
-echo "📂 Linking misc configurations..."
-link_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
-link_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
-link_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"
+echo "📂 Linking OpenCode configurations..."
+# Link JDTLS launcher first (required by opencode.json)
+link_file "$DOTFILES_ROOT/config/opencode/bin/start_jdtls.sh" "$HOME/.config/opencode/bin/start_jdtls.sh"
+# Link opencode.json last (depends on launcher)
+link_file "$DOTFILES_ROOT/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 link_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
 link_file "$DOTFILES_ROOT/config/opencode/agents" "$HOME/.config/opencode/agents"
 link_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim" "$HOME/.config/opencode/oh-my-opencode-slim"
+
+echo ""
+echo "📂 Linking Gemini configurations..."
+link_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
+
+echo ""
+echo "📂 Linking Yazi configurations..."
+link_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
+
+echo ""
+echo "📂 Linking Ghostty configurations..."
+link_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"
+
+echo ""
+echo "📂 Linking misc configurations..."
 link_file "$DOTFILES_ROOT/misc/tmux.conf" "$HOME/.tmux.conf"
 link_file "$DOTFILES_ROOT/misc/vimrc" "$HOME/.vimrc"
 link_file "$DOTFILES_ROOT/misc/editorconfig" "$HOME/.editorconfig"

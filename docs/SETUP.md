@@ -80,6 +80,101 @@ sdk list java
 sdk install java
 ```
 
+## OpenCode Configuration
+
+### Automatic Management
+
+The OpenCode configuration and launcher scripts are now managed by the dotfiles install flow:
+
+```bash
+make install  # Creates symlinks for OpenCode config
+```
+
+Managed symlinks include:
+- `~/.config/opencode/opencode.json` -> `dotfiles/config/opencode/opencode.json`
+- `~/.config/opencode/bin/start_jdtls.sh` -> `dotfiles/config/opencode/bin/start_jdtls.sh`
+- `~/.config/opencode/commands/` -> `dotfiles/config/opencode/commands/`
+- `~/.config/opencode/agents/` -> `dotfiles/config/opencode/agents/`
+- `~/.config/opencode/oh-my-opencode-slim/` -> `dotfiles/config/opencode/oh-my-opencode-slim/`
+
+### Migrating Existing OpenCode Config
+
+If you have an existing OpenCode configuration that you want to preserve:
+
+1. **Backup your existing config:**
+   ```bash
+   cp ~/.config/opencode/opencode.json ~/.config/opencode/opencode.json.backup
+   ```
+
+   If you already have any of these managed OpenCode paths, `make install` will move the existing files or directories into `~/.dotfiles_backup/...` before creating symlinks:
+
+   - `~/.config/opencode/opencode.json`
+   - `~/.config/opencode/commands/`
+   - `~/.config/opencode/agents/`
+   - `~/.config/opencode/oh-my-opencode-slim/`
+   - `~/.config/opencode/bin/start_jdtls.sh`
+
+2. **Review the managed config:**
+   ```bash
+   cat config/opencode/opencode.json
+   ```
+
+3. **Merge settings manually into the repo copy**: Update `config/opencode/opencode.json` in this repository, not `~/.config/opencode/opencode.json`, because `make install` will replace the home-directory file with a symlink to the repo copy. The managed `opencode.json` includes JDTLS LSP configuration. If you have custom settings, merge them carefully - the managed file contains:
+   - Plugin list
+   - Default agent and model settings
+   - MCP server configurations
+   - Provider definitions
+   - Permission settings
+   - **LSP configuration for JDTLS** (at the end under `lsp.jdtls`)
+
+   If the managed plugin list includes local `file://` plugins, make sure those paths exist on the current machine or update the plugin entry after installation.
+
+4. **Reinstall to apply changes:**
+   ```bash
+   make install
+   ```
+
+### JDTLS / Lombok Prerequisites
+
+JDTLS (Java Development Tools Language Server) requires:
+
+1. **Java 21+**: Ensure you have Java 21 or later installed:
+   ```bash
+   java -version  # Should show 21+
+   ```
+
+2. **JDTLS Installation**: Download and install JDTLS from:
+   - Stable releases: https://download.eclipse.org/jdtls/milestones/
+   - Latest builds: https://download.eclipse.org/jdtls/snapshots/
+   - Source and build instructions: https://github.com/eclipse-jdtls/eclipse.jdt.ls
+   - Install the extracted JDTLS distribution under `~/.local/share/opencode/bin/jdtls`, or set `JDTLS_HOME` to the installed location
+
+3. **Lombok JAR**: Ensure Lombok jar exists at default location or set override:
+   - Default: `~/.lombok/lombok.jar`
+   - Override: `export JDTLS_LOMBOK_JAR=/path/to/lombok.jar`
+
+If Java is older than 21, the launcher will fail with an error like:
+
+```text
+ERROR: Java major version must be >= 21
+```
+
+### Override Environment Variables
+
+You can override default paths by setting these environment variables in your `~/.secrets` or shell profile:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `JDTLS_HOME` | `$HOME/.local/share/opencode/bin/jdtls` | JDTLS installation directory |
+| `JDTLS_JAVA_HOME` | `$JAVA_HOME` or system `java` | Java home for JDTLS |
+| `JDTLS_LOMBOK_JAR` | `$HOME/.lombok/lombok.jar` | Lombok jar path |
+
+Example in `~/.secrets`:
+```bash
+export JDTLS_HOME="/opt/jdtls"
+export JDTLS_LOMBOK_JAR="$HOME/.local/lib/lombok.jar"
+```
+
 ## Verify Installation
 
 ```bash
@@ -121,6 +216,14 @@ brew doctor
 
 ```bash
 make measure-startup
+```
+
+### JDTLS cache looks stale
+
+If JDTLS has been upgraded or the cached writable config looks suspect, remove the cache and let the launcher rebuild it:
+
+```bash
+rm -rf "${XDG_CACHE_HOME:-$HOME/.cache}/jdtls"
 ```
 
 ## More Information

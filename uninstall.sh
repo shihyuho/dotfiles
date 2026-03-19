@@ -68,13 +68,32 @@ unlink_file "$DOTFILES_ROOT/external/kubectl_aliases" "$HOME/.kubectl_aliases"
 unlink_file "$DOTFILES_ROOT/external/kube-ps1.sh" "$HOME/.kube-ps1.sh"
 
 echo ""
+echo "📂 Removing OpenCode configuration links..."
+
+# Unlink opencode.json first (depends on launcher)
+unlink_file "$DOTFILES_ROOT/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
+
+# Always process launcher through normal unlink/restore flow first.
+unlink_file "$DOTFILES_ROOT/config/opencode/bin/start_jdtls.sh" "$HOME/.config/opencode/bin/start_jdtls.sh"
+
+# Warn only if the restored/current config still references the launcher but no launcher exists now.
+if [[ -f "$HOME/.config/opencode/opencode.json" ]] && grep -q "start_jdtls.sh" "$HOME/.config/opencode/opencode.json" 2>/dev/null; then
+  if [[ ! -e "$HOME/.config/opencode/bin/start_jdtls.sh" && ! -L "$HOME/.config/opencode/bin/start_jdtls.sh" ]]; then
+    echo "⚠️  WARNING: $HOME/.config/opencode/opencode.json still references JDTLS launcher."
+    echo "   No launcher was restored at $HOME/.config/opencode/bin/start_jdtls.sh. Please restore or recreate it manually."
+  fi
+fi
+
+# Other OpenCode configurations
+unlink_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
+unlink_file "$DOTFILES_ROOT/config/opencode/agents" "$HOME/.config/opencode/agents"
+unlink_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim" "$HOME/.config/opencode/oh-my-opencode-slim"
+
+echo ""
 echo "📂 Removing misc configuration links..."
 unlink_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 unlink_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"
-unlink_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
-unlink_file "$DOTFILES_ROOT/config/opencode/agents" "$HOME/.config/opencode/agents"
-unlink_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim" "$HOME/.config/opencode/oh-my-opencode-slim"
 unlink_file "$DOTFILES_ROOT/misc/tmux.conf" "$HOME/.tmux.conf"
 unlink_file "$DOTFILES_ROOT/misc/vimrc" "$HOME/.vimrc"
 unlink_file "$DOTFILES_ROOT/misc/editorconfig" "$HOME/.editorconfig"
