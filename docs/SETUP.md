@@ -92,6 +92,7 @@ make install  # Creates symlinks for OpenCode config
 
 Managed symlinks include:
 - `~/.config/opencode/opencode.json` -> `dotfiles/config/opencode/opencode.json`
+- `~/.config/opencode/oh-my-opencode-slim.json` -> `dotfiles/config/opencode/oh-my-opencode-slim.json`
 - `~/.config/opencode/bin/start_jdtls.sh` -> `dotfiles/config/opencode/bin/start_jdtls.sh`
 - `~/.config/opencode/commands/` -> `dotfiles/config/opencode/commands/`
 - `~/.config/opencode/agents/` -> `dotfiles/config/opencode/agents/`
@@ -104,22 +105,25 @@ If you have an existing OpenCode configuration that you want to preserve:
 1. **Backup your existing config:**
    ```bash
    cp ~/.config/opencode/opencode.json ~/.config/opencode/opencode.json.backup
+   cp ~/.config/opencode/oh-my-opencode-slim.json ~/.config/opencode/oh-my-opencode-slim.json.backup
    ```
 
    If you already have any of these managed OpenCode paths, `make install` will move the existing files or directories into `~/.dotfiles_backup/...` before creating symlinks:
 
-   - `~/.config/opencode/opencode.json`
-   - `~/.config/opencode/commands/`
-   - `~/.config/opencode/agents/`
-   - `~/.config/opencode/oh-my-opencode-slim/`
-   - `~/.config/opencode/bin/start_jdtls.sh`
+    - `~/.config/opencode/opencode.json`
+    - `~/.config/opencode/oh-my-opencode-slim.json`
+    - `~/.config/opencode/commands/`
+    - `~/.config/opencode/agents/`
+    - `~/.config/opencode/oh-my-opencode-slim/`
+    - `~/.config/opencode/bin/start_jdtls.sh`
 
 2. **Review the managed config:**
    ```bash
    cat config/opencode/opencode.json
+   cat config/opencode/oh-my-opencode-slim.json
    ```
 
-3. **Merge settings manually into the repo copy**: Update `config/opencode/opencode.json` in this repository, not `~/.config/opencode/opencode.json`, because `make install` will replace the home-directory file with a symlink to the repo copy. The managed `opencode.json` includes JDTLS LSP configuration. If you have custom settings, merge them carefully - the managed file contains:
+3. **Merge settings manually into the repo copy**: Update `config/opencode/opencode.json` and `config/opencode/oh-my-opencode-slim.json` in this repository, not the files under `~/.config/opencode/`, because `make install` will replace the home-directory files with symlinks to the repo copies. The managed `opencode.json` includes JDTLS LSP configuration, and `oh-my-opencode-slim.json` stores the local preset definition for the `oh-my-opencode-slim` plugin. If you have custom settings, merge them carefully - the managed `opencode.json` contains:
    - Plugin list
    - Default agent and model settings
    - MCP server configurations

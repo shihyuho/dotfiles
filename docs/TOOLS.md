@@ -93,6 +93,11 @@
   - Requirements: Java 21+
   - Notes: Uses Lombok for annotation processing; ensure `~/.lombok/lombok.jar` exists or set `JDTLS_LOMBOK_JAR`
 
+- **OpenCode preset config**: Local `oh-my-opencode-slim` preset definition
+  - Config: `config/opencode/oh-my-opencode-slim.json`
+  - Managed symlink: `~/.config/opencode/oh-my-opencode-slim.json` -> `dotfiles/config/opencode/oh-my-opencode-slim.json`
+  - Notes: Keeps local preset/model overrides repo-backed alongside the OpenCode plugin directory
+
 ## Development Languages
 
 - **Go**: Go programming language

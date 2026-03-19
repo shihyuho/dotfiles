@@ -63,8 +63,9 @@ echo ""
 echo "📂 Linking OpenCode configurations..."
 # Link JDTLS launcher first (required by opencode.json)
 link_file "$DOTFILES_ROOT/config/opencode/bin/start_jdtls.sh" "$HOME/.config/opencode/bin/start_jdtls.sh"
-# Link opencode.json last (depends on launcher)
+# Link OpenCode config files after the launcher
 link_file "$DOTFILES_ROOT/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
+link_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim.json" "$HOME/.config/opencode/oh-my-opencode-slim.json"
 link_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
 link_file "$DOTFILES_ROOT/config/opencode/agents" "$HOME/.config/opencode/agents"
 link_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim" "$HOME/.config/opencode/oh-my-opencode-slim"

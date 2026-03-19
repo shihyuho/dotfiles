@@ -85,6 +85,7 @@ if [[ -f "$HOME/.config/opencode/opencode.json" ]] && grep -q "start_jdtls.sh" "
 fi
 
 # Other OpenCode configurations
+unlink_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim.json" "$HOME/.config/opencode/oh-my-opencode-slim.json"
 unlink_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
 unlink_file "$DOTFILES_ROOT/config/opencode/agents" "$HOME/.config/opencode/agents"
 unlink_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim" "$HOME/.config/opencode/oh-my-opencode-slim"

@@ -74,8 +74,8 @@ exec zsh
 ```
 
 `make install` also manages OpenCode paths under `~/.config/opencode/`, including
-`opencode.json`, `commands/`, `agents/`, `oh-my-opencode-slim/`, and
-`bin/start_jdtls.sh`. If those paths already exist, the installer moves them into
+`opencode.json`, `oh-my-opencode-slim.json`, `commands/`, `agents/`,
+`oh-my-opencode-slim/`, and `bin/start_jdtls.sh`. If those paths already exist, the installer moves them into
 `~/.dotfiles_backup/...` before creating symlinks.
 
 See available commands: `make help`
