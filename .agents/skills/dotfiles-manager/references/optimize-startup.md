@@ -1,13 +1,13 @@
 # Optimizing Shell Startup Speed
 
-Execution rule: run provided scripts for measurement/verification. Non-script code blocks are config examples for file edits.
+Execution rule: use `make test` and `make measure-startup` as the public verification entrypoints. Non-script code blocks are config examples for file edits.
 
 ## Measure Current Speed
 
 ### Basic Test
 
 ```bash
-bash .agents/skills/dotfiles-manager/scripts/test.sh
+make test
 ```
 
 Target: every run must be under 0.5s
@@ -17,7 +17,7 @@ Target: every run must be under 0.5s
 Use `zprof` to identify bottlenecks:
 
 ```bash
-bash .agents/skills/dotfiles-manager/scripts/measure-startup.sh
+make measure-startup
 ```
 
 ## Common Bottlenecks and Fixes
@@ -71,6 +71,7 @@ export NVM_DIR="$HOME/.nvm"
 
 Preferred (lazy loading):
 ```zsh
+# `zsh/rc.zsh` should source this repo shim; the shim lazy-loads the real init.
 export NVM_DIR="$HOME/.nvm"
 
 _nvm_load() {

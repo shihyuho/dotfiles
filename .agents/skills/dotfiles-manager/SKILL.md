@@ -1,6 +1,6 @@
 ---
 name: dotfiles-manager
-description: "Use when modifying dotfiles configuration in modular dotfiles setups: shell/tool modules, aliases, package lists, install/uninstall symlink flows, startup performance, and setup docs. Keeps changes safe, consistent, and verifiable with AGENTS.md rules."
+description: "Use when modifying modular dotfiles repos with shell/tool modules, aliases, package manifests, install/uninstall symlink flows, startup-performance work, or dotfiles workflow docs."
 ---
 
 # Dotfiles Manager
@@ -22,6 +22,7 @@ If unsure whether a task is dotfiles-related, load this skill first and then rou
 ## Quick Routing
 
 - Add a new tool -> `references/add-tool.md`
+- Manage Brew packages or `brew/Brewfile` -> `references/brew-workflow.md`
 - Update external aliases -> `references/update-aliases.md`
 - Optimize shell startup -> `references/optimize-startup.md`
 - Remove unused tools -> `references/cleanup.md`
@@ -30,19 +31,24 @@ If unsure whether a task is dotfiles-related, load this skill first and then rou
 ## Mandatory First Steps
 
 1. Read `AGENTS.md` in repo root for project rules.
-2. Set environment variables:
+2. Set the repo root:
 
 ```bash
 DOTFILES_ROOT="<absolute-repo-path>"
-ZSH_DIR="$DOTFILES_ROOT/zsh"
-BREW_DIR="$DOTFILES_ROOT/brew"
-DOCS_DIR="$DOTFILES_ROOT/docs"
 ```
 
 3. Confirm this is the correct repo:
 
 ```bash
 [[ -f "$DOTFILES_ROOT/AGENTS.md" ]] || echo "AGENTS.md not found"
+```
+
+4. Set remaining environment variables:
+
+```bash
+ZSH_DIR="$DOTFILES_ROOT/zsh"
+BREW_DIR="$DOTFILES_ROOT/brew"
+DOCS_DIR="$DOTFILES_ROOT/docs"
 ```
 
 ## Hard Safety Rules
@@ -62,7 +68,9 @@ zsh -n ~/.zshrc
 make test
 ```
 
-Use `make measure-startup` when startup performance regresses.
+Use `make measure-startup` when startup behavior, load order, or performance may have changed.
+
+Prefer `make` targets as the public workflow entrypoints; use scripts under `.agents/skills/dotfiles-manager/scripts/` when you need the implementation detail directly.
 
 ## Built-in Utility Scripts
 
@@ -77,6 +85,8 @@ Use `make measure-startup` when startup performance regresses.
 ## Common Pitfalls
 
 - Updating `install.sh` without matching `uninstall.sh` update.
+- Updating a managed file via `$HOME/...` instead of the repo source.
 - Adding startup cost in `zsh/core/` (especially command substitutions).
 - Changing docs/scripts but skipping `make test`.
+- Treating heavy dev tools as eager startup work instead of lazy-loading shims.
 - Writing tool config without file header metadata.

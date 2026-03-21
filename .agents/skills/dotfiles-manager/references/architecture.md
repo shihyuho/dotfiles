@@ -1,60 +1,60 @@
-# Dotfiles Architecture Principles (Generic)
+# Dotfiles Architecture and Routing
 
-Execution rule: use script entrypoints under `.agents/skills/dotfiles-manager/scripts/` for runnable checks.
+Execution rule: use `make` targets for standard workflows and scripts under `.agents/skills/dotfiles-manager/scripts/` for direct helpers.
 
-## Design Goals
-1. **Performance**: Shell startup time under 0.5s (every run)
-2. **Modularity**: Configuration is grouped by responsibility for easier maintenance
-3. **Portability**: Easy to sync across machines
-4. **Extensibility**: Adding tools should not break existing setup
+## Repo-Specific Layout
 
-## Directory Structure Convention
-
-```
+```text
 dotfiles/
-├── AGENTS.md            # AI agent guide (project-specific)
-├── zsh/                 # Zsh configuration
-│   ├── rc.zsh           # Main entry point (-> ~/.zshrc)
-│   ├── env.zsh          # Environment variables (-> ~/.zshenv)
-│   ├── core/            # Core config (always loaded, numeric order)
-│   ├── tools/           # Tool config (conditional loading)
-│   └── aliases/         # Alias categories
-├── git/                 # Git configuration
-├── brew/Brewfile        # Homebrew configuration
-└── docs/                # Documentation
+|- AGENTS.md
+|- install.sh / uninstall.sh
+|- brew/Brewfile
+|- zsh/
+|  |- rc.zsh
+|  |- env.zsh
+|  |- core/
+|  |- tools/
+|  `- aliases/
+|- external/
+|- docs/
+`- .agents/skills/dotfiles-manager/
 ```
 
-## Loading Strategy
+## Source-of-Truth Rules
 
-### Core Configuration (`zsh/core/`)
-- Loaded in numeric filename order (`00`, `10`, `20`, ...)
-- Total startup cost should stay under 100ms
-- Includes PATH, completion, history, and prompt
+- Edit repo files, not managed paths under `$HOME`.
+- If `install.sh` creates a symlink, the repo-side source remains the thing to edit.
+- If managed paths change, update `install.sh` and `uninstall.sh` together.
 
-### Tool Configuration (`zsh/tools/`)
-- Conditional loading (only if tool exists)
-- Detect via `command -v <tool>`
+## Loading Order
 
-### Development Tools (`zsh/tools/dev/`)
-- Lazy loading (function wrapper with deferred init)
-- Usually saves 50-200ms startup time
+`zsh/rc.zsh` loads in this order:
 
-## Performance Optimization
+1. `zsh/env.zsh`
+2. every file in `zsh/core/` in numeric order
+3. regular tools via `_load_tool_if_exists()`
+4. dev-tool shims via direct `source`
+5. aliases
+6. optional `$HOME/.secrets`
 
-### Forbidden
-- Running subprocesses on startup, for example `$(brew --prefix)`
-- Unconditional loading of very large files
-- Repeatedly setting the same environment variables
+## Tool Patterns
 
-### Recommended
-- Hardcode common paths
-- Use cache where possible
-- Prefer conditional loading plus lazy loading
+- Regular tools: keep config in `zsh/tools/<tool>.zsh` and load with `_load_tool_if_exists()` from `zsh/rc.zsh`.
+- Heavy dev tools: keep a lightweight shim in `zsh/tools/dev/<tool>.zsh`; `zsh/rc.zsh` sources the shim, and the shim lazy-loads the expensive init on first use.
+- Alias assets managed from upstream should live in the repo when they are installed via symlink.
 
-## Test Standard
+The `_load_tool_if_exists()` helper is defined in `zsh/rc.zsh`.
 
-```bash
-bash .agents/skills/dotfiles-manager/scripts/test.sh
-```
+## Verification Routing
 
-Target: under 0.5s
+- Default verification after edits: `zsh -n ~/.zshrc` and `make test`
+- Startup or load-order changes: also run `make measure-startup`
+- Use direct scripts only when debugging workflow internals or when a specific helper is the task entrypoint
+
+## Quick Task Routing
+
+- New tool or tool config: `references/add-tool.md`
+- Brew package changes: `references/brew-workflow.md`
+- External alias refresh: `references/update-aliases.md`
+- Startup tuning: `references/optimize-startup.md`
+- Safe tool removal: `references/cleanup.md`

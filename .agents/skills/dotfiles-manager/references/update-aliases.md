@@ -8,10 +8,10 @@ Execution rule: use `.agents/skills/dotfiles-manager/scripts/update-aliases.sh` 
 
 ## Managed Alias Sources
 
-- `kubectl-aliases`: `https://github.com/ahmetb/kubectl-aliases` -> `$HOME/.kubectl_aliases`
+- `kubectl-aliases`: `https://github.com/ahmetb/kubectl-aliases` -> `external/kubectl_aliases` -> symlinked to `$HOME/.kubectl_aliases`
 - `gitalias`: `https://github.com/GitAlias/gitalias` -> `$DOTFILES_ROOT/git/aliases/gitalias`
 
-## Preferred Workflow
+## Step 1: Update repo-managed sources
 
 Use the built-in script:
 
@@ -24,7 +24,9 @@ bash .agents/skills/dotfiles-manager/scripts/update-aliases.sh kubectl
 bash .agents/skills/dotfiles-manager/scripts/update-aliases.sh gitalias
 ```
 
-## Script-First Rule
+The script must update files inside the repository. Do not write directly into `$HOME` for managed symlink targets.
+
+## Step 2: Keep the workflow script-first
 
 Do not copy manual curl/cat steps into workflow execution.
 If customization is needed, update `scripts/update-aliases.sh` and keep the workflow entrypoint script-based.
@@ -32,7 +34,8 @@ If customization is needed, update `scripts/update-aliases.sh` and keep the work
 ### Step 3: Verify
 
 ```bash
-bash .agents/skills/dotfiles-manager/scripts/test.sh
+zsh -n ~/.zshrc
+make test
 zsh -i -c "alias | grep kubectl | head -5"
 ```
 
@@ -49,6 +52,6 @@ If startup regresses after alias updates:
 Only if the user explicitly asks for commit:
 
 ```bash
-git add "$DOTFILES_ROOT/git/aliases/gitalias" "$HOME/.kubectl_aliases"
+git add "$DOTFILES_ROOT/git/aliases/gitalias" "$DOTFILES_ROOT/external/kubectl_aliases"
 git commit -m "Update external aliases"
 ```

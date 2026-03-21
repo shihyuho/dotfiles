@@ -4,7 +4,7 @@
 - `$DOTFILES_ROOT` is set
 - You have read `$DOTFILES_ROOT/AGENTS.md` to understand project architecture
 
-Execution rule: use scripts under `.agents/skills/dotfiles-manager/scripts/` for terminal operations.
+Execution rule: use `make` targets for standard terminal workflows; use scripts under `.agents/skills/dotfiles-manager/scripts/` when you need a helper directly.
 Code snippets below are file-content examples unless they explicitly call a script.
 
 ## Step 1: Check Current Tool Status
@@ -20,7 +20,7 @@ bash .agents/skills/dotfiles-manager/scripts/check-tool-status.sh <TOOL_NAME>
 # brew "<tool>"   # CLI tool
 # cask "<tool>"   # GUI application
 
-bash .agents/skills/dotfiles-manager/scripts/install-brew-bundle.sh
+make brew
 ```
 
 ## Step 3: Create Configuration File
@@ -38,20 +38,24 @@ Then edit the created file and add actual configuration content.
 **Configuration file principles:**
 - Header metadata is required (source, purpose, update date)
 - Keep file length under 100 lines
-- If content grows too large, consider lazy loading
+- For heavy dev tools, make this file a lazy-loading shim rather than eager init code
 
 ## Step 4: Register Loading Logic
 
-Edit `$ZSH_DIR/rc.zsh` and add conditional loading:
+Edit `$ZSH_DIR/rc.zsh` and register the new config using the matching pattern:
 
 ```zsh
+# Regular tools
 _load_tool_if_exists <TOOL_NAME> "${DOTFILES_ROOT}/zsh/tools/<TOOL_NAME>.zsh"
+
+# Heavy dev tools
+source "${DOTFILES_ROOT}/zsh/tools/dev/<TOOL_NAME>.zsh"
 ```
 
 **Loading strategy:**
 - **Frequently used tools**: conditional loading (load when tool exists)
 - **Large configurations**: lazy loading (function wrapper)
-- **Development tools**: lazy loading (nvm/pyenv style)
+- **Development tools**: source a lightweight repo shim that lazy-loads the real tool on first use (nvm/pyenv style)
 
 ## Step 5: Update Documentation
 
@@ -68,7 +72,8 @@ Edit `$DOCS_DIR/TOOLS.md` and add a tool entry:
 ## Step 6: Test and Verify
 
 ```bash
-bash .agents/skills/dotfiles-manager/scripts/test.sh
+zsh -n ~/.zshrc
+make test
 bash .agents/skills/dotfiles-manager/scripts/check-tool-status.sh <TOOL_NAME>
 
 # Optional functional check
@@ -105,9 +110,15 @@ export NVM_DIR="$HOME/.nvm"
 
 _nvm_load() {
   unset -f nvm node npm npx
-  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+  [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"
 }
 
 nvm() { _nvm_load; nvm "$@"; }
 node() { _nvm_load; node "$@"; }
+```
+
+And in `zsh/rc.zsh`:
+
+```zsh
+source "${DOTFILES_ROOT}/zsh/tools/dev/nvm.zsh"
 ```

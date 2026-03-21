@@ -4,4 +4,5 @@
 
 | Card | Scope | Tags | Date |
 |---|---|---|---|
+| `dotfiles-skill-workflows-must-edit-repo-source` | `project` | `dotfiles, skills, source-of-truth, symlinks, workflows` | `2026-03-21` |
 | `agent-delegation-requires-hard-gate` | `project` | `agents, prompts, delegation, subagents, opencode` | `2026-03-07` |

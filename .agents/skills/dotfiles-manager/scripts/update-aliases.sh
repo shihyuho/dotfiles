@@ -18,7 +18,7 @@ update_kubectl_aliases() {
   curl -sSL -o "$TMP_KUBECTL" \
     https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
 
-  cat << EOF > "$HOME/.kubectl_aliases"
+  cat << EOF > "$DOTFILES_ROOT/external/kubectl_aliases"
 # ---
 # Tool: kubectl-aliases
 # Source: https://github.com/ahmetb/kubectl-aliases
@@ -27,7 +27,7 @@ update_kubectl_aliases() {
 # ---
 
 EOF
-  cat "$TMP_KUBECTL" >> "$HOME/.kubectl_aliases"
+  cat "$TMP_KUBECTL" >> "$DOTFILES_ROOT/external/kubectl_aliases"
   echo "✅ kubectl-aliases updated"
   echo ""
 }
@@ -76,5 +76,6 @@ echo ""
 echo "✨ Alias update complete!"
 echo ""
 echo "Next steps:"
-echo "  1. Test aliases: zsh -i -c \"alias | grep kubectl | head -5\""
-echo "  2. If needed, run full validation: make test"
+echo "  1. Confirm symlink target: readlink \"$HOME/.kubectl_aliases\""
+echo "  2. Run verification: zsh -n ~/.zshrc && make test"
+echo "  3. Test aliases: zsh -i -c \"alias | grep kubectl | head -5\""

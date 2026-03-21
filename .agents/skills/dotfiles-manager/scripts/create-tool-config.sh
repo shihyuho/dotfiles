@@ -61,10 +61,12 @@ echo "✅ Created: $TARGET_FILE"
 echo ""
 echo "Next steps:"
 if [[ "$TOOL_GROUP" == "dev" ]]; then
-  echo "  1. Add source line in zsh/rc.zsh:"
+  echo "  1. Add lightweight shim source line in zsh/rc.zsh:"
   echo "     source \"\${DOTFILES_ROOT}/$TARGET_REL/$TOOL_NAME.zsh\""
+  echo "  2. Keep this file as a lazy-loading shim; do not eagerly source heavy init code on startup"
 else
   echo "  1. Add load line in zsh/rc.zsh:"
   echo "     _load_tool_if_exists $TOOL_NAME \"\${DOTFILES_ROOT}/$TARGET_REL/$TOOL_NAME.zsh\""
+  echo "  2. Guard the config with conditional loading only"
 fi
-echo "  2. Run verification: bash .agents/skills/dotfiles-manager/scripts/test.sh"
+echo "  3. Run verification: zsh -n ~/.zshrc && make test"
