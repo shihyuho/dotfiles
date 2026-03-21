@@ -19,19 +19,26 @@ Modular macOS dotfiles configuration focused on performance and maintainability.
 
 ```
 dotfiles/
-├── zsh/                # Zsh configuration (modular)
-│   ├── core/           # Core functionality (PATH, completion, history, prompt)
-│   ├── tools/          # Tool configurations (kubectl, git, fzf, etc.)
-│   └── aliases/        # Categorized aliases
-├── git/                # Git configuration
+├── .agents/            # Project-local AI skills and helper scripts
+├── .github/            # CI workflows
 ├── brew/               # Homebrew Brewfile
+├── config/             # App configs (gemini, ghostty, opencode, yazi)
+├── docs/               # Documentation, plans, and lessons
+├── external/           # External source assets (aliases, prompt helpers)
+├── git/                # Git configuration
 ├── manual/             # Manual install configs (see manual/README.md)
 │   └── karabiner/      # Karabiner-Elements rules
 ├── misc/               # Other configs (tmux, vimrc, vim runtime, etc.)
-├── external/           # External source assets (aliases, prompt helpers)
-├── docs/               # Documentation
+├── zsh/                # Zsh configuration (modular)
+│   ├── core/           # Core functionality (PATH, completion, history, prompt)
+│   ├── tools/          # Tool configurations (kubectl, git, fzf, etc.)
+│   ├── aliases/        # Categorized aliases
+│   ├── env.zsh         # Early environment setup
+│   └── rc.zsh          # Main zsh entrypoint
 ├── AGENTS.md           # AI agent guide
 ├── install.sh          # Installation script
+├── Makefile            # Common setup, test, and maintenance commands
+├── secrets.example     # Template for local secrets
 └── uninstall.sh        # Uninstallation script
 ```
 
