@@ -10,7 +10,7 @@ This repository manages modular dotfiles with three standing goals:
 ## Required Routing
 
 - Use the `dotfiles-manager` skill before changing dotfiles config, install/uninstall flows, or docs that define dotfiles workflows.
-- Keep this file minimal. Move task-specific workflows and directory tours into skills or repo docs, not `AGENTS.md`.
+- Keep this file minimal. Move task-specific workflows and directory tours into skills or repo docs, not global agent files.
 
 ## Core Contracts
 
