@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - 'config/ghostty/**'
-      - '.agents/scripts/test-keybindings.sh'
+      - 'scripts/test-keybindings.sh'
       - '.github/workflows/test-keybindings.yml'
   pull_request:
     paths:
       - 'config/ghostty/**'
-      - '.agents/scripts/test-keybindings.sh'
+      - 'scripts/test-keybindings.sh'
   workflow_dispatch:
 
 jobs:
@@ -26,9 +26,9 @@ jobs:
       
       - name: Test Ghostty Config Syntax
         run: |
-          bash .agents/scripts/test-keybindings.sh ghostty
+          bash scripts/test-keybindings.sh ghostty
       
       - name: Generate Test Report
         if: always()
         run: |
-          bash .agents/scripts/test-keybindings.sh report
+          bash scripts/test-keybindings.sh report

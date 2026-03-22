@@ -2,7 +2,6 @@
 
 DOTFILES_ROOT := $(shell pwd)
 SCRIPTS_DIR := scripts
-TEST_SCRIPTS_DIR := .agents/scripts
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
@@ -37,7 +36,7 @@ measure-startup: ## Measure detailed startup speed with zprof
 	@$(SCRIPTS_DIR)/measure-startup.sh
 
 test-keybindings: ## Test keybinding configurations (Ghostty)
-	@$(TEST_SCRIPTS_DIR)/test-keybindings.sh all
+	@$(SCRIPTS_DIR)/test-keybindings.sh all
 
 ##@ Tool Management
 

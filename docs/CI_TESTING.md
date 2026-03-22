@@ -229,6 +229,6 @@ make test
 ## Related Documentation
 
 - [AGENTS.md](../AGENTS.md) - Full agent guide with CI policy
-- [test-keybindings.sh](../.agents/scripts/README.md) - Keybinding test implementation
+- [scripts/test-keybindings.sh](../scripts/test-keybindings.sh) - Keybinding test implementation
 - [verify workflow](../.github/workflows/verify.yml) - Dotfiles verification
 - [keybindings workflow](../.github/workflows/test-keybindings.yml) - Keybinding tests
