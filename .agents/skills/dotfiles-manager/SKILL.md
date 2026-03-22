@@ -16,10 +16,8 @@ Use this skill as a routing and landmine layer, not as a handbook.
 
 ## Hard Landmines
 
-- Edit repo sources, not managed files under `$HOME`
-- If a managed path changes, update `install.sh` and `uninstall.sh` together
-- Heavy dev tools use repo shims plus lazy loading, not eager startup init
-- Startup-related changes must keep interactive shell startup under `0.5s`
+- Prefer `make` targets as the public entrypoint; treat scripts as implementation details unless the repo docs say otherwise
+- Tool-loading changes should keep heavy init behind repo shims and lazy loading, not eager startup init
 
 ## Verification Matrix
 
