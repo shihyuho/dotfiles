@@ -4,7 +4,7 @@
 
 set -e
 
-DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)}"
+DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 MAX_STARTUP_SECONDS="${MAX_STARTUP_SECONDS:-0.5}"
 
 echo "🧪 Testing dotfiles configuration..."

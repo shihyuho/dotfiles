@@ -26,7 +26,7 @@ if [[ "$TOOL_GROUP" != "tools" && "$TOOL_GROUP" != "dev" ]]; then
   exit 1
 fi
 
-DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)}"
+DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 
 if [[ "$TOOL_GROUP" == "dev" ]]; then
   TARGET_DIR="$DOTFILES_ROOT/zsh/tools/dev"
@@ -57,7 +57,7 @@ cat > "$TARGET_FILE" <<EOF
 # Add configuration here
 EOF
 
-echo "✅ Created: $TARGET_FILE"
+echo "Created: $TARGET_FILE"
 echo ""
 echo "Next steps:"
 if [[ "$TOOL_GROUP" == "dev" ]]; then

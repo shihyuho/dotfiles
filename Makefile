@@ -1,7 +1,7 @@
 .PHONY: help install uninstall brew test test-ci test-keybindings check-tool check-deps update-aliases measure-startup
 
 DOTFILES_ROOT := $(shell pwd)
-SCRIPTS_DIR := .agents/skills/dotfiles-manager/scripts
+SCRIPTS_DIR := scripts
 TEST_SCRIPTS_DIR := .agents/scripts
 
 help: ## Show this help message
