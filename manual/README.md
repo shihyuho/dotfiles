@@ -15,10 +15,7 @@ Each subdirectory contains:
 
 ## Available Configs
 
-### `karabiner/`
-Karabiner-Elements custom rules for keyboard behavior.
-
-**See:** [`karabiner/README.md`](karabiner/README.md)
+_(none currently)_
 
 ## Adding New Manual Configs
 

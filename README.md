@@ -27,7 +27,6 @@ dotfiles/
 ├── external/           # External source assets (aliases, prompt helpers)
 ├── git/                # Git configuration
 ├── manual/             # Manual install configs (see manual/README.md)
-│   └── karabiner/      # Karabiner-Elements rules
 ├── misc/               # Other configs (tmux, vimrc, vim runtime, etc.)
 ├── zsh/                # Zsh configuration (modular)
 │   ├── core/           # Core functionality (PATH, completion, history, prompt)
