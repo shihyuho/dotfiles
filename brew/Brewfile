@@ -65,6 +65,9 @@ brew "dive"  # Docker image explorer
 tap "buildpacks/tap"
 brew "buildpacks/tap/pack"
 
+# ML/AI Tools
+tap "manaflow-ai/cmux"
+
 # ============================================================================
 # Cloud & Infrastructure
 # ============================================================================
@@ -123,6 +126,7 @@ brew "tmux"
 brew "ncdu"      # Disk usage analyzer
 brew "telnet"
 brew "tldr"      # Simplified man pages
+brew "rtk"       # LLM token compression proxy
 brew "oha"       # HTTP load generator
 brew "hugo"      # Static site generator
 brew "marp-cli"  # Markdown presentations
@@ -198,6 +202,7 @@ brew "zsh-syntax-highlighting"
 cask "iterm2"
 cask "visual-studio-code"
 cask "coteditor"  # Text editor
+cask "cmux"
 # cask "sublime-text"
 # cask "jetbrains-toolbox"
 # cask "ghostty"
