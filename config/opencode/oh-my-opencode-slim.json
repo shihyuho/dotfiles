@@ -1,5 +1,5 @@
 {
-  "preset": "minimax",
+  "preset": "openai",
   "presets": {
     "openai": {
       "orchestrator": {
@@ -21,7 +21,7 @@
         "mcps": []
       },
       "fixer": {
-        "model": "minimax-coding-plan/MiniMax-M2.7",
+        "model": "openai/gpt-5.4-mini",
         "variant": "low",
         "skills": [
           "verification-before-completion",
@@ -30,7 +30,7 @@
         "mcps": []
       },
       "designer": {
-        "model": "minimax-coding-plan/MiniMax-M2.7",
+        "model": "openai/gpt-5.4",
         "variant": "medium",
         "skills": [
           "agent-browser",
@@ -40,7 +40,7 @@
         "mcps": []
       },
       "librarian": {
-        "model": "minimax-coding-plan/MiniMax-M2.7",
+        "model": "openai/gpt-5.4-mini",
         "variant": "low",
         "skills": [],
         "mcps": [
@@ -50,7 +50,7 @@
         ]
       },
       "explorer": {
-        "model": "minimax-coding-plan/MiniMax-M2.7",
+        "model": "openai/gpt-5.4-mini",
         "variant": "low",
         "skills": [],
         "mcps": []
