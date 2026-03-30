@@ -77,6 +77,7 @@ link_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 echo ""
 echo "📂 Linking Claude configurations..."
 link_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
+link_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 
 echo ""
 echo "📂 Linking Yazi configurations..."
