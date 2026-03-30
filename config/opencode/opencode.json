@@ -6,15 +6,34 @@
     "oh-my-opencode-slim@latest",
     "opencode-command-inject@latest"
   ],
-  "default_agent": "Orchestrator",
+  "default_agent": "orchestrator",
   "model": "openai/gpt-5.4",
-  "small_model": "minimax-coding-plan/MiniMax-M2.5",
+  "small_model": "openai/gpt-5.4-mini",
   "agent": {
     "explore": {
       "disable": true
     },
     "general": {
       "disable": true
+    },
+    "GSD": {
+      "permission": {
+        "skill": {
+          "brainstorming": "deny",
+          "dispatching-parallel-agents": "deny",
+          "executing-plans": "deny",
+          "finishing-a-development-branch": "deny",
+          "receiving-code-review": "deny",
+          "requesting-code-review": "deny",
+          "subagent-driven-development": "deny",
+          "systematic-debugging": "deny",
+          "test-driven-development": "deny",
+          "using-git-worktrees": "deny",
+          "using-superpowers": "deny",
+          "verification-before-completion": "deny",
+          "writing-plans": "deny"
+        }
+      }
     }
   },
   "mcp": {
