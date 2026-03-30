@@ -1,4 +1,4 @@
-.PHONY: help install uninstall brew test test-ci test-keybindings check-tool check-deps update-aliases measure-startup
+.PHONY: help install uninstall brew test test-ci test-keybindings check-tool check-deps update-aliases update-brew update-sdkman update-all measure-startup
 
 DOTFILES_ROOT := $(shell pwd)
 SCRIPTS_DIR := scripts
@@ -64,3 +64,12 @@ update-aliases: ## Update external alias files (usage: make update-aliases [TARG
 	else \
 		$(SCRIPTS_DIR)/update-aliases.sh $(TARGET); \
 	fi
+
+update-brew: ## Update Homebrew metadata, formulas, and Brewfile-managed tools (including nvm/pyenv)
+	@$(SCRIPTS_DIR)/update-packages.sh brew
+
+update-sdkman: ## Refresh the SDKMAN candidates/version index if available
+	@$(SCRIPTS_DIR)/update-packages.sh sdkman
+
+update-all: ## Update brew-managed tools, aliases, and the SDKMAN index
+	@$(SCRIPTS_DIR)/update-packages.sh all

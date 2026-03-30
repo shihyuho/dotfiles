@@ -223,7 +223,6 @@ cask "cmux"
 # Utilities
 # cask "appcleaner"
 # cask "keka"          # Archive utility
-# cask "kekaexternalhelper"
 # cask "keycastr"      # Show keystrokes
 # cask "macdown"       # Markdown editor
 # cask "iina"          # Video player
@@ -248,7 +247,6 @@ cask "karabiner-elements"
 # Fonts
 # ============================================================================
 
-tap "homebrew/cask-fonts"
 cask "font-fira-code-nerd-font"
 
 # ============================================================================

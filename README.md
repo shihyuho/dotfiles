@@ -188,6 +188,24 @@ make update-aliases
 make update-aliases TARGET=kubectl
 ```
 
+### Updating Managed Packages
+
+```bash
+# Update Homebrew metadata, packages, and Brewfile tools
+# (includes Homebrew-managed tools such as pyenv itself)
+make update-brew
+
+# Refresh the SDKMAN candidates/version index when available
+make update-sdkman
+
+# Update everything managed by this repo
+# Missing optional managers are skipped with a warning
+make update-all
+
+# Recommended verification after updates
+make test
+```
+
 ## 🤖 AI Collaboration
 
 This dotfiles is designed for AI collaboration:
