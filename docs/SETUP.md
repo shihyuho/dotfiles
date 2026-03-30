@@ -138,6 +138,27 @@ If you have an existing OpenCode configuration that you want to preserve:
    make install
    ```
 
+## Claude Configuration
+
+### Automatic Management
+
+The Claude settings file is managed by the dotfiles install flow:
+
+```bash
+make install  # Creates the Claude settings symlink
+```
+
+Managed symlink:
+- `~/.claude/settings.json` -> `dotfiles/config/claude/settings.json`
+
+If `~/.claude/settings.json` already exists, `make install` moves it into `~/.dotfiles_backup/...` before creating the symlink.
+
+### Updating Claude Settings
+
+Edit `config/claude/settings.json` in this repository, not `~/.claude/settings.json`.
+
+This repo currently manages only `settings.json` under `config/claude/`. Future candidates for that directory include `agents/`, `hooks/`, and `commands/`.
+
 ### JDTLS / Lombok Prerequisites
 
 JDTLS (Java Development Tools Language Server) requires:

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(zsh -n ~/.zshrc)",
+      "Bash(zsh -n /Users/matt/code/github.com/shihyuho/dotfiles/zsh/aliases/common.zsh)",
+      "Bash(make test:*)",
+      "Bash(git add:*)",
+      "Bash(git rebase:*)"
+    ]
+  }
+}

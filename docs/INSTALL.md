@@ -93,6 +93,13 @@ ls -la ~ | grep -E "\->" | grep dotfiles | head -5
 - Manually run: `"$DOTFILES_DIR/install.sh"`
 - Report any permission errors to user
 
+Managed AI-tool paths include:
+- `~/.claude/settings.json` -> `$DOTFILES_DIR/config/claude/settings.json`
+- `~/.config/opencode/opencode.json` -> `$DOTFILES_DIR/config/opencode/opencode.json`
+- `~/.config/opencode/oh-my-opencode-slim.json` -> `$DOTFILES_DIR/config/opencode/oh-my-opencode-slim.json`
+
+If those files already exist, the installer moves them into `~/.dotfiles_backup/...` before creating symlinks.
+
 ---
 
 ## Step 4: Initialize Secrets File

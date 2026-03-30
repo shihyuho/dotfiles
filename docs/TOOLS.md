@@ -98,6 +98,11 @@
   - Managed symlink: `~/.config/opencode/oh-my-opencode-slim.json` -> `dotfiles/config/opencode/oh-my-opencode-slim.json`
   - Notes: Keeps local preset/model overrides repo-backed alongside the OpenCode plugin directory
 
+- **Claude 設定**: Claude Desktop/CLI 設定檔
+  - Config: `config/claude/settings.json`
+  - Managed symlink: `~/.claude/settings.json` -> `dotfiles/config/claude/settings.json`
+  - Notes: Edit the repo copy, not `~/.claude/settings.json`; future candidates live under `config/claude/`
+
 ## Development Languages
 
 - **Go**: Go programming language

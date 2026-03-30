@@ -22,7 +22,7 @@ dotfiles/
 ├── .agents/            # Project-local AI skills and helper scripts
 ├── .github/            # CI workflows
 ├── brew/               # Homebrew Brewfile
-├── config/             # App configs (gemini, ghostty, opencode, yazi)
+├── config/             # App configs (claude, gemini, ghostty, opencode, yazi)
 ├── docs/               # Documentation, plans, and lessons
 ├── external/           # External source assets (aliases, prompt helpers)
 ├── git/                # Git configuration
@@ -79,10 +79,13 @@ make uninstall
 exec zsh
 ```
 
-`make install` also manages OpenCode paths under `~/.config/opencode/`, including
+`make install` also manages Claude and OpenCode paths, including
+`~/.claude/settings.json` and paths under `~/.config/opencode/`, including
 `opencode.json`, `oh-my-opencode-slim.json`, `commands/`, `agents/`,
 `oh-my-opencode-slim/`, and `bin/start_jdtls.sh`. If those paths already exist, the installer moves them into
 `~/.dotfiles_backup/...` before creating symlinks.
+
+After installation, edit `config/claude/settings.json` in this repo, not `~/.claude/settings.json`.
 
 See available commands: `make help`
 

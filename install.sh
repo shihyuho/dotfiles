@@ -75,6 +75,10 @@ echo "📂 Linking Gemini configurations..."
 link_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
 
 echo ""
+echo "📂 Linking Claude configurations..."
+link_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
+
+echo ""
 echo "📂 Linking Yazi configurations..."
 link_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 

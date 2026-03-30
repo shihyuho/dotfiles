@@ -4,6 +4,7 @@
 
 | Card | Scope | Tags | Date |
 |---|---|---|---|
+| `partially-managed-config-must-stay-self-contained` | `project` | `dotfiles, config, source-of-truth, portability, claude` | `2026-03-30` |
 | `brewfile-deprecated-taps-block-maintenance-flows` | `project` | `brew, brewfile, maintenance, taps, update` | `2026-03-30` |
 | `sdkman-bash-nounset-breaks-maintenance-scripts` | `project` | `sdkman, bash, maintenance, shell, nounset` | `2026-03-30` |
 | `update-targets-must-match-manager-semantics` | `project` | `dotfiles, maintenance, make, package-managers, semantics` | `2026-03-30` |

@@ -33,6 +33,10 @@ alias j="ghq-fzf"  # j for jump
 alias o="opencode"
 alias oc="opencode --continue"
 
+# claude shortcuts
+alias c="claude"
+alias cc="claude --continue"
+
 om() {
   ocmonitor live --pick
 }
