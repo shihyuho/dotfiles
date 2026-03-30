@@ -4,6 +4,9 @@
 
 | Card | Scope | Tags | Date |
 |---|---|---|---|
+| `brewfile-deprecated-taps-block-maintenance-flows` | `project` | `brew, brewfile, maintenance, taps, update` | `2026-03-30` |
+| `sdkman-bash-nounset-breaks-maintenance-scripts` | `project` | `sdkman, bash, maintenance, shell, nounset` | `2026-03-30` |
+| `update-targets-must-match-manager-semantics` | `project` | `dotfiles, maintenance, make, package-managers, semantics` | `2026-03-30` |
 | `worktree-test-symlink-checks-require-primary-root` | `project` | `dotfiles, worktree, testing, symlink, verification` | `2026-03-25` |
 | `subagent-review-prompts-must-inline-applicable-rules` | `project` | `agents, prompts, skills, delegation, review` | `2026-03-21` |
 | `dotfiles-skill-workflows-must-edit-repo-source` | `project` | `dotfiles, skills, source-of-truth, symlinks, workflows` | `2026-03-21` |

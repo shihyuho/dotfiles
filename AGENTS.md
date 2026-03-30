@@ -9,13 +9,14 @@ This repository manages modular dotfiles with three standing goals:
 
 ## Required Routing
 
-- Use the `dotfiles-manager` skill before changing dotfiles config, install/uninstall flows, or docs that define dotfiles workflows.
+- Use the `dotfiles-manager` skill before changing dotfiles config, install/uninstall/update flows, or docs that define dotfiles workflows.
 - Keep this file minimal. Move task-specific workflows and directory tours into skills or repo docs, not global agent files.
 
 ## Core Contracts
 
 - Edit files in this repo, not under `~`.
 - If managed paths change, update `install.sh` and `uninstall.sh` together.
+- If package/tool maintenance flows change, update the relevant `make` entrypoints and workflow docs together, not just the underlying scripts.
 - Never commit untested changes.
 - Never commit `.secrets`, credentials, or other secret material.
 
