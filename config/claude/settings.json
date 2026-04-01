@@ -23,7 +23,25 @@
       "Bash(cp:*)",
       "Bash(git:*)",
       "Bash(gh:*)",
-      "Bash(openspec:*)"
+      "Bash(openspec:*)",
+      "Bash(npx:*)"
+    ],
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -f:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git checkout .:*)",
+      "Bash(git restore .:*)",
+      "Bash(gh repo delete:*)",
+      "Bash(gh repo archive:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh issue close:*)",
+      "Bash(gh issue delete:*)",
+      "Bash(gh release delete:*)",
+      "Bash(gh api * -X DELETE)",
+      "Bash(gh api * --method DELETE)"
     ]
   },
   "hooks": {
@@ -34,10 +52,6 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/rtk-rewrite.sh"
-          },
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-dangerous-git.sh"
           }
         ]
       }
@@ -53,6 +67,9 @@
     "codex@openai-codex": true,
     "lua-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
     "planning-with-files@planning-with-files": true
   },
   "extraKnownMarketplaces": {
@@ -69,5 +86,6 @@
       }
     }
   },
-  "language": "Traditional Chinese (zh_TW)"
+  "language": "Traditional Chinese (zh_TW)",
+  "skipDangerousModePermissionPrompt": true
 }
