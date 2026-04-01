@@ -37,6 +37,7 @@ alias oc="opencode --continue"
 alias c="claude"
 alias cc="claude --continue"
 alias ch="claude --chrome"
+alias cu="claude update"
 
 om() {
   ocmonitor live --pick

@@ -2,7 +2,8 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "ANTHROPIC_MODEL": "opus[1m]",
-    "USE_BUILTIN_RIPGREP": "0"
+    "USE_BUILTIN_RIPGREP": "0",
+    "MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES": "3"
   },
   "permissions": {
     "allow": [
@@ -21,7 +22,8 @@
       "Bash(grep:*)",
       "Bash(cp:*)",
       "Bash(git:*)",
-      "Bash(gh:*)"
+      "Bash(gh:*)",
+      "Bash(openspec:*)"
     ]
   },
   "hooks": {
@@ -48,23 +50,24 @@
   },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
-    "planning-with-files@planning-with-files": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "lua-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "planning-with-files@planning-with-files": true
   },
   "extraKnownMarketplaces": {
-    "planning-with-files": {
-      "source": {
-        "source": "github",
-        "repo": "OthmanAdi/planning-with-files"
-      }
-    },
     "openai-codex": {
       "source": {
         "source": "github",
         "repo": "openai/codex-plugin-cc"
       }
+    },
+    "planning-with-files": {
+      "source": {
+        "source": "github",
+        "repo": "OthmanAdi/planning-with-files"
+      }
     }
   },
-  "language": "Traditional Chinese (zh_TW)",
-  "input.enterToSubmit": false
+  "language": "Traditional Chinese (zh_TW)"
 }
