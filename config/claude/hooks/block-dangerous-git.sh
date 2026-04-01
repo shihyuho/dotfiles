@@ -13,6 +13,15 @@ DANGEROUS_PATTERNS=(
   "git restore \."
   "push --force"
   "reset --hard"
+  "gh repo delete"
+  "gh repo archive"
+  "gh pr close"
+  "gh pr merge"
+  "gh issue close"
+  "gh issue delete"
+  "gh release delete"
+  "gh api .* -X DELETE"
+  "gh api .* --method DELETE"
 )
 
 for pattern in "${DANGEROUS_PATTERNS[@]}"; do
