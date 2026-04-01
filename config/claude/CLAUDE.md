@@ -1,1 +1,5 @@
-@RTK.md
+- @RTK.md
+- ALWAYS use the QUESTION TOOL if you need to ask user.
+- ALWAYS think and respond in Traditional Chinese (zh_TW)
+- Preferred skills: `planning-with-files`, `lessons-learned`.
+- If any preferred skill is available or already loaded in the current environment, it must be used.
