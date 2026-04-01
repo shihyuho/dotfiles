@@ -93,6 +93,7 @@ unlink_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim" "$HOME/.config/
 echo ""
 echo "📂 Removing misc configuration links..."
 unlink_file "$DOTFILES_ROOT/config/gemini/GEMINI.md" "$HOME/.gemini/GEMINI.md"
+unlink_file "$DOTFILES_ROOT/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 unlink_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
 unlink_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
