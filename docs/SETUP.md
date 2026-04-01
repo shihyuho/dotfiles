@@ -148,16 +148,18 @@ The Claude settings file is managed by the dotfiles install flow:
 make install  # Creates the Claude settings symlink
 ```
 
-Managed symlink:
+Managed symlinks:
 - `~/.claude/settings.json` -> `dotfiles/config/claude/settings.json`
+- `~/.claude/hooks` -> `dotfiles/config/claude/hooks`
+- `~/.claude/commands` -> `dotfiles/config/claude/commands`
 
-If `~/.claude/settings.json` already exists, `make install` moves it into `~/.dotfiles_backup/...` before creating the symlink.
+If any of these already exist, `make install` moves them into `~/.dotfiles_backup/...` before creating the symlink.
 
 ### Updating Claude Settings
 
-Edit `config/claude/settings.json` in this repository, not `~/.claude/settings.json`.
+Edit files under `config/claude/` in this repository, not the symlinks in `~/.claude/`.
 
-This repo currently manages only `settings.json` under `config/claude/`. Future candidates for that directory include `agents/`, `hooks/`, and `commands/`.
+This repo manages `settings.json`, `hooks/`, and `commands/` under `config/claude/`. Future candidates include `agents/`.
 
 ### JDTLS / Lombok Prerequisites
 
