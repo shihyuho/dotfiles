@@ -1,6 +1,6 @@
 {
   "java": {
-    "command": "jdtls-lombok",
+    "command": "./bin/jdtls-lombok",
     "extensionToLanguage": {
       ".java": "java"
     }
