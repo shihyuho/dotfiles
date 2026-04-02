@@ -223,6 +223,18 @@ AI agents can safely help with:
 - Optimizing startup speed
 - Cleaning up unused tools
 
+### Claude Code Plugins
+
+This repo is also a [Claude Code plugin marketplace](https://docs.anthropic.com/en/docs/claude-code/plugins). To use the bundled plugins:
+
+```bash
+# Add this repo as a marketplace source
+/plugin marketplace add shihyuho/dotfiles
+
+# Install a plugin (e.g., jdtls-lombok)
+/plugin install jdtls-lombok@shihyuho-dotfiles
+```
+
 ## 📊 Performance
 
 - Startup time: **0.16-0.22s** (tested on M2 MacBook Air)
