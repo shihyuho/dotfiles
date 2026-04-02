@@ -63,14 +63,13 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true,
     "codex@openai-codex": true,
     "lua-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "planning-with-files@planning-with-files": true
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -86,6 +85,5 @@
       }
     }
   },
-  "language": "Traditional Chinese (zh_TW)",
-  "skipDangerousModePermissionPrompt": true
+  "language": "Traditional Chinese (zh_TW)"
 }
