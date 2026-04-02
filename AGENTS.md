@@ -17,6 +17,7 @@ This repository manages modular dotfiles with three standing goals:
 - Edit files in this repo, not under `~`.
 - If managed paths change, update `install.sh` and `uninstall.sh` together.
 - If package/tool maintenance flows change, update the relevant `make` entrypoints and workflow docs together, not just the underlying scripts.
+- If Claude plugin content changes, bump the version in `.claude-plugin/marketplace.json`.
 - Never commit untested changes.
 - Never commit `.secrets`, credentials, or other secret material.
 
