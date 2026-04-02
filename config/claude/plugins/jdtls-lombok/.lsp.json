@@ -1,0 +1,8 @@
+{
+  "java": {
+    "command": "jdtls-lombok",
+    "extensionToLanguage": {
+      ".java": "java"
+    }
+  }
+}

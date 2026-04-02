@@ -93,7 +93,6 @@ make install  # Creates symlinks for OpenCode config
 Managed symlinks include:
 - `~/.config/opencode/opencode.json` -> `dotfiles/config/opencode/opencode.json`
 - `~/.config/opencode/oh-my-opencode-slim.json` -> `dotfiles/config/opencode/oh-my-opencode-slim.json`
-- `~/.config/opencode/bin/start_jdtls.sh` -> `dotfiles/config/opencode/bin/start_jdtls.sh`
 - `~/.config/opencode/commands/` -> `dotfiles/config/opencode/commands/`
 - `~/.config/opencode/agents/` -> `dotfiles/config/opencode/agents/`
 - `~/.config/opencode/oh-my-opencode-slim/` -> `dotfiles/config/opencode/oh-my-opencode-slim/`
@@ -115,7 +114,6 @@ If you have an existing OpenCode configuration that you want to preserve:
     - `~/.config/opencode/commands/`
     - `~/.config/opencode/agents/`
     - `~/.config/opencode/oh-my-opencode-slim/`
-    - `~/.config/opencode/bin/start_jdtls.sh`
 
 2. **Review the managed config:**
    ```bash

@@ -73,17 +73,6 @@ echo "📂 Removing OpenCode configuration links..."
 # Unlink opencode.json first (depends on launcher)
 unlink_file "$DOTFILES_ROOT/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 
-# Always process launcher through normal unlink/restore flow first.
-unlink_file "$DOTFILES_ROOT/config/opencode/bin/start_jdtls.sh" "$HOME/.config/opencode/bin/start_jdtls.sh"
-
-# Warn only if the restored/current config still references the launcher but no launcher exists now.
-if [[ -f "$HOME/.config/opencode/opencode.json" ]] && grep -q "start_jdtls.sh" "$HOME/.config/opencode/opencode.json" 2>/dev/null; then
-  if [[ ! -e "$HOME/.config/opencode/bin/start_jdtls.sh" && ! -L "$HOME/.config/opencode/bin/start_jdtls.sh" ]]; then
-    echo "⚠️  WARNING: $HOME/.config/opencode/opencode.json still references JDTLS launcher."
-    echo "   No launcher was restored at $HOME/.config/opencode/bin/start_jdtls.sh. Please restore or recreate it manually."
-  fi
-fi
-
 # Other OpenCode configurations
 unlink_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim.json" "$HOME/.config/opencode/oh-my-opencode-slim.json"
 unlink_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
@@ -97,6 +86,7 @@ unlink_file "$DOTFILES_ROOT/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 unlink_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
 unlink_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 unlink_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
+unlink_file "$DOTFILES_ROOT/config/claude/plugins/jdtls-lombok/bin/jdtls-lombok" "$HOME/.local/bin/jdtls-lombok"
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 unlink_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"
 unlink_file "$DOTFILES_ROOT/misc/tmux.conf" "$HOME/.tmux.conf"

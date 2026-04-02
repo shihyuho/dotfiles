@@ -95,6 +95,7 @@ brew "pipx"
 # Java/Spring
 tap "spring-io/tap"
 brew "spring-io/tap/spring-boot"
+brew "jdtls"  # Java language server
 
 # Database
 brew "liquibase"

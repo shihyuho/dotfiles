@@ -1,0 +1,14 @@
+{
+  "name": "shihyuho-dotfiles",
+  "owner": {
+    "name": "Shihyu Ho"
+  },
+  "plugins": [
+    {
+      "name": "jdtls-lombok",
+      "source": "./config/claude/plugins/jdtls-lombok",
+      "description": "JDTLS with Lombok support for Java projects",
+      "version": "1.0.0"
+    }
+  ]
+}

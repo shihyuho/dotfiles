@@ -15,7 +15,7 @@
       "Read(/tmp/**)",
       "Bash(make:*)",
       "Bash(mvn:*)",
-      "Bash(mvnw:*)",
+      "Bash(./mvnw:*)",
       "Bash(npm:*)",
       "Bash(bun:*)",
       "Bash(find:*)",
@@ -67,9 +67,10 @@
     "codex@openai-codex": true,
     "lua-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
+    "jdtls-lombok": true,
     "gopls-lsp@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {

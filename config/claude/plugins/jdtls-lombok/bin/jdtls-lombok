@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Wrapper for jdtls that adds Lombok javaagent support.
+# Dynamically resolves the latest Lombok jar from Maven local repository.
+
+set -euo pipefail
+
+LOMBOK_REPO_DIR="$HOME/.m2/repository/org/projectlombok/lombok"
+
+find_lombok_jar() {
+  if [[ ! -d "$LOMBOK_REPO_DIR" ]]; then
+    echo "WARN: Lombok not found in Maven cache, starting jdtls without Lombok" >&2
+    return 1
+  fi
+
+  # Find the latest version jar (exclude sources/javadoc)
+  local jar
+  jar=$(find "$LOMBOK_REPO_DIR" -name "lombok-*.jar" \
+    ! -name "*-sources*" ! -name "*-javadoc*" \
+    | sort -V | tail -1)
+
+  if [[ -z "$jar" ]]; then
+    echo "WARN: No Lombok jar found in $LOMBOK_REPO_DIR, starting jdtls without Lombok" >&2
+    return 1
+  fi
+
+  echo "$jar"
+}
+
+LOMBOK_JAR=$(find_lombok_jar || true)
+
+if [[ -n "$LOMBOK_JAR" ]]; then
+  exec jdtls --jvm-arg="-javaagent:$LOMBOK_JAR" "$@"
+else
+  exec jdtls "$@"
+fi

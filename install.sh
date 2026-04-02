@@ -61,9 +61,6 @@ link_file "$DOTFILES_ROOT/external/kube-ps1.sh" "$HOME/.kube-ps1.sh"
 
 echo ""
 echo "📂 Linking OpenCode configurations..."
-# Link JDTLS launcher first (required by opencode.json)
-link_file "$DOTFILES_ROOT/config/opencode/bin/start_jdtls.sh" "$HOME/.config/opencode/bin/start_jdtls.sh"
-# Link OpenCode config files after the launcher
 link_file "$DOTFILES_ROOT/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 link_file "$DOTFILES_ROOT/config/opencode/oh-my-opencode-slim.json" "$HOME/.config/opencode/oh-my-opencode-slim.json"
 link_file "$DOTFILES_ROOT/config/opencode/commands" "$HOME/.config/opencode/commands"
@@ -80,6 +77,7 @@ link_file "$DOTFILES_ROOT/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
 link_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 link_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
+link_file "$DOTFILES_ROOT/config/claude/plugins/jdtls-lombok/bin/jdtls-lombok" "$HOME/.local/bin/jdtls-lombok"
 
 echo ""
 echo "📂 Linking Yazi configurations..."

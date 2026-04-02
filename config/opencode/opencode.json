@@ -80,9 +80,7 @@
   "lsp": {
     "jdtls": {
       "command": [
-        "/bin/sh",
-        "-lc",
-        "exec \"$HOME/.config/opencode/bin/start_jdtls.sh\""
+        "jdtls-lombok"
       ],
       "extensions": [
         ".java"

@@ -83,15 +83,8 @@
   - Notes: Opens the ocmonitor live picker directly; `oc` remains `opencode --continue`
 
 - **OpenCode Java LSP (JDTLS)**: Language Server Protocol for Java
-  - Launcher: `config/opencode/bin/start_jdtls.sh`
-  - Managed symlink: `~/.config/opencode/bin/start_jdtls.sh` -> `dotfiles/config/opencode/bin/start_jdtls.sh`
-  - JDTLS distribution: install separately under `JDTLS_HOME` (default: `$HOME/.local/share/opencode/bin/jdtls`)
-  - Environment Variables:
-    - `JDTLS_HOME`: JDTLS installation directory (default: `$HOME/.local/share/opencode/bin/jdtls`)
-    - `JDTLS_JAVA_HOME`: Java home for JDTLS (default: uses `JAVA_HOME` or system `java`)
-    - `JDTLS_LOMBOK_JAR`: Path to Lombok jar (default: `$HOME/.lombok/lombok.jar`)
-  - Requirements: Java 21+
-  - Notes: Uses Lombok for annotation processing; ensure `~/.lombok/lombok.jar` exists or set `JDTLS_LOMBOK_JAR`
+  - Uses shared `jdtls-lombok` wrapper (see `config/claude/plugins/jdtls-lombok/`)
+  - Requires: `brew install jdtls` and Lombok jar in Maven local cache
 
 - **OpenCode preset config**: Local `oh-my-opencode-slim` preset definition
   - Config: `config/opencode/oh-my-opencode-slim.json`

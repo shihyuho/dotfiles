@@ -82,7 +82,7 @@ exec zsh
 `make install` also manages Claude and OpenCode paths, including
 `~/.claude/settings.json` and paths under `~/.config/opencode/`, including
 `opencode.json`, `oh-my-opencode-slim.json`, `commands/`, `agents/`,
-`oh-my-opencode-slim/`, and `bin/start_jdtls.sh`. If those paths already exist, the installer moves them into
+`oh-my-opencode-slim/`. If those paths already exist, the installer moves them into
 `~/.dotfiles_backup/...` before creating symlinks.
 
 After installation, edit `config/claude/settings.json` in this repo, not `~/.claude/settings.json`.
