@@ -70,7 +70,7 @@
     "gopls-lsp@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "jdtls-lombok@shihyuho-dotfiles": true
+    "jdtls-lombok-lsp@shihyuho-dotfiles": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -83,13 +83,15 @@
       "source": {
         "source": "github",
         "repo": "OthmanAdi/planning-with-files"
-      }
+      },
+      "autoUpdate": true
     },
     "shihyuho-dotfiles": {
       "source": {
         "source": "github",
         "repo": "shihyuho/dotfiles"
-      }
+      },
+      "autoUpdate": true
     }
   },
   "language": "Traditional Chinese (zh_TW)"
