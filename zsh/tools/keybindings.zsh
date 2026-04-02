@@ -8,6 +8,10 @@
 
 [[ -o interactive ]] || return 0
 
+# Force emacs keymap so ESC doesn't switch to vi normal mode
+# (zsh auto-enables vi mode when $EDITOR contains "vi")
+bindkey -e
+
 for _keymap in emacs viins; do
   bindkey -M "$_keymap" '^A' beginning-of-line
   bindkey -M "$_keymap" '^E' end-of-line
@@ -27,5 +31,10 @@ for _keymap in emacs viins; do
   bindkey -M "$_keymap" '^[[1;3C' forward-word
   bindkey -M "$_keymap" '^[[1;9D' backward-word
   bindkey -M "$_keymap" '^[[1;9C' forward-word
+  # ESC + arrow keys: prevent stray characters when ESC is pressed before arrows
+  bindkey -M "$_keymap" '^[^[[D' backward-char
+  bindkey -M "$_keymap" '^[^[[C' forward-char
+  bindkey -M "$_keymap" '^[^[[A' up-line-or-history
+  bindkey -M "$_keymap" '^[^[[B' down-line-or-history
 done
 unset _keymap
