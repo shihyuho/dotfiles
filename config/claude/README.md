@@ -15,35 +15,23 @@ Future candidates for this directory:
 
 ## Custom Plugins
 
-### jdtls-lombok
+### jdtls-lombok-lsp
 
 Custom JDTLS plugin with Lombok annotation processing support, replacing the official `jdtls-lsp@claude-plugins-official`.
 
 **Why:** The official jdtls plugin doesn't support Lombok. Without the `-javaagent` flag, jdtls can't resolve Lombok-generated code (`@Getter`, `@Setter`, `@Builder`, etc.), causing LSP errors on most Java projects.
 
 **How it works:**
-- `plugins/jdtls-lombok/bin/jdtls-lombok` — wrapper script that:
-  1. Dynamically finds the latest `lombok-*.jar` from Maven local repository (`~/.m2/repository/org/projectlombok/lombok/`)
-  2. Launches `jdtls` (Homebrew) with `--jvm-arg="-javaagent:<lombok.jar>"`
-  3. Falls back to plain `jdtls` if Lombok jar is not found
-- `plugins/jdtls-lombok/.lsp.json` — LSP config pointing to the wrapper
-- `plugins/jdtls-lombok/.claude-plugin/plugin.json` — plugin manifest
+- `.lsp.json` uses `${CLAUDE_PLUGIN_ROOT}/bin/jdtls-lombok` to reference the bundled wrapper script, so the plugin is self-contained — no PATH setup or symlinks needed
+- `bin/jdtls-lombok` wrapper script dynamically finds the latest `lombok-*.jar` from Maven local repository (`~/.m2/repository/org/projectlombok/lombok/`), launches `jdtls` with `-javaagent`, falls back to plain `jdtls` if not found
 
 **Installation:**
 
 ```bash
-# 1. Symlink wrapper to PATH (handled by install.sh / make install)
-ln -sf <dotfiles>/config/claude/plugins/jdtls-lombok/bin/jdtls-lombok ~/.local/bin/jdtls-lombok
+# 1. Install the plugin (self-contained, no symlink needed)
+/plugin install jdtls-lombok-lsp@shihyuho-dotfiles
 
-# 2. Add the dotfiles repo as a plugin marketplace
-/plugin marketplace add <dotfiles>
-# or from GitHub:
-/plugin marketplace add https://github.com/shihyuho/dotfiles
-
-# 3. Install the plugin
-/plugin install jdtls-lombok@shihyuho-dotfiles
-
-# 4. Remove the official jdtls plugin (if installed)
+# 2. Remove the official jdtls plugin (if installed)
 /plugin uninstall jdtls-lsp@claude-plugins-official
 ```
 

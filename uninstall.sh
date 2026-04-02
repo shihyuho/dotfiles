@@ -86,7 +86,7 @@ unlink_file "$DOTFILES_ROOT/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 unlink_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
 unlink_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 unlink_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
-unlink_file "$DOTFILES_ROOT/config/claude/plugins/jdtls-lombok/bin/jdtls-lombok" "$HOME/.local/bin/jdtls-lombok"
+
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 unlink_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"
 unlink_file "$DOTFILES_ROOT/misc/tmux.conf" "$HOME/.tmux.conf"

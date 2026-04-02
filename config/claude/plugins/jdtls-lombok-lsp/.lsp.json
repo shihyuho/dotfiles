@@ -1,6 +1,6 @@
 {
   "java": {
-    "command": "./bin/jdtls-lombok",
+    "command": "${CLAUDE_PLUGIN_ROOT}/bin/jdtls-lombok",
     "extensionToLanguage": {
       ".java": "java"
     }

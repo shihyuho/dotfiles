@@ -77,7 +77,7 @@ link_file "$DOTFILES_ROOT/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
 link_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 link_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
-link_file "$DOTFILES_ROOT/config/claude/plugins/jdtls-lombok/bin/jdtls-lombok" "$HOME/.local/bin/jdtls-lombok"
+
 
 echo ""
 echo "📂 Linking Yazi configurations..."
