@@ -13,8 +13,8 @@ if [[ -d "$PYENV_ROOT" ]]; then
 fi
 
 _pyenv_load() {
-  unset -f pyenv
+  unset -f _pyenv_load pyenv
   eval "$(command pyenv init -)"
 }
 
-pyenv() { _pyenv_load; pyenv "$@"; }
+pyenv() { unset -f pyenv; _pyenv_load 2>/dev/null; pyenv "$@"; }
