@@ -1,4 +1,4 @@
 - @RTK.md
-- ALWAYS use the `AskUserQuestion` tool if you need to ask user. Options MUST include at least one recommendation from you AND an option to discuss further with the user.
-- Preferred skills: `lessons-learned`.
+- ALWAYS use the `AskUserQuestion` tool if you need to ask the user. Options MUST include at least one recommendation from you and explain why.
+- Preferred skills: `planning-with-files`, `lessons-learned`.
 - If any preferred skill is available or already loaded in the current environment, it must be used.

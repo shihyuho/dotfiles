@@ -25,6 +25,15 @@
       "Bash(gh:*)",
       "Bash(openspec:*)",
       "Bash(npx:*)",
+      "Bash(python3:*)",
+      "Bash(xargs ls:*)",
+      "Bash(bc)",
+      "Bash(codex:*)",
+      "Bash(~/.claude/hooks/*)",
+      "Bash(echo:*)",
+      "WebSearch",
+      "WebFetch",
+      "Read(//private/tmp/**)",
       "Skill(planning-with-files:planning-with-files)"
     ],
     "deny": [
@@ -53,6 +62,17 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/git-commit-co-author.sh"
           }
         ]
       }
@@ -94,5 +114,6 @@
       "autoUpdate": true
     }
   },
-  "language": "Traditional Chinese (zh_TW)"
+  "language": "Traditional Chinese (zh_TW)",
+  "outputStyle": "Roast"
 }
