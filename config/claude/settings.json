@@ -34,7 +34,7 @@
       "WebSearch",
       "WebFetch",
       "Read(//private/tmp/**)",
-      "Skill(planning-with-files:planning-with-files)"
+      "Skill(planning-with-files)"
     ],
     "deny": [
       "Bash(git push:*)",
