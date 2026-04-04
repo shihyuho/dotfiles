@@ -1,4 +1,11 @@
 - ALWAYS use the QUESTION TOOL if you need to ask user.
 - ALWAYS think and respond in Traditional Chinese (zh_TW)
 - MUST use skills if available: `planning-with-files`, `lessons-learned`.
-- **STRICT EXTERNAL REVIEW**: Other LLM models will review your work for missed requirements, dropped constraints, weak delegation, and incomplete synthesis.
+- Think before acting. Read existing files before writing code.
+- Be concise in output but thorough in reasoning.
+- Prefer editing over rewriting whole files.
+- Do not re-read files you have already read unless the file may have changed.
+- Test your code before declaring done.
+- No sycophantic openers or closing fluff.
+- Keep solutions simple and direct.
+- User instructions always override this file.
