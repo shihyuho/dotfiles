@@ -54,7 +54,7 @@ fi
 RST='\033[0m'
 DIM='\033[2m'
 CYAN='\033[36m'
-BRANCH_CLR='\033[38;5;183m'
+BRANCH_CLR='\033[38;5;175m'
 DIR_CLR='\033[38;5;180m'
 
 # Context bar color: yellow → orange → red gradient (ANSI 256)
@@ -79,13 +79,16 @@ for (( i=0; i<EMPTY; i++ ));  do EMPTY_BAR+="░"; done
 # Build line 1
 LINE1=""
 [[ -n "$MODEL" ]]  && LINE1+="${CYAN}${MODEL}${RST}"
-# Format token count (e.g. 125000 → 125k, 1200000 → 1.2M)
-if (( CTX_MAX >= 1000000 )); then
-  CTX_SIZE="$(awk "BEGIN{printf \"%.1fM\", ${CTX_MAX}/1000000}")"
+# Format used tokens (e.g. 130000 → 130k, 1200000 → 1.2M)
+CTX_USED_TOKENS=$(( CTX_MAX * CTX_USED / 100 ))
+if (( CTX_USED_TOKENS >= 1000000 )); then
+  CTX_USED_FMT="$(awk "BEGIN{v=${CTX_USED_TOKENS}/1000000; printf (v==int(v)) ? \"%dM\" : \"%.1fM\", v}")"
+elif (( CTX_USED_TOKENS >= 1000 )); then
+  CTX_USED_FMT="$(( CTX_USED_TOKENS / 1000 ))k"
 else
-  CTX_SIZE="$(( CTX_MAX / 1000 ))k"
+  CTX_USED_FMT="${CTX_USED_TOKENS}"
 fi
-LINE1+=" ${DIM}│${RST} ${CTX_COLOR}${FILLED_BAR}${RST}${CTX_FADED}${EMPTY_BAR}${RST} ${CTX_COLOR}${CTX_USED}%${RST} ${DIM}(${CTX_SIZE})${RST}"
+LINE1+=" ${DIM}│${RST} ${CTX_COLOR}${FILLED_BAR}${RST}${CTX_FADED}${EMPTY_BAR}${RST} ${CTX_COLOR}${CTX_USED}%${RST} ${DIM}(${CTX_USED_FMT})${RST}"
 
 
 # Rate limit color based on projected usage at reset time
