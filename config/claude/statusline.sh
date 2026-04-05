@@ -54,7 +54,7 @@ fi
 RST='\033[0m'
 DIM='\033[2m'
 CYAN='\033[36m'
-MAGENTA='\033[35m'
+BRANCH_CLR='\033[38;5;183m'
 DIR_CLR='\033[38;5;180m'
 
 # Context bar color: yellow → orange → red gradient (ANSI 256)
@@ -154,7 +154,7 @@ LINE1+=" ${DIM}│${RST} ⚡ ${RL_5H_COLOR}5h:${RL_5H}%${RST} ${DIM}${RL_5H_TIME
 LEFT_TEXT="${CWD/#"$HOME"/~}"
 LINE2="${DIR_CLR}${LEFT_TEXT}${RST}"
 BRANCH_ICON=$(printf '\xee\x82\xa0')
-[[ -n "$BRANCH" ]] && LINE2+=" ${BRANCH_ICON} ${MAGENTA}${BRANCH}${RST}"
+[[ -n "$BRANCH" ]] && LINE2+=" ${BRANCH_ICON} ${BRANCH_CLR}${BRANCH}${RST}"
 [[ -n "$WORKTREE_NAME" ]] && LINE2+=" ${DIM}[${WORKTREE_NAME}]${RST}"
 
 # Prefix with ANSI reset to override Claude Code's dim, convert spaces to NBSP (U+00A0) to prevent trimming

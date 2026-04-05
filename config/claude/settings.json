@@ -6,7 +6,7 @@
     "MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES": "3"
   },
   "permissions": {
-    "defaultMode": "auto",
+    "defaultMode": "acceptEdits",
     "allow": [
       "Read(~/.claude/**)",
       "Read(~/code/**)",
