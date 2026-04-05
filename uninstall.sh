@@ -87,6 +87,7 @@ unlink_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings
 unlink_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 unlink_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
 unlink_file "$DOTFILES_ROOT/config/claude/output-styles" "$HOME/.claude/output-styles"
+unlink_file "$DOTFILES_ROOT/config/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 unlink_file "$DOTFILES_ROOT/config/ghostty" "$HOME/.config/ghostty"

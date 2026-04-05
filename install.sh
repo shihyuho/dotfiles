@@ -78,6 +78,7 @@ link_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.j
 link_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 link_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
 link_file "$DOTFILES_ROOT/config/claude/output-styles" "$HOME/.claude/output-styles"
+link_file "$DOTFILES_ROOT/config/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
 
 echo ""
