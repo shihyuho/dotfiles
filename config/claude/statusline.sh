@@ -55,7 +55,7 @@ RST='\033[0m'
 DIM='\033[2m'
 CYAN='\033[36m'
 BRANCH_CLR='\033[38;5;175m'
-DIR_CLR='\033[38;5;180m'
+DIR_CLR='\033[38;5;173m'
 
 # Context bar color: yellow → orange → red gradient (ANSI 256)
 # 228=light yellow, 222, 216, 210, 204, 196=red
