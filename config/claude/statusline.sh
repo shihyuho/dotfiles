@@ -66,29 +66,23 @@ IDX=$(( CTX_USED * 5 / 100 ))
 CTX_COLOR="\033[38;5;${GRADIENT[$IDX]}m"
 CTX_FADED="\033[38;5;${FADED_GRADIENT[$IDX]}m"
 
-# Build context bar (10 blocks wide)
-BAR_WIDTH=10
-FILLED=$(( CTX_USED * BAR_WIDTH / 100 ))
-(( FILLED > BAR_WIDTH )) && FILLED=$BAR_WIDTH
-EMPTY=$(( BAR_WIDTH - FILLED ))
-FILLED_BAR=""
-EMPTY_BAR=""
-for (( i=0; i<FILLED; i++ )); do FILLED_BAR+="█"; done
-for (( i=0; i<EMPTY; i++ ));  do EMPTY_BAR+="░"; done
+# Format token counts (e.g. 130000 → 130k, 1200000 → 1.2M)
+fmt_tokens() {
+  local n=$1
+  if (( n >= 1000000 )); then
+    awk "BEGIN{v=${n}/1000000; printf (v==int(v)) ? \"%dM\" : \"%.1fM\", v}"
+  elif (( n >= 1000 )); then
+    echo "$(( n / 1000 ))k"
+  else
+    echo "$n"
+  fi
+}
+CTX_USED_TOKENS=$(( CTX_MAX * CTX_USED / 100 ))
 
 # Build line 1
 LINE1=""
 [[ -n "$MODEL" ]]  && LINE1+="${CYAN}${MODEL}${RST}"
-# Format used tokens (e.g. 130000 → 130k, 1200000 → 1.2M)
-CTX_USED_TOKENS=$(( CTX_MAX * CTX_USED / 100 ))
-if (( CTX_USED_TOKENS >= 1000000 )); then
-  CTX_USED_FMT="$(awk "BEGIN{v=${CTX_USED_TOKENS}/1000000; printf (v==int(v)) ? \"%dM\" : \"%.1fM\", v}")"
-elif (( CTX_USED_TOKENS >= 1000 )); then
-  CTX_USED_FMT="$(( CTX_USED_TOKENS / 1000 ))k"
-else
-  CTX_USED_FMT="${CTX_USED_TOKENS}"
-fi
-LINE1+=" ${DIM}│${RST} ${CTX_COLOR}${FILLED_BAR}${RST}${CTX_FADED}${EMPTY_BAR}${RST} ${CTX_COLOR}${CTX_USED}%${RST} ${DIM}(${CTX_USED_FMT})${RST}"
+LINE1+=" ${DIM}│${RST} ${CTX_COLOR}${CTX_USED}%${RST} ${DIM}(${RST}${CTX_COLOR}$(fmt_tokens $CTX_USED_TOKENS)${DIM}/${RST}${CTX_FADED}$(fmt_tokens $CTX_MAX)${DIM})${RST}"
 
 
 # Rate limit color based on projected usage at reset time
@@ -134,9 +128,13 @@ fmt_reset() {
     return
   fi
   remaining=$(( reset_at - now ))
-  h=$(( remaining / 3600 ))
+  local d h m
+  d=$(( remaining / 86400 ))
+  h=$(( (remaining % 86400) / 3600 ))
   m=$(( (remaining % 3600) / 60 ))
-  if (( h > 0 )); then
+  if (( d > 0 )); then
+    echo "${d}d${h}h"
+  elif (( h > 0 )); then
     echo "${h}h${m}m"
   else
     echo "${m}m"
