@@ -148,12 +148,13 @@ RL_7D_COLOR=$(rl_color_for "$RL_7D_PROJ")
 RL_5H_TIMER=$(fmt_reset "$RL_5H_RESET")
 RL_7D_TIMER=$(fmt_reset "$RL_7D_RESET")
 
-LINE1+=" ${DIM}│${RST} ${RL_5H_COLOR}5h:${RL_5H}%${RST} ${DIM}${RL_5H_TIMER}${RST} ${RL_7D_COLOR}7d:${RL_7D}%${RST} ${DIM}${RL_7D_TIMER}${RST}"
+LINE1+=" ${DIM}│${RST} ⚡ ${RL_5H_COLOR}5h:${RL_5H}%${RST} ${DIM}${RL_5H_TIMER}${RST} ${RL_7D_COLOR}7d:${RL_7D}%${RST} ${DIM}${RL_7D_TIMER}${RST}"
 
 # Build line 2: CWD + branch
 LEFT_TEXT="${CWD/#"$HOME"/~}"
 LINE2="${DIR_CLR}${LEFT_TEXT}${RST}"
-[[ -n "$BRANCH" ]] && LINE2+=" ${DIM}|${RST} ${MAGENTA}${BRANCH}${RST}"
+BRANCH_ICON=$(printf '\xee\x82\xa0')
+[[ -n "$BRANCH" ]] && LINE2+=" ${BRANCH_ICON} ${MAGENTA}${BRANCH}${RST}"
 [[ -n "$WORKTREE_NAME" ]] && LINE2+=" ${DIM}[${WORKTREE_NAME}]${RST}"
 
 # Prefix with ANSI reset to override Claude Code's dim, convert spaces to NBSP (U+00A0) to prevent trimming
