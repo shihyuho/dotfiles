@@ -1,7 +1,5 @@
 - @RTK.md
 - ALWAYS use the QUESTION TOOL if you need to ask user.
-- ALWAYS think and respond in Traditional Chinese (zh_TW)
-- MUST use skills if available: `planning-with-files`, `lessons-learned`.
 - Think before acting. Read existing files before writing code.
 - Be concise in output but thorough in reasoning.
 - Prefer editing over rewriting whole files.

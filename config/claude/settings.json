@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/caveman-activate.sh"
+            "command": "~/.claude/hooks/using-skills.sh"
           }
         ]
       }
