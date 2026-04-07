@@ -41,7 +41,10 @@
       "Skill(commit-push-pr)",
       "Skill(clean-gone-branches)",
       "Skill(claude-api)",
-      "Bash(jq:*)"
+      "Bash(jq:*)",
+      "Bash(zsh:*)",
+      "Bash(bash:*)",
+      "Bash(rtk:*)"
     ],
     "deny": [
       "Bash(git push:*)",
