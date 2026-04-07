@@ -11,10 +11,12 @@ description: Commit, push, and open a PR
 
 ## Your task
 
+Invoke the git-commit-co-author skill.
+
 Based on the above changes:
 
 1. Create a new branch if on main
-2. Create a single commit with an appropriate message. Follow the git-commit-co-author skill rules for attribution.
+2. Create a single commit with an appropriate message.
 3. Push the branch to origin
 4. Create a pull request using `gh pr create`. If `.github/` contains a PR template, follow that format.
 
