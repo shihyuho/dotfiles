@@ -1,8 +1,12 @@
 ---
 description: Commit and push
-agent: build
-model: opencode/minimax-m2.5-free
-subtask: true
+allowed_tools:
+  - Bash(git add:*)
+  - Bash(git status:*)
+  - Bash(git commit:*)
+  - Bash(git push:*)
+  - Bash(git remote:*)
+  - Bash(git log:*)
 ---
 
 Commit and push the current changes.
@@ -15,27 +19,16 @@ Commit and push the current changes.
 - Do NOT stage files that may contain secrets (.env, credentials, tokens, etc.)
 - If there are merge conflicts, DO NOT fix them — notify me and stop
 - Match the commit style of recent commits
-- Do NOT add any AI attribution footer (e.g. "Generated with ...")
+- Follow the git-commit-co-author skill rules for attribution
+- Do NOT add any other AI attribution footer (e.g. "Generated with ...")
 - You MUST do all steps in a single message
+- Respond with tool calls only — no surrounding narrative
 
 ## Steps
 
 1. Stage relevant files
 2. Create commit
 3. Push to remote
-
-## Co-author
-
-Check if any remote URL contains `github.com/softleader` (run `git remote -v`).
-If yes, add exactly one `Co-authored-by` trailer in its own `-m` block:
-
-```
-Co-authored-by: <model-name> <noreply@softleader.com.tw>
-```
-
-Use the model name of the agent preparing the commit. If the message already has a `Co-authored-by` line, normalize to exactly one — do not duplicate.
-
-If the remote is NOT `github.com/softleader`, skip the trailer entirely.
 
 ## Context
 

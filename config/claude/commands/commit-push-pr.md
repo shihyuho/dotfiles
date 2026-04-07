@@ -1,8 +1,15 @@
 ---
 description: Commit, push, and open a pull request
-agent: build
-model: opencode/minimax-m2.5-free
-subtask: true
+allowed_tools:
+  - Bash(git checkout --branch:*)
+  - Bash(git add:*)
+  - Bash(git status:*)
+  - Bash(git commit:*)
+  - Bash(git push:*)
+  - Bash(git remote:*)
+  - Bash(git log:*)
+  - Bash(gh pr create:*)
+  - Read
 ---
 
 Commit, push, and open a pull request.
@@ -15,8 +22,10 @@ Commit, push, and open a pull request.
 - Do NOT stage files that may contain secrets (.env, credentials, tokens, etc.)
 - If there are merge conflicts, DO NOT fix them — notify me and stop
 - Match the commit style of recent commits
-- Do NOT add any AI attribution footer (e.g. "Generated with ...")
+- Follow the git-commit-co-author skill rules for attribution
+- Do NOT add any other AI attribution footer (e.g. "Generated with ...")
 - You MUST do all steps in a single message
+- Respond with tool calls only — no surrounding narrative
 
 ## Steps
 
@@ -27,19 +36,6 @@ Commit, push, and open a pull request.
    - Check `.github/` for PR templates (e.g. `PULL_REQUEST_TEMPLATE.md` or `.github/pull_request_template.md`) — if found, follow that format
    - Analyze ALL commits on the branch (not just the latest) for the PR description
    - Generate a comprehensive summary and test plan checklist
-
-## Co-author
-
-Check if any remote URL contains `github.com/softleader` (run `git remote -v`).
-If yes, add exactly one `Co-authored-by` trailer in its own `-m` block:
-
-```
-Co-authored-by: <model-name> <noreply@softleader.com.tw>
-```
-
-Use the model name of the agent preparing the commit. If the message already has a `Co-authored-by` line, normalize to exactly one — do not duplicate.
-
-If the remote is NOT `github.com/softleader`, skip the trailer entirely.
 
 ## Context
 

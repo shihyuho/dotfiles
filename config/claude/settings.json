@@ -36,7 +36,10 @@
       "WebFetch",
       "Read(//private/tmp/**)",
       "Skill(planning-with-files)",
-      "Skill(commit-commands:commit)",
+      "Skill(commit)",
+      "Skill(commit-push)",
+      "Skill(commit-push-pr)",
+      "Skill(clean-gone-branches)",
       "Skill(claude-api)",
       "Bash(jq:*)"
     ],
@@ -102,7 +105,6 @@
     "gopls-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
-    "commit-commands@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
