@@ -103,8 +103,7 @@
     "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
     "commit-commands@claude-plugins-official": true,
-    "caveman@caveman": true,
-    "agent-skills@addy-agent-skills": true
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -126,21 +125,8 @@
         "repo": "shihyuho/dotfiles"
       },
       "autoUpdate": true
-    },
-    "caveman": {
-      "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
-      },
-      "autoUpdate": true
-    },
-    "addy-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "addyosmani/agent-skills"
-      },
-      "autoUpdate": true
     }
   },
+  "outputStyle": "Roast",
   "language": "Traditional Chinese (zh_TW)"
 }
