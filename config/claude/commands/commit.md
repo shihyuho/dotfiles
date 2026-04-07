@@ -12,7 +12,7 @@ description: Create a git commit
 
 ## Your task
 
-Invoke the git-commit-co-author skill.
+You MUST invoke the git-commit-co-author skill before running git commit.
 
 Based on the above changes, create a single git commit.
 

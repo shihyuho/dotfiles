@@ -14,7 +14,7 @@ subtask: true
 
 ## Your task
 
-Invoke the git-commit-co-author skill.
+You MUST invoke the git-commit-co-author skill before running git commit.
 
 Based on the above changes:
 
