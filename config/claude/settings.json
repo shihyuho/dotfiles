@@ -35,7 +35,10 @@
       "WebSearch",
       "WebFetch",
       "Read(//private/tmp/**)",
-      "Skill(planning-with-files)"
+      "Skill(planning-with-files)",
+      "Skill(commit-commands:commit)",
+      "Skill(claude-api)",
+      "Bash(jq:*)"
     ],
     "deny": [
       "Bash(git push:*)",
@@ -97,11 +100,11 @@
     "lua-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
     "commit-commands@claude-plugins-official": true,
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "agent-skills@addy-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -128,6 +131,13 @@
       "source": {
         "source": "github",
         "repo": "JuliusBrussee/caveman"
+      },
+      "autoUpdate": true
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
       },
       "autoUpdate": true
     }
