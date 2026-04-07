@@ -1,64 +1,25 @@
 ---
-description: Commit, push, and open a pull request
+description: Commit, push, and open a PR
 agent: build
 model: opencode/minimax-m2.5-free
 subtask: true
 ---
 
-Commit, push, and open a pull request.
-
-## Rules
-
-- Use conventional commit format
-- Commit message must explain WHY from an end-user perspective, not WHAT was changed
-- Be specific — no generic messages like "improved experience" or "updated config"
-- Do NOT stage files that may contain secrets (.env, credentials, tokens, etc.)
-- If there are merge conflicts, DO NOT fix them — notify me and stop
-- Match the commit style of recent commits
-- Do NOT add any AI attribution footer (e.g. "Generated with ...")
-- You MUST do all steps in a single message
-
-## Steps
-
-1. Create a new branch if currently on main
-2. Stage relevant files and create commit
-3. Push branch to remote
-4. Create pull request using `gh pr create`
-   - Check `.github/` for PR templates (e.g. `PULL_REQUEST_TEMPLATE.md` or `.github/pull_request_template.md`) — if found, follow that format
-   - Analyze ALL commits on the branch (not just the latest) for the PR description
-   - Generate a comprehensive summary and test plan checklist
-
-## Co-author
-
-Check if any remote URL contains `github.com/softleader` (run `git remote -v`).
-If yes, add exactly one `Co-authored-by` trailer in its own `-m` block:
-
-```
-Co-authored-by: <model-name> <noreply@softleader.com.tw>
-```
-
-Use the model name of the agent preparing the commit. If the message already has a `Co-authored-by` line, normalize to exactly one — do not duplicate.
-
-If the remote is NOT `github.com/softleader`, skip the trailer entirely.
-
 ## Context
 
-### git status
+- Current git status: !`git status`
+- Current git diff (staged and unstaged changes): !`git diff HEAD`
+- Current branch: !`git branch --show-current`
 
-!`git status --short`
+## Your task
 
-### git diff
+Based on the above changes:
 
-!`git diff HEAD`
+1. Create a new branch if on main
+2. Create a single commit with an appropriate message. Follow the git-commit-co-author skill rules for attribution.
+3. Push the branch to origin
+4. Create a pull request using `gh pr create`. If `.github/` contains a PR template, follow that format.
 
-### Recent commits
+You have the capability to call multiple tools in a single response. You MUST do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
 
-!`git log --oneline -10`
-
-### Current branch
-
-!`git branch --show-current`
-
-<user-request>
 $ARGUMENTS
-</user-request>

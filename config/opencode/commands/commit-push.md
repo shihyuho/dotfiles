@@ -5,60 +5,20 @@ model: opencode/minimax-m2.5-free
 subtask: true
 ---
 
-Commit and push the current changes.
-
-## Rules
-
-- Use conventional commit format
-- Commit message must explain WHY from an end-user perspective, not WHAT was changed
-- Be specific — no generic messages like "improved experience" or "updated config"
-- Do NOT stage files that may contain secrets (.env, credentials, tokens, etc.)
-- If there are merge conflicts, DO NOT fix them — notify me and stop
-- Match the commit style of recent commits
-- Do NOT add any AI attribution footer (e.g. "Generated with ...")
-- You MUST do all steps in a single message
-
-## Steps
-
-1. Stage relevant files
-2. Create commit
-3. Push to remote
-
-## Co-author
-
-Check if any remote URL contains `github.com/softleader` (run `git remote -v`).
-If yes, add exactly one `Co-authored-by` trailer in its own `-m` block:
-
-```
-Co-authored-by: <model-name> <noreply@softleader.com.tw>
-```
-
-Use the model name of the agent preparing the commit. If the message already has a `Co-authored-by` line, normalize to exactly one — do not duplicate.
-
-If the remote is NOT `github.com/softleader`, skip the trailer entirely.
-
 ## Context
 
-### git status
+- Current git status: !`git status`
+- Current git diff (staged and unstaged changes): !`git diff HEAD`
+- Current branch: !`git branch --show-current`
+- Recent commits: !`git log --oneline -10`
 
-!`git status --short`
+## Your task
 
-### git diff (unstaged)
+Based on the above changes:
 
-!`git diff`
+1. Create a single commit with an appropriate message. Follow the git-commit-co-author skill rules for attribution.
+2. Push the branch to origin
 
-### git diff (staged)
+You have the capability to call multiple tools in a single response. You MUST do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
 
-!`git diff --cached`
-
-### Recent commits
-
-!`git log --oneline -10`
-
-### Current branch
-
-!`git branch --show-current`
-
-<user-request>
 $ARGUMENTS
-</user-request>
