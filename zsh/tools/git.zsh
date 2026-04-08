@@ -22,6 +22,11 @@ Usage: gdiff [base][...target]
   gdiff ...feat          fzf select base, target=feat
   gdiff main...feat      compare main..feat directly
 
+Symbols:
+  ○  Not viewed
+  ✓  Viewed (unchanged)
+  ⚠  Viewed but diff changed since last viewed
+
 Keybindings:
   space     Toggle viewed mark (✓/○), persists across sessions
   enter     Full-screen diff (q to exit)
@@ -89,9 +94,16 @@ HELP
 #!/usr/bin/env bash
 viewed_file="$1"
 files_file="$2"
+range="$3"
 while IFS= read -r f; do
-  if grep -qxF "$f" "$viewed_file" 2>/dev/null; then
-    printf '  ✓  %s\n' "$f"
+  stored_hash=$(awk -F'\t' -v file="$f" '$1 == file {print $2; exit}' "$viewed_file" 2>/dev/null)
+  if [[ -n "$stored_hash" ]]; then
+    current_hash=$(git diff "$range" -- "$f" | md5 -q)
+    if [[ "$stored_hash" == "$current_hash" ]]; then
+      printf '  ✓  %s\n' "$f"
+    else
+      printf '  ⚠  %s\n' "$f"
+    fi
   else
     printf '  ○  %s\n' "$f"
   fi
@@ -99,14 +111,30 @@ done < "$files_file"
 EOF
   chmod +x "$list_helper"
 
-  bash "$list_helper" "$viewed_file" "$files_file" | fzf \
+  local toggle_helper="${state_dir}/_toggle.sh"
+  cat > "$toggle_helper" <<'EOF'
+#!/usr/bin/env bash
+viewed_file="$1"
+file="$2"
+range="$3"
+stored=$(awk -F'\t' -v f="$file" '$1 == f {print $2; exit}' "$viewed_file" 2>/dev/null)
+if [[ -n "$stored" ]]; then
+  awk -F'\t' -v f="$file" '$1 != f' "$viewed_file" > "${viewed_file}.tmp" && mv "${viewed_file}.tmp" "$viewed_file"
+else
+  h=$(git diff "$range" -- "$file" | md5 -q)
+  printf '%s\t%s\n' "$file" "$h" >> "$viewed_file"
+fi
+EOF
+  chmod +x "$toggle_helper"
+
+  bash "$list_helper" "$viewed_file" "$files_file" "$range" | fzf \
     --layout=reverse --ansi --nth=2.. \
-    --header "[$range] space:viewed  ctrl-x:reset all  enter:full diff  esc:quit" \
+    --header "[$range] space:viewed  ctrl-x:reset  enter:full diff  ⚠=changed since viewed" \
     --preview "git diff ${range} -- {2..} | delta --width=\${FZF_PREVIEW_COLUMNS:-80}" \
     --preview-window "right,70%" \
     --bind "enter:execute(git diff ${range} -- {2..} | delta --width=\$COLUMNS | less -R +g)" \
-    --bind "space:execute-silent(f={2..}; if grep -qxF \"\$f\" '${viewed_file}' 2>/dev/null; then grep -vxF \"\$f\" '${viewed_file}' > '${viewed_file}.tmp' && mv '${viewed_file}.tmp' '${viewed_file}'; else echo \"\$f\" >> '${viewed_file}'; fi)+reload(bash '${list_helper}' '${viewed_file}' '${files_file}')" \
-    --bind "ctrl-x:execute-silent(: > '${viewed_file}')+reload(bash '${list_helper}' '${viewed_file}' '${files_file}')" \
+    --bind "space:execute-silent(bash '${toggle_helper}' '${viewed_file}' {2..} '${range}')+reload(bash '${list_helper}' '${viewed_file}' '${files_file}' '${range}')" \
+    --bind "ctrl-x:execute-silent(: > '${viewed_file}')+reload(bash '${list_helper}' '${viewed_file}' '${files_file}' '${range}')" \
     --bind "ctrl-s:toggle-preview" \
     --no-mouse
 }
