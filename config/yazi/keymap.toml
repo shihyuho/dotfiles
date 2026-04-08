@@ -84,3 +84,8 @@ keymap = [
 prepend_keymap = [
     { on = [ "<Esc>" ], run = "close", desc = "Cancel input" },
 ]
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "i" ]
+run  = "plugin lazygit"
+desc = "run lazygit"

@@ -1,0 +1,24 @@
+---
+description: Open a PR for the current branch
+agent: build
+model: opencode/minimax-m2.5-free
+subtask: true
+---
+
+## Context
+
+- Current git status: !`git status`
+- Current branch: !`git branch --show-current`
+- Commits ahead of main: !`git log --oneline main..HEAD`
+
+## Your task
+
+Based on the above context:
+
+1. If on main, abort and tell the user to switch to a feature branch first.
+2. Push the branch to origin if not already pushed.
+3. Create a pull request using `gh pr create`. If `.github/` contains a PR template, follow that format.
+
+You have the capability to call multiple tools in a single response. You MUST do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
+
+$ARGUMENTS
