@@ -65,7 +65,7 @@
     "defaultMode": "acceptEdits"
   },
   "hooks": {
-    "PreToolUse": [
+    "PostToolUse": [
       {
         "matcher": "Bash",
         "hooks": [

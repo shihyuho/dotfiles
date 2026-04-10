@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Claude Code PreToolUse hook for git-commit-co-author
+# Claude Code PostToolUse hook for git-commit-co-author
 #
-# Fires before Bash tool calls. Only injects the reminder when the command
-# is a git commit. All rules (origin check, formatting, dedup) live in SKILL.md.
+# Fires after Bash tool calls. When the command was a git commit, inject
+# a self-check reminder: the model decides whether to act based on whether
+# it already followed the skill during message composition.
 #
 # Installation:
 #   1. Copy to ~/.claude/hooks/git-commit-co-author.sh
@@ -17,8 +18,8 @@ if [[ "$tool_name" == "Bash" && "$command" == *"git commit"* ]]; then
   cat <<'HOOK_JSON'
 {
   "hookSpecificOutput": {
-    "hookEventName": "PreToolUse",
-    "additionalContext": "When preparing a git commit, you MUST follow the git-commit-co-author skill rules."
+    "hookEventName": "PostToolUse",
+    "additionalContext": "If you haven't followed the git-commit-co-author skill, you MUST invoke it and amend HEAD if non-compliant."
   }
 }
 HOOK_JSON
