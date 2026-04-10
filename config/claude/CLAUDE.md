@@ -1,4 +1,3 @@
-- @RTK.md
 - ALWAYS use the QUESTION TOOL if you need to ask user.
 - Think before acting. Read existing files before writing code.
 - Be concise in output but thorough in reasoning.

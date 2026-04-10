@@ -47,8 +47,6 @@
       "Bash(rtk:*)"
     ],
     "deny": [
-      "Bash(git push:*)",
-
       "Bash(git reset --hard:*)",
       "Bash(git clean -f:*)",
       "Bash(git branch -D:*)",
@@ -73,20 +71,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/rtk-rewrite.sh"
+            "command": "~/.claude/hooks/git-commit-co-author.sh"
           }
         ]
       }
     ],
     "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/git-commit-co-author.sh"
-          }
-        ]
-      },
       {
         "hooks": [
           {
