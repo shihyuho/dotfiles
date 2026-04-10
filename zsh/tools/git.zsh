@@ -2,7 +2,7 @@
 # ---
 # Tool: Git helpers
 # Purpose: Interactive git workflows (requires fzf, delta)
-# Updated: 2026-04-08
+# Updated: 2026-04-10
 # ---
 
 # gdiff - interactive file-by-file diff between two refs
@@ -26,10 +26,16 @@ Symbols:
   ○  Not viewed
   ✓  Viewed (unchanged)
   ⚠  Viewed but diff changed since last viewed
+  ▾  Directory (expanded, tree mode)
+  ▸  Directory (collapsed, tree mode)
 
 Keybindings:
-  space     Toggle viewed mark (✓/○), persists across sessions
+  space     Toggle viewed mark (✓/○), skip on dirs
+  left      Collapse directory
+  right     Expand directory
+  ctrl-a    Toggle all directories (collapse ⇄ expand)
   ctrl-v    Toggle filter: hide/show ✓ files
+  ctrl-t    Toggle view: flat / tree
   enter     Full-screen diff (q to exit)
   ctrl-x    Reset all viewed marks
   ctrl-s    Toggle preview panel
@@ -110,38 +116,151 @@ HELP
   # Help toggle state
   local help_file="${state_dir}/${repo_id}_${range_id}_help"
   rm -f "$help_file"
+  # View mode state: exists = tree, absent = flat (default: tree)
+  local view_file="${state_dir}/${repo_id}_${range_id}_view"
+  touch "$view_file"
+  # Collapsed directories (one path per line, tree mode only)
+  local collapsed_file="${state_dir}/${repo_id}_${range_id}_collapsed"
+  rm -f "$collapsed_file"
+  touch "$collapsed_file"
 
   local list_helper="${state_dir}/_list.sh"
   cat > "$list_helper" <<'EOF'
 #!/usr/bin/env bash
 # No git commands - pure file lookups
+# Output: "<visual>\t<filepath>\t<dirpath>"
+#   file line: filepath set, dirpath empty
+#   dir line:  filepath empty, dirpath set (for collapse targeting)
 viewed_file="$1"
 files_file="$2"
 filter_file="$3"
-gen() {
-  if [[ -s "$viewed_file" ]]; then
-    awk -F'\t' '
-      NR==FNR {
-        if (NF >= 2 && $2 != "") viewed[$1]="ok"
-        else viewed[$1]="stale"
-        next
+view_file="$4"
+collapsed_file="$5"
+
+# Apply filter (hide ✓ files) before rendering so tree stays clean
+get_files() {
+  if [[ -f "$filter_file" && -s "$viewed_file" ]]; then
+    awk -v vf="$viewed_file" '
+      BEGIN {
+        while ((getline line < vf) > 0) {
+          n = split(line, f, "\t")
+          if (n >= 2 && f[2] != "") ok[f[1]] = 1
+        }
+        close(vf)
       }
-      {
-        f=$0
-        if (f in viewed) {
-          if (viewed[f]=="ok") printf "  ✓  %s\n", f
-          else printf "  ⚠  %s\n", f
-        } else printf "  ○  %s\n", f
-      }
-    ' "$viewed_file" "$files_file"
+      { if (!($0 in ok)) print }
+    ' "$files_file"
   else
-    awk '{printf "  ○  %s\n", $0}' "$files_file"
+    cat "$files_file"
   fi
 }
-if [[ -f "$filter_file" ]]; then
-  gen | grep -v '^  ✓  '
+
+render() {
+  local mode="$1"
+  local sorter="cat"
+  [[ "$mode" == "tree" ]] && sorter="sort"
+  get_files | $sorter | awk -v mode="$mode" -v vf="$viewed_file" -v cf="$collapsed_file" '
+    BEGIN {
+      while ((getline line < vf) > 0) {
+        n = split(line, f, "\t")
+        if (n >= 2 && f[2] != "") viewed[f[1]] = "ok"
+        else viewed[f[1]] = "stale"
+      }
+      close(vf)
+      if (cf != "") {
+        while ((getline line < cf) > 0) {
+          if (line != "") collapsed[line] = 1
+        }
+        close(cf)
+      }
+    }
+    function status(full) {
+      if (full in viewed) {
+        if (viewed[full] == "ok") return "✓"
+        return "⚠"
+      }
+      return "○"
+    }
+    function join_parts(arr, upto,    i, s) {
+      s = arr[1]
+      for (i = 2; i <= upto; i++) s = s "/" arr[i]
+      return s
+    }
+    function ind(depth,    i, s) {
+      s = ""
+      for (i = 1; i < depth; i++) s = s "  "
+      return s
+    }
+    NF == 0 { next }
+    {
+      full = $0
+      st = status(full)
+      if (mode == "flat") {
+        # 3-field format: visual, filepath, (empty dirpath)
+        printf "  %s  %s\t%s\t\n", st, full, full
+        next
+      }
+
+      # --- tree mode ---
+      n = split(full, parts, "/")
+
+      # Find topmost collapsed ancestor (if any)
+      top_depth = 0
+      top_path = ""
+      accum = ""
+      for (i = 1; i < n; i++) {
+        accum = (i == 1) ? parts[1] : accum "/" parts[i]
+        if (accum in collapsed) {
+          top_depth = i
+          top_path = accum
+          break
+        }
+      }
+
+      if (top_depth > 0) {
+        # File is hidden inside a collapsed ancestor
+        if (top_path in emitted_coll) next
+        emitted_coll[top_path] = 1
+
+        # Emit intermediate expanded dirs from (m+1) to (top_depth-1)
+        m = 0
+        for (i = 1; i < top_depth && i <= prev_n - 1; i++) {
+          if (parts[i] != prev[i]) break
+          m++
+        }
+        for (i = m + 1; i < top_depth; i++) {
+          printf "  ▾  %s%s/\t\t%s\n", ind(i), parts[i], join_parts(parts, i)
+        }
+        # Emit the collapsed dir itself
+        printf "  ▸  %s%s/\t\t%s\n", ind(top_depth), parts[top_depth], top_path
+
+        delete prev
+        for (i = 1; i <= top_depth; i++) prev[i] = parts[i]
+        prev_n = top_depth
+        next
+      }
+
+      # Normal file rendering: emit new expanded dir headers + the file
+      m = 0
+      for (i = 1; i < n && i <= prev_n - 1; i++) {
+        if (parts[i] != prev[i]) break
+        m++
+      }
+      for (i = m + 1; i < n; i++) {
+        printf "  ▾  %s%s/\t\t%s\n", ind(i), parts[i], join_parts(parts, i)
+      }
+      printf "  %s  %s%s\t%s\t\n", st, ind(n), parts[n], full
+      delete prev
+      for (i = 1; i <= n; i++) prev[i] = parts[i]
+      prev_n = n
+    }
+  '
+}
+
+if [[ -f "$view_file" ]]; then
+  render tree
 else
-  gen
+  render flat
 fi
 EOF
   chmod +x "$list_helper"
@@ -162,27 +281,156 @@ fi
 EOF
   chmod +x "$toggle_helper"
 
-  local _hdr_normal="if [[ -f '${filter_file}' ]]; then echo '[$range] ✓ hidden  ?:help'; else echo '[$range] ?:help'; fi"
-  local _hdr_help="echo '  space   Toggle viewed mark (✓/○)
+  local collapse_helper="${state_dir}/_collapse.sh"
+  cat > "$collapse_helper" <<'EOF'
+#!/usr/bin/env bash
+# Usage: _collapse.sh <collapsed_file> <dir> [add|remove]
+collapsed_file="$1"
+dir="$2"
+mode="${3:-add}"
+[[ -z "$dir" ]] && exit 0
+touch "$collapsed_file"
+case "$mode" in
+  add)
+    grep -Fxq -- "$dir" "$collapsed_file" || printf '%s\n' "$dir" >> "$collapsed_file"
+    ;;
+  remove)
+    if grep -Fxq -- "$dir" "$collapsed_file"; then
+      grep -Fxv -- "$dir" "$collapsed_file" > "${collapsed_file}.tmp" && mv "${collapsed_file}.tmp" "$collapsed_file"
+    fi
+    ;;
+esac
+EOF
+  chmod +x "$collapse_helper"
+
+  # Write every ancestor directory of every file into collapsed_file
+  local bulk_collapse_helper="${state_dir}/_collapse_all.sh"
+  cat > "$bulk_collapse_helper" <<'EOF'
+#!/usr/bin/env bash
+files_file="$1"
+collapsed_file="$2"
+awk -F/ 'NF > 1 {
+  p = $1
+  for (i = 1; i < NF; i++) {
+    if (i > 1) p = p "/" $i
+    print p
+  }
+}' "$files_file" | sort -u > "$collapsed_file"
+EOF
+  chmod +x "$bulk_collapse_helper"
+
+  # Subtree preview: render files under <dir>/ as an indented tree with header
+  local preview_helper="${state_dir}/_preview.sh"
+  cat > "$preview_helper" <<'EOF'
+#!/usr/bin/env bash
+files_file="$1"
+dir="$2"
+[[ -z "$dir" ]] && exit 0
+
+prefix="${dir}/"
+filtered=$(awk -v p="$prefix" 'index($0, p) == 1' "$files_file" | sort)
+
+if [[ -z "$filtered" ]]; then
+  printf '%s/\n\n(no files under this directory)\n' "$dir"
+  exit 0
+fi
+
+file_count=$(printf '%s\n' "$filtered" | wc -l | tr -d ' ')
+max_depth=$(printf '%s\n' "$filtered" | awk -v pl=${#prefix} '
+  {
+    rel = substr($0, pl + 1)
+    n = split(rel, a, "/")
+    if (n > max) max = n
+  }
+  END { print max + 0 }
+')
+
+files_word="files"; [[ "$file_count" -eq 1 ]] && files_word="file"
+levels_word="levels"; [[ "$max_depth" -eq 1 ]] && levels_word="level"
+printf '%s/  —  %d %s, %d %s deep\n\n' \
+  "$dir" "$file_count" "$files_word" "$max_depth" "$levels_word"
+
+printf '%s\n' "$filtered" | awk -v pl=${#prefix} '
+  {
+    rel = substr($0, pl + 1)
+    n = split(rel, parts, "/")
+    m = 0
+    for (i = 1; i < n && i <= prev_n - 1; i++) {
+      if (parts[i] != prev[i]) break
+      m++
+    }
+    for (i = m + 1; i < n; i++) {
+      ind = ""
+      for (j = 1; j < i; j++) ind = ind "  "
+      printf "%s%s/\n", ind, parts[i]
+    }
+    ind = ""
+    for (j = 1; j < n; j++) ind = ind "  "
+    printf "%s%s\n", ind, parts[n]
+    delete prev
+    for (i = 1; i <= n; i++) prev[i] = parts[i]
+    prev_n = n
+  }
+'
+EOF
+  chmod +x "$preview_helper"
+
+  local hdr_helper="${state_dir}/_hdr.sh"
+  cat > "$hdr_helper" <<'EOF'
+#!/usr/bin/env bash
+# Args: <range> <view_file> <filter_file> <help_file> [mode]
+# mode: auto (default) | normal | help
+range="$1"
+view_file="$2"
+filter_file="$3"
+help_file="$4"
+mode="${5:-auto}"
+if [[ "$mode" == "auto" ]]; then
+  [[ -f "$help_file" ]] && mode="help" || mode="normal"
+fi
+if [[ "$mode" == "help" ]]; then
+  cat <<'HLP'
+  space   Toggle viewed (✓/○), skip on dirs
+  ←/→    Collapse / expand directory
+  ctrl-a  Toggle all (collapse ⇄ expand)
   ctrl-v  Hide/show viewed files
+  ctrl-t  Toggle tree/flat view
   enter   Full-screen diff
   ctrl-x  Reset all viewed marks
   ctrl-s  Toggle preview
   esc     Back (close help / filter)
   ctrl-c  Quit
-  ○ Not viewed  ✓ Viewed  ⚠ Changed since viewed'"
+  ○ Not viewed  ✓ Viewed  ⚠ Changed since viewed
+  ▾ Expanded dir  ▸ Collapsed dir
+HLP
+  exit 0
+fi
+parts="[$range]"
+[[ -f "$view_file" ]] && parts="$parts tree"
+[[ -f "$filter_file" ]] && parts="$parts ✓ hidden"
+echo "$parts  ?:help"
+EOF
+  chmod +x "$hdr_helper"
 
-  bash "$list_helper" "$viewed_file" "$files_file" "$filter_file" | fzf \
-    --layout=reverse --ansi --nth=2.. \
-    --header "[$range] ?:help" \
-    --preview "git diff ${range} -- {2..} | delta --width=\${FZF_PREVIEW_COLUMNS:-80}" \
+  local _list_cmd="bash '${list_helper}' '${viewed_file}' '${files_file}' '${filter_file}' '${view_file}' '${collapsed_file}'"
+  local _hdr_cmd="bash '${hdr_helper}' '${range}' '${view_file}' '${filter_file}' '${help_file}'"
+
+  bash "$list_helper" "$viewed_file" "$files_file" "$filter_file" "$view_file" "$collapsed_file" | fzf \
+    --layout=reverse --ansi --track \
+    --delimiter=$'\t' --with-nth=1 \
+    --header "$(bash "$hdr_helper" "$range" "$view_file" "$filter_file" "$help_file" normal)" \
+    --preview "if [[ -n {2} ]]; then git diff ${range} -- {2} | delta --width=\${FZF_PREVIEW_COLUMNS:-80}; elif [[ -n {3} ]]; then bash '${preview_helper}' '${files_file}' {3}; else echo '(directory)'; fi" \
     --preview-window "right,70%" \
-    --bind "enter:execute(git diff ${range} -- {2..} | delta --width=\$COLUMNS | less -R +g)" \
-    --bind "space:execute-silent(bash '${toggle_helper}' '${viewed_file}' {2..} '${hash_cache}')+reload-sync(bash '${list_helper}' '${viewed_file}' '${files_file}' '${filter_file}')+down" \
-    --bind "ctrl-v:execute-silent(if [[ -f '${filter_file}' ]]; then rm -f '${filter_file}'; else touch '${filter_file}'; fi)+reload-sync(bash '${list_helper}' '${viewed_file}' '${files_file}' '${filter_file}')+execute-silent(rm -f '${help_file}')+transform-header(${_hdr_normal})" \
-    --bind "ctrl-x:execute-silent(: > '${viewed_file}')+reload-sync(bash '${list_helper}' '${viewed_file}' '${files_file}' '${filter_file}')+execute-silent(rm -f '${help_file}')+transform-header(${_hdr_normal})" \
-    --bind "?:execute-silent(if [[ -f '${help_file}' ]]; then rm -f '${help_file}'; else touch '${help_file}'; fi)+transform-header(if [[ -f '${help_file}' ]]; then ${_hdr_help}; else ${_hdr_normal}; fi)" \
+    --bind "enter:execute([[ -n {2} ]] && git diff ${range} -- {2} | delta --width=\$COLUMNS | less -R +g)" \
+    --bind "space:execute-silent([[ -n {2} ]] && bash '${toggle_helper}' '${viewed_file}' {2} '${hash_cache}')+reload-sync(${_list_cmd})+down" \
+    --bind "left:execute-silent([[ -n {3} ]] && bash '${collapse_helper}' '${collapsed_file}' {3} add)+reload-sync(${_list_cmd})" \
+    --bind "right:execute-silent([[ -n {3} ]] && bash '${collapse_helper}' '${collapsed_file}' {3} remove)+reload-sync(${_list_cmd})" \
+    --bind "ctrl-a:execute-silent(if [[ -s '${collapsed_file}' ]]; then : > '${collapsed_file}'; else bash '${bulk_collapse_helper}' '${files_file}' '${collapsed_file}'; fi)+reload-sync(${_list_cmd})" \
+    --bind "ctrl-v:execute-silent(if [[ -f '${filter_file}' ]]; then rm -f '${filter_file}'; else touch '${filter_file}'; fi)+reload-sync(${_list_cmd})+execute-silent(rm -f '${help_file}')+transform-header(${_hdr_cmd} normal)" \
+    --bind "ctrl-t:execute-silent(if [[ -f '${view_file}' ]]; then rm -f '${view_file}'; else touch '${view_file}'; fi)+reload-sync(${_list_cmd})+execute-silent(rm -f '${help_file}')+transform-header(${_hdr_cmd} normal)" \
+    --bind "ctrl-x:execute-silent(: > '${viewed_file}')+reload-sync(${_list_cmd})+execute-silent(rm -f '${help_file}')+transform-header(${_hdr_cmd} normal)" \
+    --bind "?:execute-silent(if [[ -f '${help_file}' ]]; then rm -f '${help_file}'; else touch '${help_file}'; fi)+transform-header(${_hdr_cmd} auto)" \
     --bind "ctrl-s:toggle-preview" \
-    --bind "esc:execute-silent(if [[ -f '${help_file}' ]]; then rm -f '${help_file}'; elif [[ -f '${filter_file}' ]]; then rm -f '${filter_file}'; fi)+transform-header(${_hdr_normal})+reload-sync(bash '${list_helper}' '${viewed_file}' '${files_file}' '${filter_file}')" \
+    --bind "esc:execute-silent(if [[ -f '${help_file}' ]]; then rm -f '${help_file}'; elif [[ -f '${filter_file}' ]]; then rm -f '${filter_file}'; fi)+transform-header(${_hdr_cmd} normal)+reload-sync(${_list_cmd})" \
     --no-mouse
 }
