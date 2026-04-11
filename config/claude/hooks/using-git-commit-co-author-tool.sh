@@ -7,8 +7,8 @@
 # commits pass through silently with zero model overhead.
 #
 # Installation:
-#   1. Copy to ~/.claude/hooks/git-commit-co-author.sh
-#   2. chmod +x ~/.claude/hooks/git-commit-co-author.sh
+#   1. Copy to ~/.claude/hooks/using-git-commit-co-author-tool.sh
+#   2. chmod +x ~/.claude/hooks/using-git-commit-co-author-tool.sh
 #   3. Add hook entry to .claude/settings.json (see SKILL.md)
 
 input="$(cat)"

@@ -44,7 +44,10 @@
       "Bash(jq:*)",
       "Bash(zsh:*)",
       "Bash(bash:*)",
-      "Bash(rtk:*)"
+      "Bash(rtk:*)",
+      "Bash(ls:*)",
+      "Bash(wait)",
+      "Bash(xxd)"
     ],
     "deny": [
       "Bash(git reset --hard:*)",
@@ -60,7 +63,8 @@
       "Bash(gh issue delete:*)",
       "Bash(gh release delete:*)",
       "Bash(gh api * -X DELETE)",
-      "Bash(gh api * --method DELETE)"
+      "Bash(gh api * --method DELETE)",
+      "Bash(git push:*)"
     ],
     "defaultMode": "acceptEdits"
   },
@@ -71,7 +75,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/git-commit-co-author.sh"
+            "command": "~/.claude/hooks/using-git-commit-co-author-tool.sh"
           }
         ]
       }
@@ -82,6 +86,14 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/using-skills.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/using-git-commit-co-author-session.sh"
           }
         ]
       }
