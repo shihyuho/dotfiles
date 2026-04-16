@@ -15,6 +15,18 @@
       "source": "./config/claude/plugins/output-styles",
       "description": "Output styles for Claude Code",
       "version": "1.2.0"
+    },
+    {
+      "name": "grill-lite",
+      "source": "./config/claude/plugins/grill-lite",
+      "description": "Grill-me discipline with a confidence gate — auto-decide when confident, surface only high-value questions",
+      "version": "1.0.0"
+    },
+    {
+      "name": "session-handoff",
+      "source": "./config/claude/plugins/session-handoff",
+      "description": "Save and restore session context across /clear or /compact — /handoff writes .handoff.md, /bring-yourself-back-online reads it",
+      "version": "1.0.0"
     }
   ]
 }

@@ -134,7 +134,9 @@
     "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
     "superpowers@claude-plugins-official": true,
-    "output-styles@shihyuho-dotfiles": true
+    "output-styles@shihyuho-dotfiles": true,
+    "grill-lite@shihyuho-dotfiles": true,
+    "session-handoff@shihyuho-dotfiles": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
