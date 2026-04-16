@@ -9,6 +9,12 @@
       "source": "./config/claude/plugins/jdtls-lombok-lsp",
       "description": "JDTLS with Lombok support for Java projects",
       "version": "2.0.0"
+    },
+    {
+      "name": "roast-output-style",
+      "source": "./config/claude/plugins/roast-output-style",
+      "description": "Roast-comic sharp output style for Claude Code",
+      "version": "1.0.0"
     }
   ]
 }
