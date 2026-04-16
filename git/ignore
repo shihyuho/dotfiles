@@ -16,3 +16,6 @@ Thumbs.db
 .vscode
 
 .secrets
+
+# Session handoff (tool-generated, never commit)
+.handoff.md
