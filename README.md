@@ -50,7 +50,7 @@ This repo is a [Claude Code plugin marketplace](https://docs.anthropic.com/en/do
 | Plugin | Description |
 |--------|-------------|
 | `jdtls-lombok-lsp` | JDTLS with Lombok annotation support |
-| `output-style` | Output styles for Claude Code |
+| `shihyuho-output-styles` | Output styles for Claude Code |
 
 ## Tools
 

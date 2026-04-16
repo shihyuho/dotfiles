@@ -11,10 +11,10 @@
       "version": "2.0.0"
     },
     {
-      "name": "output-style",
-      "source": "./config/claude/plugins/output-style",
+      "name": "shihyuho-output-styles",
+      "source": "./config/claude/plugins/shihyuho-output-styles",
       "description": "Output styles for Claude Code",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

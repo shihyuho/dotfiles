@@ -133,7 +133,6 @@
     "gopls-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
-    "output-style@shihyuho-dotfiles": true,
     "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
