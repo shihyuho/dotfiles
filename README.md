@@ -47,10 +47,10 @@ This repo is a [Claude Code plugin marketplace](https://docs.anthropic.com/en/do
 /plugin marketplace add shihyuho/dotfiles
 ```
 
-| Plugin | Description |
-|--------|-------------|
-| `jdtls-lombok-lsp` | JDTLS with Lombok annotation support |
-| `shihyuho-output-styles` | Output styles for Claude Code |
+| Plugin | Description | Install |
+|--------|-------------|---------|
+| `jdtls-lombok-lsp` | JDTLS with Lombok annotation support | `/plugin install jdtls-lombok-lsp@shihyuho-dotfiles` |
+| `shihyuho-output-styles` | Output styles for Claude Code | `/plugin install shihyuho-output-styles@shihyuho-dotfiles` |
 
 ## Tools
 
