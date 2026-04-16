@@ -1,5 +1,5 @@
 ---
-description: Create a branch and commit
+description: Create a git branch and commit
 agent: build
 model: opencode/minimax-m2.5-free
 subtask: true

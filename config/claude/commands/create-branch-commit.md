@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git checkout:*), Bash(git switch:*)
-description: Create a branch and commit
+description: Create a git branch and commit
 ---
 
 ## Context
