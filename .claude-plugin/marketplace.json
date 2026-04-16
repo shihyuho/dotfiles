@@ -11,9 +11,9 @@
       "version": "2.0.0"
     },
     {
-      "name": "roast-output-style",
-      "source": "./config/claude/plugins/roast-output-style",
-      "description": "Roast-comic sharp output style for Claude Code",
+      "name": "output-style",
+      "source": "./config/claude/plugins/output-style",
+      "description": "Output styles for Claude Code",
       "version": "1.0.0"
     }
   ]
