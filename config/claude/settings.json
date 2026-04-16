@@ -134,7 +134,7 @@
     "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
     "superpowers@claude-plugins-official": true,
-    "shihyuho-output-styles@shihyuho-dotfiles": true
+    "output-styles@shihyuho-dotfiles": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -158,6 +158,6 @@
       "autoUpdate": true
     }
   },
-  "outputStyle": "shihyuho-output-styles:Roast",
+  "outputStyle": "output-styles:Roast",
   "language": "Traditional Chinese (zh_TW)"
 }
