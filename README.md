@@ -51,9 +51,7 @@ This repo is a [Claude Code plugin marketplace](https://docs.anthropic.com/en/do
 |--------|-------------|---------|
 | `jdtls-lombok-lsp` | JDTLS with Lombok annotation support | `/plugin install jdtls-lombok-lsp@shihyuho-dotfiles` |
 | `output-styles` | Output styles for Claude Code | `/plugin install output-styles@shihyuho-dotfiles` |
-| `git` | Git workflow: commit, branch, PR, cleanup | `/plugin install git@shihyuho-dotfiles` |
 | `plan` | Planning with a confidence gate — `/grill-lite` | `/plugin install plan@shihyuho-dotfiles` |
-| `context` | Session handoff — save/restore context across `/clear` | `/plugin install context@shihyuho-dotfiles` |
 
 ## Tools
 
