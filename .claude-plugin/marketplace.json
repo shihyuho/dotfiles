@@ -17,15 +17,21 @@
       "version": "1.2.0"
     },
     {
-      "name": "grill-lite",
-      "source": "./config/claude/plugins/grill-lite",
-      "description": "Grill-me discipline with a confidence gate — auto-decide when confident, surface only high-value questions",
+      "name": "git",
+      "source": "./config/claude/plugins/git",
+      "description": "Git workflow tools",
       "version": "1.0.0"
     },
     {
-      "name": "session-handoff",
-      "source": "./config/claude/plugins/session-handoff",
-      "description": "Save and restore session context across /clear or /compact — /handoff writes .handoff.md, /bring-yourself-back-online reads it",
+      "name": "plan",
+      "source": "./config/claude/plugins/plan",
+      "description": "Planning tools",
+      "version": "1.0.0"
+    },
+    {
+      "name": "context",
+      "source": "./config/claude/plugins/context",
+      "description": "Session context tools",
       "version": "1.0.0"
     }
   ]

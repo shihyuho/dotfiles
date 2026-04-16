@@ -1,5 +1,0 @@
-{
-  "name": "session-handoff",
-  "description": "Save and restore session context across /clear or /compact — /handoff writes .handoff.md, /bring-yourself-back-online reads it",
-  "version": "1.0.0"
-}

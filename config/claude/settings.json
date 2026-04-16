@@ -135,8 +135,9 @@
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
     "superpowers@claude-plugins-official": true,
     "output-styles@shihyuho-dotfiles": true,
-    "grill-lite@shihyuho-dotfiles": true,
-    "session-handoff@shihyuho-dotfiles": true
+    "git@shihyuho-dotfiles": true,
+    "plan@shihyuho-dotfiles": true,
+    "context@shihyuho-dotfiles": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
