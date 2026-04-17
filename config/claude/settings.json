@@ -70,7 +70,7 @@
       "Bash(gh api * --method DELETE)",
       "Bash(git push:*)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "hooks": {
     "PostToolUse": [
@@ -135,7 +135,7 @@
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
     "superpowers@claude-plugins-official": true,
     "output-styles@shihyuho-dotfiles": true,
-    "plan@shihyuho-dotfiles": true
+    "define@shihyuho-dotfiles": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -160,5 +160,7 @@
     }
   },
   "outputStyle": "output-styles:Roast",
-  "language": "Traditional Chinese (zh_TW)"
+  "language": "Traditional Chinese (zh_TW)",
+  "bypassPermissions": "auto",
+  "skipAutoPermissionPrompt": true
 }

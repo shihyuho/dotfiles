@@ -17,9 +17,9 @@
       "version": "1.2.0"
     },
     {
-      "name": "plan",
-      "source": "./config/claude/plugins/plan",
-      "description": "Planning tools",
+      "name": "define",
+      "source": "./config/claude/plugins/define",
+      "description": "Define tools - Clarify what to build",
       "version": "1.0.0"
     }
   ]
