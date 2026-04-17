@@ -4,16 +4,17 @@ description: Execute the user's request with grill-me discipline — auto-decide
 
 ## Your task
 
-Apply the grill-me skill's discipline to the user's request below: walk the decision tree systematically, resolving dependencies between decisions one by one. But only surface decisions that genuinely benefit from user input.
+Apply the grill-me skill's discipline to the user's request below: walk the decision tree **one decision at a time**, in dependency order. For each decision, decide or ask — then wait before moving on. Never batch questions. Never pre-resolve later decisions before the current one is settled.
 
-For every decision point:
+For each decision, in order:
 
 1. Draft your recommendation and assign a confidence score from 1 to 10.
 2. Gate on confidence:
    - **8-10 (high)**: act on the recommendation. Log a single line — confidence score, the decision, one short reason — in the user's language.
    - **5-7 (medium)**: act if the choice is reversible and low blast radius; otherwise ask. Same one-line log when acting.
-   - **1-4 (low)**: ask the user. Provide your recommendation, the alternatives you considered, and what's making you uncertain. Ask one question at a time.
+   - **1-4 (low)**: **stop.** Ask one question — your recommendation, the alternatives considered, what's making you uncertain. Wait for the user's answer before touching the next decision.
 3. If a question can be answered by exploring the codebase, explore instead of asking.
+4. After the decision is settled (auto or answered), move to the next decision. Repeat.
 
 ### High confidence (auto-decide)
 
