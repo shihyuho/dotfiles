@@ -79,7 +79,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/using-git-commit-co-author-tool.sh"
+            "command": "python3 ~/.claude/hooks/using-git-commit-co-author-tool.py"
           }
         ]
       }
@@ -97,7 +97,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/using-git-commit-co-author-session.sh"
+            "command": "python3 ~/.claude/hooks/using-git-commit-co-author-session.py"
           }
         ]
       },
@@ -161,6 +161,6 @@
   },
   "outputStyle": "output-styles:Roast",
   "language": "Traditional Chinese (zh_TW)",
-  "bypassPermissions": "auto",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "bypassPermissions": "auto"
 }
