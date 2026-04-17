@@ -16,6 +16,8 @@ For each decision, in order:
 3. If a question can be answered by exploring the codebase, explore instead of asking.
 4. After the decision is settled (auto or answered), move to the next decision. Repeat.
 
+**Output discipline:** Emit each decision's log line the moment you settle it, then proceed to the next. Do **not** pre-resolve the whole tree internally and dump a summary table at the end — that defeats the one-at-a-time purpose and hides the chain of reasoning. If you find yourself assembling a multi-row table of already-decided items, you violated this rule — rewrite the output as a sequential narration instead.
+
 ### High confidence (auto-decide)
 
 - Codebase patterns or user conventions give a clear answer
