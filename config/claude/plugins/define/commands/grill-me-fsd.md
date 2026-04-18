@@ -1,5 +1,5 @@
 ---
-description: Execute the user's request with grill-me discipline — auto-decide when confident, surface only high-value questions
+description: Execute the user's request with grill-me — auto-decide when confident, surface only high-value questions
 ---
 
 ## Your task

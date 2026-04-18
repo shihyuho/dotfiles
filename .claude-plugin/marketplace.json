@@ -19,8 +19,8 @@
     {
       "name": "define",
       "source": "./config/claude/plugins/define",
-      "description": "Define tools - Clarify what to build",
-      "version": "1.5.0"
+      "description": "Define tools - clarify what to build",
+      "version": "1.5.1"
     }
   ]
 }
