@@ -1,4 +1,6 @@
 - ALWAYS use the QUESTION TOOL if you need to ask user.
+- Local mirrors of dependency source may live at `~/code/github.com/<org>/<repo>`. Check there before inspecting packaged artifacts (jar, node_modules, vendor, site-packages).
+- When reading dependency source, match the runtime version — don't default to `main`.
 - Think before acting. Read existing files before writing code.
 - Be concise in output but thorough in reasoning.
 - Prefer editing over rewriting whole files.
