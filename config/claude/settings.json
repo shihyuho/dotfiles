@@ -162,5 +162,10 @@
   "outputStyle": "output-styles:Roast",
   "language": "Traditional Chinese (zh_TW)",
   "skipAutoPermissionPrompt": true,
-  "bypassPermissions": "auto"
+  "bypassPermissions": "auto",
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  }
 }
