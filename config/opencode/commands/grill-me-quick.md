@@ -1,5 +1,5 @@
 ---
-description: grill-me in quick mode — auto-decide when confident, surface only high-value questions
+description: Grill-me in quick mode — auto-decide when confident, surface only high-value questions
 ---
 
 ## Your task
