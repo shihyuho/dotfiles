@@ -16,7 +16,7 @@ command_timeout = 1000
 scan_timeout = 30
 
 format = """
-[╭─ ](dimmed bold)$username[ at ](bold)$hostname[ in ](bold)$directory$git_branch${custom.dirty}$kubernetes$time
+$status$username[ at ](bold)$hostname[ in ](bold)$directory$git_branch${custom.dirty}$kubernetes$time
 $character"""
 
 [username]
@@ -60,6 +60,12 @@ disabled    = false
 time_format = "%H:%M:%S"
 style       = "dimmed"
 format      = ' [\[$time\]]($style)'
+
+[status]
+disabled       = false
+format         = '$symbol'
+symbol         = '[╭─ ](bold fg:#D75F5F)'
+success_symbol = '[╭─ ](dimmed bold)'
 
 [character]
 success_symbol = '[╰─▶](dimmed bold)'
