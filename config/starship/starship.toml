@@ -63,7 +63,7 @@ format      = ' [\[$time\]]($style)'
 
 [character]
 success_symbol = '[╰─▶](dimmed bold)'
-error_symbol   = '[╰─▶](dimmed bold fg:#AF0000)'
+error_symbol   = '[╰─▶](bold fg:#D75F5F)'
 format         = '$symbol '
 
 # Original didn't render these — keep the line clean
