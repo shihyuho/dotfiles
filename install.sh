@@ -81,6 +81,10 @@ link_file "$DOTFILES_ROOT/config/claude/statusline.sh" "$HOME/.claude/statusline
 
 
 echo ""
+echo "📂 Linking Starship configurations..."
+link_file "$DOTFILES_ROOT/config/starship/starship.toml" "$HOME/.config/starship.toml"
+
+echo ""
 echo "📂 Linking Yazi configurations..."
 link_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"
 

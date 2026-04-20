@@ -195,6 +195,7 @@ brew "xz"
 # ============================================================================
 
 brew "zsh-syntax-highlighting"
+brew "starship"  # Cross-shell prompt (configured in config/starship/)
 
 # ============================================================================
 # GUI Applications

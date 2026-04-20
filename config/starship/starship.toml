@@ -1,0 +1,95 @@
+# Starship — recreation of the original pre-starship hand-rolled zsh prompt
+# Source: zsh/core/30-prompt.zsh (before switch)
+# Layout:
+#   <user> at <host> in <cwd> on <branch> [*] (<k8s>) [HH:MM:SS]
+#   $
+# Palette: solarized-ish xterm-256 tput indices mapped to hex
+#   user 166 #D75F00 orange / root 124 #AF0000 red
+#   host 136 #AF8700 yellow
+#   cwd  64  #5F8700 green
+#   branch 61 #5F5FAF violet
+#   dirty  33 #0087FF blue
+#   grey 8  #808080
+
+add_newline = true
+command_timeout = 1000
+scan_timeout = 30
+
+format = """
+[╭─ ](dimmed bold)$username[ at ](bold)$hostname[ in ](bold)$directory$git_branch${custom.dirty}$kubernetes$time
+$character"""
+
+[username]
+style_user  = "bold fg:#D75F00"
+style_root  = "bold fg:#AF0000"
+format      = "[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+style    = "bold fg:#AF8700"
+format   = "[$hostname]($style)"
+
+[directory]
+style              = "bold fg:#5F8700"
+truncation_length  = 3
+truncate_to_repo   = true
+truncation_symbol  = "…/"
+format             = "[$path]($style)"
+
+[git_branch]
+symbol = ""
+style  = "bold fg:#5F5FAF"
+format = "[ on ](bold)[$branch]($style)"
+
+[custom.dirty]
+description = "[*] when git worktree has any uncommitted change"
+command     = "echo '[*]'"
+when        = 'test -n "$(git status --porcelain 2>/dev/null)"'
+shell       = ["sh", "--norc", "--noprofile"]
+style       = "bold fg:#0087FF"
+format      = "[ $output]($style)"
+
+[kubernetes]
+disabled = false
+symbol   = "\u2388 "
+format   = "[ ($symbol$context(:$namespace))](bold fg:#00AFAF)"
+
+[time]
+disabled    = false
+time_format = "%H:%M:%S"
+style       = "bold fg:#808080"
+format      = ' [\[$time\]]($style)'
+
+[character]
+success_symbol = '[╰─▶](dimmed bold)'
+error_symbol   = '[╰─▶](dimmed bold fg:#AF0000)'
+format         = '$symbol '
+
+# Original didn't render these — keep the line clean
+[git_status]
+disabled = true
+[git_metrics]
+disabled = true
+[cmd_duration]
+disabled = true
+[package]
+disabled = true
+[nodejs]
+disabled = true
+[python]
+disabled = true
+[golang]
+disabled = true
+[rust]
+disabled = true
+[java]
+disabled = true
+[kotlin]
+disabled = true
+[docker_context]
+disabled = true
+[aws]
+disabled = true
+[gcloud]
+disabled = true
