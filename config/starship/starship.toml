@@ -58,7 +58,7 @@ format   = "[ ($symbol$context(:$namespace))](bold fg:#00AFAF)"
 [time]
 disabled    = false
 time_format = "%H:%M:%S"
-style       = "bold fg:#808080"
+style       = "dimmed"
 format      = ' [\[$time\]]($style)'
 
 [character]
