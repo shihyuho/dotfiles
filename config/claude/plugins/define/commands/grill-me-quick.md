@@ -1,10 +1,19 @@
 ---
-description: Grill-me in quick mode — auto-decide when confident, surface only high-value questions
+description: Grill-me in quick mode — auto-decide confident calls with rationale shown, ask only when uncertain or high-risk
 ---
 
 ## Your task
 
-Apply the grill-me skill to the target the user specifies. Whenever grill-me's flow would stop to ask the user, first do a deep self-assessment: draft your recommended answer and score your confidence 1-10. When you lock in a decision without asking, surface the question, the alternatives you considered, the confidence score with its reason, and the chosen answer — so the user sees the reasoning, not just the conclusion.
+Apply the grill-me skill to the user's target.
+
+```
+for each grill-me question:
+  decision point?
+    ├ no  → continue
+    └ yes → draft answer + self-score 1–10 → passes gate below?
+              ├ yes → lock in, surface {question, alternatives, score+reason, answer}
+              └ no  → ask user
+```
 
 Confidence gates:
 
