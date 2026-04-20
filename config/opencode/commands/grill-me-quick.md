@@ -1,5 +1,5 @@
 ---
-description: Execute the user's request with grill-me — auto-decide when confident, surface only high-value questions
+description: grill-me in quick mode — auto-decide when confident, surface only high-value questions
 ---
 
 ## Your task
