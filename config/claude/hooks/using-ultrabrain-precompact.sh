@@ -19,6 +19,6 @@ VAULT="$HOME/.ultrabrain"
 
 cat <<'HOOK_JSON'
 {
-  "systemMessage": "Context compaction is imminent. If this session contains decisions, patterns, or facts worth keeping beyond compaction, say 'capture X' to file them into ~/.ultrabrain/raw/ before detail is lost."
+  "systemMessage": "Compaction imminent. Invoke the ultrabrain skill's capture to save anything worth keeping."
 }
 HOOK_JSON

@@ -2,9 +2,8 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "ANTHROPIC_MODEL": "opus[1m]",
-    "USE_BUILTIN_RIPGREP": "0",
     "MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES": "3",
-    "CLAUDE_CODE_EFFORT_LEVEL": "max"
+    "USE_BUILTIN_RIPGREP": "0"
   },
   "permissions": {
     "allow": [
@@ -68,7 +67,8 @@
       "Bash(gh release delete:*)",
       "Bash(gh api * -X DELETE)",
       "Bash(gh api * --method DELETE)",
-      "Bash(git push:*)"
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
     ],
     "defaultMode": "auto"
   },
@@ -80,6 +80,16 @@
           {
             "type": "command",
             "command": "python3 ~/.claude/hooks/using-git-commit-co-author-tool.py"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/using-ultrabrain-precompact.sh"
           }
         ]
       }
@@ -109,16 +119,6 @@
           }
         ]
       }
-    ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/using-ultrabrain-precompact.sh"
-          }
-        ]
-      }
     ]
   },
   "statusLine": {
@@ -127,23 +127,16 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "codex@openai-codex": true,
-    "lua-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
     "jdtls-lombok-lsp@shihyuho-dotfiles": true,
-    "superpowers@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
     "output-styles@shihyuho-dotfiles": true,
+    "skill-creator@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
     "define@shihyuho-dotfiles": true
   },
   "extraKnownMarketplaces": {
-    "openai-codex": {
-      "source": {
-        "source": "github",
-        "repo": "openai/codex-plugin-cc"
-      }
-    },
     "planning-with-files": {
       "source": {
         "source": "github",
@@ -161,11 +154,12 @@
   },
   "outputStyle": "output-styles:Roast",
   "language": "Traditional Chinese (zh_TW)",
-  "skipAutoPermissionPrompt": true,
-  "bypassPermissions": "auto",
-  "voiceEnabled": true,
+  "effortLevel": "xhigh",
   "voice": {
     "enabled": true,
     "mode": "hold"
-  }
+  },
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true,
+  "bypassPermissions": "auto"
 }

@@ -57,6 +57,16 @@ CYAN='\033[36m'
 BRANCH_CLR='\033[38;5;175m'
 DIR_CLR='\033[38;5;173m'
 
+# Effort level — read from env (set in settings.json)
+EFFORT="${CLAUDE_CODE_EFFORT_LEVEL:-}"
+case "$EFFORT" in
+  low)      EFFORT_CLR='\033[38;5;114m' ;;  # green — chill
+  medium)   EFFORT_CLR='\033[38;5;228m' ;;  # yellow — working
+  high)     EFFORT_CLR='\033[38;5;214m' ;;  # orange — serious
+  max)      EFFORT_CLR='\033[38;5;203m' ;;  # red — going for it
+  *)        EFFORT_CLR="$DIM" ;;            # dim — unset/unknown
+esac
+
 # Context bar color: yellow → orange → red gradient (ANSI 256)
 # 228=light yellow, 222, 216, 210, 204, 196=red
 GRADIENT=(228 222 216 210 204 196)
@@ -81,7 +91,8 @@ CTX_USED_TOKENS=$(( CTX_MAX * CTX_USED / 100 ))
 
 # Build line 1
 LINE1=""
-[[ -n "$MODEL" ]]  && LINE1+="${CYAN}${MODEL}${RST}"
+[[ -n "$MODEL" ]]   && LINE1+="${CYAN}${MODEL}${RST}"
+[[ -n "$EFFORT" ]]  && LINE1+=" ${EFFORT_CLR}${EFFORT}${RST}"
 LINE1+=" ${DIM}│${RST} ${CTX_COLOR}${CTX_USED}%${RST} ${DIM}(${RST}${CTX_COLOR}$(fmt_tokens $CTX_USED_TOKENS)${DIM}/${RST}${CTX_FADED}$(fmt_tokens $CTX_MAX)${DIM})${RST}"
 
 
