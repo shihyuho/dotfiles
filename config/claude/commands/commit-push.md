@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git push:*)
+allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git push:*), Bash(git symbolic-ref:*)
 description: Commit and push
 ---
 
@@ -8,6 +8,7 @@ description: Commit and push
 - Current git status: !`git status`
 - Current git diff (staged and unstaged changes): !`git diff HEAD`
 - Current branch: !`git branch --show-current`
+- Default branch: !`git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "(unknown)"`
 - Recent commits: !`git log --oneline -10`
 
 ## Your task
@@ -17,6 +18,6 @@ You MUST invoke the git-commit-co-author skill before running git commit.
 Based on the above changes:
 
 1. Create a single commit with an appropriate message.
-2. Push the branch to origin
+2. Push the branch to origin. **Safety gate:** If the current branch equals the default branch, STOP before pushing, tell the user you're about to push directly to the default branch, and wait for explicit confirmation. Commit first regardless — only the push step gates on confirmation.
 
-You have the capability to call multiple tools in a single response. You MUST do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
+When pushing without confirmation (non-default branch), do all steps in a single message. Do not use any other tools or send any other text besides these tool calls.

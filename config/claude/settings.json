@@ -50,7 +50,8 @@
       "Bash(rtk:*)",
       "Bash(ls:*)",
       "Bash(wait)",
-      "Bash(xxd)"
+      "Bash(xxd)",
+      "Bash(curl:*)"
     ],
     "deny": [
       "Bash(git reset --hard:*)",
@@ -132,9 +133,10 @@
     "lua-lsp@claude-plugins-official": true,
     "output-styles@shihyuho-dotfiles": true,
     "skill-creator@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
-    "define@shihyuho-dotfiles": true
+    "define@shihyuho-dotfiles": true,
+    "agent-skills@addy-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
@@ -150,6 +152,12 @@
         "repo": "shihyuho/dotfiles"
       },
       "autoUpdate": true
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
+      }
     }
   },
   "outputStyle": "output-styles:Roast",
@@ -159,6 +167,9 @@
     "enabled": true,
     "mode": "hold"
   },
+  "verbose": true,
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
   "bypassPermissions": "auto"
