@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git branch:*), Bash(git symbolic-ref:*)
+allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git branch:*), Bash(git symbolic-ref:*), AskUserQuestion
 description: Push current branch to origin
 ---
 
@@ -15,6 +15,6 @@ description: Push current branch to origin
 
 Push the current branch to origin.
 
-**Safety gate:** If the current branch equals the default branch shown above, STOP before pushing. Tell the user you're about to push directly to the default branch and ask for explicit confirmation. Only after they confirm, run `git push`. If the current branch is NOT the default branch, push immediately without asking.
+**Safety gate:** If the current branch equals the default branch shown above, STOP before pushing and use the AskUserQuestion tool to get explicit confirmation that pushing directly to the default branch is intended. Only after the user confirms, run `git push`. If the current branch is NOT the default branch, push immediately without asking.
 
 When pushing without confirmation (non-default branch), do it in a single message. Do not use any other tools or send any other text besides the push.
