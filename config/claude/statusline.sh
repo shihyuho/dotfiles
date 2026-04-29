@@ -91,8 +91,8 @@ CTX_USED_TOKENS=$(( CTX_MAX * CTX_USED / 100 ))
 
 # Build line 1
 LINE1=""
-[[ -n "$MODEL" ]]   && LINE1+="${CYAN}${MODEL}${RST}"
-[[ -n "$EFFORT" ]]  && LINE1+=" ${EFFORT_CLR}${EFFORT}${RST}"
+[[ -n "$MODEL" ]]         && LINE1+="${CYAN}${MODEL}${RST}"
+[[ -n "$EFFORT" ]]        && LINE1+=" ${EFFORT_CLR}${EFFORT}${RST}"
 LINE1+=" ${DIM}│${RST} ${CTX_COLOR}${CTX_USED}%${RST} ${DIM}(${RST}${CTX_COLOR}$(fmt_tokens $CTX_USED_TOKENS)${DIM}/${RST}${CTX_FADED}$(fmt_tokens $CTX_MAX)${DIM})${RST}"
 
 

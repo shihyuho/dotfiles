@@ -1,7 +1,52 @@
-# Dotfiles Setup Guide (User-Oriented)
+# Dotfiles Setup Guide
 
-This guide is for users running a manual setup.
-If you are an AI agent, use [`INSTALL.md`](INSTALL.md) as the primary playbook.
+For setting up this repo on a macOS machine.
+
+> **AI agents reading this directly**: switch to [`INSTALL.md`](INSTALL.md) — it's the structured playbook designed for you.
+
+## Prerequisites
+
+Before installation, the machine needs:
+
+1. **Xcode Command Line Tools** (for `git` and compilers):
+
+   ```bash
+   xcode-select --install
+   ```
+
+2. **Homebrew** (for `make brew`):
+
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+Already have both? Skip ahead.
+
+## Choose Your Path
+
+```text
+Prerequisites done
+        │
+        ▼
+Have an AI coding agent CLI?
+   │
+   ├─ Yes ──► Path A (AI-assisted, recommended)
+   └─ No  ──► Path B (Manual)
+```
+
+### Path A — AI-assisted (recommended)
+
+If you have an AI coding agent CLI installed (Claude Code, OpenCode, Codex, etc.), give it this prompt:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/shihyuho/dotfiles/refs/heads/main/docs/INSTALL.md
+```
+
+The agent walks through clone, symlinks, secrets, and verification — pausing at decision points (install location, secrets editing).
+
+### Path B — Manual
+
+Follow the Quick Start below.
 
 ## Quick Start
 

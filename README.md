@@ -17,6 +17,8 @@ Modular macOS dotfiles — < 0.5s shell startup, symlink-based, AI-friendly.
 
 ## Quick Start
 
+> Setting up a fresh machine? See [SETUP.md → Prerequisites](docs/SETUP.md#prerequisites) first (Xcode CLT + Homebrew).
+
 ### AI-assisted
 
 Tell your agent:
