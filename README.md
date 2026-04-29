@@ -17,27 +17,33 @@ Modular macOS dotfiles — < 0.5s shell startup, symlink-based, AI-friendly.
 
 ## Quick Start
 
-> Setting up a fresh machine? See [SETUP.md → Prerequisites](docs/SETUP.md#prerequisites) first (Xcode CLT + Homebrew).
+First, complete [Prerequisites](docs/PREREQUISITES.md) (Xcode CLT + Homebrew).
 
-### AI-assisted
+```text
+Prerequisites done
+        │
+        ▼
+Have an AI coding agent CLI?
+   │
+   ├─ Yes ──► Path A (AI-assisted, recommended)
+   └─ No  ──► Path B (Manual)
+```
 
-Tell your agent:
+### Path A — AI-assisted (recommended)
+
+Give your agent (Claude Code, OpenCode, Codex, etc.) this prompt:
 
 ```text
 Fetch and follow instructions from https://raw.githubusercontent.com/shihyuho/dotfiles/refs/heads/main/docs/INSTALL.md
 ```
 
-### Manual
+The agent walks through clone, symlinks, secrets, and verification — pausing at decision points (install location, secrets editing).
 
-```bash
-DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.config/dotfiles}"
-git clone https://github.com/shihyuho/dotfiles.git "$DOTFILES_DIR"
-cd "$DOTFILES_DIR"
+### Path B — Manual
 
-make setup                                    # Symlinks + Homebrew packages
-cp secrets.example ~/.secrets && chmod 600 ~/.secrets
-exec zsh
-```
+See [docs/SETUP.md](docs/SETUP.md) for the full manual install guide.
+
+---
 
 Existing files at managed paths are backed up to `~/.dotfiles_backup/`. After installation, edit files in this repo — symlinks make changes immediate. See all commands: `make help`
 
@@ -67,8 +73,9 @@ Full list: [`docs/TOOLS.md`](docs/TOOLS.md)
 ## Documentation
 
 - [AGENTS.md](AGENTS.md) — AI agent guide
+- [docs/PREREQUISITES.md](docs/PREREQUISITES.md) — Required tools before install
 - [docs/INSTALL.md](docs/INSTALL.md) — AI installation playbook
-- [docs/SETUP.md](docs/SETUP.md) — Human installation guide
+- [docs/SETUP.md](docs/SETUP.md) — Manual installation guide
 - [docs/TOOLS.md](docs/TOOLS.md) — Tool list and sources
 
 ## Performance

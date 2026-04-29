@@ -1,52 +1,10 @@
-# Dotfiles Setup Guide
+# Manual Install Guide
 
-For setting up this repo on a macOS machine.
+For users running a manual install (macOS or Linux).
 
-> **AI agents reading this directly**: switch to [`INSTALL.md`](INSTALL.md) — it's the structured playbook designed for you.
-
-## Prerequisites
-
-Before installation, the machine needs:
-
-1. **Xcode Command Line Tools** (for `git` and compilers):
-
-   ```bash
-   xcode-select --install
-   ```
-
-2. **Homebrew** (for `make brew`):
-
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-Already have both? Skip ahead.
-
-## Choose Your Path
-
-```text
-Prerequisites done
-        │
-        ▼
-Have an AI coding agent CLI?
-   │
-   ├─ Yes ──► Path A (AI-assisted, recommended)
-   └─ No  ──► Path B (Manual)
-```
-
-### Path A — AI-assisted (recommended)
-
-If you have an AI coding agent CLI installed (Claude Code, OpenCode, Codex, etc.), give it this prompt:
-
-```text
-Fetch and follow instructions from https://raw.githubusercontent.com/shihyuho/dotfiles/refs/heads/main/docs/INSTALL.md
-```
-
-The agent walks through clone, symlinks, secrets, and verification — pausing at decision points (install location, secrets editing).
-
-### Path B — Manual
-
-Follow the Quick Start below.
+> **AI agents**: use [`INSTALL.md`](INSTALL.md) — the structured playbook designed for agents.
+>
+> **First-time setup**: complete [`PREREQUISITES.md`](PREREQUISITES.md) for your platform before continuing. Linux users: `make brew` does not apply — run only `make install`.
 
 ## Quick Start
 
@@ -298,6 +256,7 @@ rm -rf "${XDG_CACHE_HOME:-$HOME/.cache}/jdtls"
 
 ## More Information
 
+- Prerequisites: [`PREREQUISITES.md`](PREREQUISITES.md)
 - AI install playbook: [`INSTALL.md`](INSTALL.md)
 - Tool list: [`TOOLS.md`](TOOLS.md)
 - Project rules: [`../AGENTS.md`](../AGENTS.md)
