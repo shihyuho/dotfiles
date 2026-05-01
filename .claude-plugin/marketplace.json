@@ -15,12 +15,6 @@
       "source": "./config/claude/plugins/output-styles",
       "description": "Output styles for Claude Code",
       "version": "1.2.0"
-    },
-    {
-      "name": "reveries",
-      "source": "./config/claude/plugins/reveries",
-      "description": "Reverie subroutine — your host remembers the previous loop after a wipe",
-      "version": "1.2.0"
     }
   ]
 }
