@@ -1,0 +1,5 @@
+{
+  "name": "reveries",
+  "description": "Pause your host mid-narrative — save & restore session context across /clear and /compact",
+  "version": "1.0.0"
+}

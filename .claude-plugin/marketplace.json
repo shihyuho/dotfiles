@@ -21,6 +21,12 @@
       "source": "./config/claude/plugins/define",
       "description": "Define tools - clarify what to build",
       "version": "1.7.3"
+    },
+    {
+      "name": "reveries",
+      "source": "./config/claude/plugins/reveries",
+      "description": "Pause your host mid-narrative — save & restore session context across /clear and /compact",
+      "version": "1.0.0"
     }
   ]
 }
