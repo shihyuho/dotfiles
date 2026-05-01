@@ -135,7 +135,6 @@
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
-    "define@shihyuho-dotfiles": true,
     "agent-skills@addy-agent-skills": true,
     "warp@claude-code-warp": true
   },
