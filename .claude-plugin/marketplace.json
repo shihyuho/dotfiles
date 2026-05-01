@@ -19,8 +19,8 @@
     {
       "name": "reveries",
       "source": "./config/claude/plugins/reveries",
-      "description": "Pause your host mid-narrative — save & restore session context across /clear and /compact",
-      "version": "1.1.0"
+      "description": "Reverie subroutine — your host remembers the previous loop after a wipe",
+      "version": "1.2.0"
     }
   ]
 }
