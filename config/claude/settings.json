@@ -136,8 +136,7 @@
     "superpowers@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "agent-skills@addy-agent-skills": true,
-    "warp@claude-code-warp": true,
-    "reveries@shihyuho-dotfiles": true
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
