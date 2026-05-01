@@ -7,7 +7,7 @@ description: Save session context before /clear or /compact
 - Current branch: !`git branch --show-current`
 - Working tree status: !`git status --short`
 - Recent commits: !`git log --oneline -5`
-- Planning files present: !`ls task_plan.md progress.md findings.md 2>/dev/null || echo "(none)"`
+- Planning files present: !`ls task_plan.md progress.md findings.md 2>/dev/null`
 
 ## Your task
 

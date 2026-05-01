@@ -7,8 +7,8 @@ description: Open a PR for the current branch
 
 - Current git status: !`git status`
 - Current branch: !`git branch --show-current`
-- Default branch: !`git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "(unknown)"`
-- Commits ahead of default: !`default=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@'); git log --oneline "$default..HEAD" 2>/dev/null || echo "(none — may already be on default branch or ref missing)"`
+- Default branch: !`git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null`
+- Commits ahead of default: !`git log --oneline origin/HEAD..HEAD 2>/dev/null`
 
 ## Your task
 

@@ -9,7 +9,7 @@ subtask: true
 
 - Current git status: !`git status`
 - Current branch: !`git branch --show-current`
-- Commits ahead of main: !`git log --oneline main..HEAD 2>/dev/null || echo "(none — may already be on main or main ref missing)"`
+- Commits ahead of main: !`git log --oneline main..HEAD 2>/dev/null`
 
 ## Your task
 

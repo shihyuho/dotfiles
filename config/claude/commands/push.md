@@ -7,9 +7,9 @@ description: Push current branch to origin
 
 - Current git status: !`git status`
 - Current branch: !`git branch --show-current`
-- Default branch: !`git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "(unknown)"`
+- Default branch: !`git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null`
 - Recent commits: !`git log --oneline -10`
-- Unpushed commits: !`git log @{u}..HEAD --oneline 2>/dev/null || echo "(no upstream or nothing to push)"`
+- Unpushed commits: !`git log @{u}..HEAD --oneline 2>/dev/null`
 
 ## Your task
 

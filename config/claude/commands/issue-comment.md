@@ -7,7 +7,7 @@ description: Post one or more local files as comments on a GitHub issue (infers 
 ## Context
 
 - Arguments received: "$ARGUMENTS"
-- Current repo root: !`git rev-parse --show-toplevel 2>/dev/null || echo "(not a git repo)"`
+- Current repo root: !`git rev-parse --show-toplevel 2>/dev/null`
 
 ## Your task
 
