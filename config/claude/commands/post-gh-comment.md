@@ -57,9 +57,7 @@ Rules:
 - When an inferred candidate is highly likely (e.g. the only `.md` file you just wrote), mark it `(Recommended)` and put it first.
 - When confirming multiple files, show the full list (in posting order) so the user can drop or reorder them.
 - When listing number candidates, label each with whether it is an issue or a PR.
-- **When the file source is stashed chat content**, do NOT cram the preview into the `AskUserQuestion` itself — its option label/description fields are short and a 20-line markdown block will either be truncated or drown out the actual choices. Instead:
-  1. First, print a normal text message to the user containing: the planned `/tmp/...` path, the line/character count of the content, and a fenced code block with the first ~20 lines (followed by `...` if truncated).
-  2. Then call `AskUserQuestion` with a tight confirm widget — e.g. options like `Post it`, `Cancel`, `Show full content first`. Keep all option labels under ~60 characters.
+- **When the file source is stashed chat content**, use a tight confirm widget — options like `Post it`, `Cancel`, `Show full content first`, all labels under ~60 characters. Do not cram the preview into `AskUserQuestion`: its label/description fields are short, so a 20-line markdown block gets truncated or drowns out the actual choices. If the user picks `Show full content first`, print the content as a fenced code block, then re-ask with the same widget minus that option.
 
 ### 4. Stash chat content (if applicable) and run sanity checks
 
