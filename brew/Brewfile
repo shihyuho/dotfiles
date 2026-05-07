@@ -227,7 +227,7 @@ cask "cmux"
 # cask "appcleaner"
 # cask "keka"          # Archive utility
 # cask "keycastr"      # Show keystrokes
-# cask "macdown"       # Markdown editor
+cask "macdown-3000"  # Markdown editor
 # cask "iina"          # Video player
 # cask "spotify"
 # cask "bitwarden"     # Password manager
