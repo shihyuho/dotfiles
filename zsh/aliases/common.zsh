@@ -35,6 +35,7 @@ alias oc="opencode --continue"
 
 # claude shortcuts
 alias c="claude"
+alias ca="claude agents"
 alias cc="claude --continue"
 alias ch="claude --chrome"
 alias cu="claude update"
