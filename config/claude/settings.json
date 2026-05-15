@@ -148,6 +148,7 @@
       "autoUpdate": true
     }
   },
+  "outputStyle": "default",
   "language": "Traditional Chinese (zh_TW)",
   "effortLevel": "xhigh",
   "voice": {
