@@ -8,7 +8,7 @@ description: Commit, push, and open a PR
 - Current git status: !`git status`
 - Current git diff (staged and unstaged changes): !`git diff HEAD`
 - Current branch: !`git branch --show-current`
-- Default branch: !`git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null`
+- Default branch: !`git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true`
 
 ## Your task
 

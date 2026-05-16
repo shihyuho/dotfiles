@@ -7,7 +7,7 @@ description: Post local files (or stashed chat content) as comments on a GitHub 
 ## Context
 
 - Arguments received: "$ARGUMENTS"
-- Current repo root: !`git rev-parse --show-toplevel 2>/dev/null`
+- Current repo root: !`git rev-parse --show-toplevel 2>/dev/null || true`
 
 ## Your task
 
