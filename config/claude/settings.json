@@ -109,7 +109,8 @@
     "sdkman@shihyuho-skills": true,
     "cover-branches@shihyuho-skills": true,
     "ultrabrain@shihyuho-skills": true,
-    "tutor@shihyuho-skills": true
+    "tutor@shihyuho-skills": true,
+    "rephrase@shihyuho-skills": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
