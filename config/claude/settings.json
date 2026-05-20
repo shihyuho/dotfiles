@@ -12,10 +12,7 @@
       "Read(~/Downloads/**)",
       "Read(~/Documents/**)",
       "Read(~/tmp/**)",
-      "Read(/tmp/**)",
-      "Read(~/.ultrabrain/**)",
-      "Write(~/.ultrabrain/**)",
-      "Edit(~/.ultrabrain/**)"
+      "Read(/tmp/**)"
     ],
     "deny": [
       "Bash(git reset --hard:*)",
@@ -49,16 +46,6 @@
         ]
       }
     ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/using-ultrabrain-precompact.sh"
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "hooks": [
@@ -73,14 +60,6 @@
           {
             "type": "command",
             "command": "python3 ~/.claude/hooks/using-git-commit-co-author-session.py"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/using-ultrabrain-session.sh"
           }
         ]
       }
@@ -108,7 +87,6 @@
     "reveries@shihyuho-skills": true,
     "sdkman@shihyuho-skills": true,
     "cover-branches@shihyuho-skills": true,
-    "ultrabrain@shihyuho-skills": true,
     "tutor@shihyuho-skills": true,
     "rephrase@shihyuho-skills": true,
     "kickoff@shihyuho-skills": true,
