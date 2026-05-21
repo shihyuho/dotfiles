@@ -206,6 +206,8 @@ cask "iterm2"
 cask "visual-studio-code"
 cask "coteditor"  # Text editor
 cask "cmux"
+tap "nkzw-tech/tap"
+cask "nkzw-tech/tap/codiff"
 # cask "sublime-text"
 # cask "jetbrains-toolbox"
 # cask "ghostty"
