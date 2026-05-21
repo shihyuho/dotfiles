@@ -84,5 +84,16 @@ if [[ "$symlink_failed" == true ]]; then
   echo "❌ Symlink verification failed"
   exit 1
 fi
+echo ""
+
+# Test 4: JSON schema validation (every *.json that declares a "$schema")
+echo "4️⃣  JSON schema validation..."
+if "$DOTFILES_ROOT/scripts/validate-json-schemas.sh"; then
+  echo "✅ JSON schema validation passed"
+else
+  echo "❌ JSON schema validation failed"
+  exit 1
+fi
+echo ""
 
 echo "✨ Testing complete!"

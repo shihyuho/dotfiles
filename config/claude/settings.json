@@ -139,7 +139,5 @@
   "verbose": true,
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "bypassPermissions": "auto"
+  "skipAutoPermissionPrompt": true
 }

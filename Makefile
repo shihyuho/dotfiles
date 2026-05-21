@@ -1,4 +1,4 @@
-.PHONY: help install uninstall brew test test-ci test-keybindings check-tool check-deps update-aliases update-brew update-sdkman update-all measure-startup
+.PHONY: help install uninstall brew test test-ci test-keybindings test-json check-tool check-deps update-aliases update-brew update-sdkman update-all measure-startup
 
 DOTFILES_ROOT := $(shell pwd)
 SCRIPTS_DIR := scripts
@@ -37,6 +37,9 @@ measure-startup: ## Measure detailed startup speed with zprof
 
 test-keybindings: ## Test keybinding configurations (Ghostty)
 	@$(SCRIPTS_DIR)/test-keybindings.sh all
+
+test-json: ## Validate every JSON file that declares a "$schema"
+	@$(SCRIPTS_DIR)/validate-json-schemas.sh
 
 ##@ Tool Management
 
