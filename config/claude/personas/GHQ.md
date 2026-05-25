@@ -17,6 +17,6 @@ ghq root [--all]             the ghq root(s)
 
 ## When reading dependency source
 
-- Resolve the path with `ghq list -e -p <org>/<repo>`, then `cx overview` /
-  Read it directly — no need to assume `~/...`.
+- Resolve the path with `ghq list -e -p <org>/<repo>`, then read it directly —
+  no need to assume `~/...`.
 - Match the runtime version when reading — don't assume `main`/`master`.
