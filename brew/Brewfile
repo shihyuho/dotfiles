@@ -112,6 +112,8 @@ brew "ripgrep"   # Better grep
 brew "fd"        # Better find
 brew "zoxide"    # Smarter cd
 brew "git-delta" # Better git diff
+tap "ind-igo/cx"
+brew "ind-igo/cx/cx" # Semantic code navigation for AI agents
 
 brew "yazi"      # Terminal file manager (ranger alternative)
 brew "bat"       # Better cat (if you want it)
