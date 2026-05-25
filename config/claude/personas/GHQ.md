@@ -1,9 +1,9 @@
 # ghq — Local Source Mirrors
 
-Dependency source may already be cloned locally via ghq at
-`$(ghq root)/<host>/<org>/<repo>` (e.g. `github.com/x-motemen/ghq`) — full
-history, free to open. Check there before packaged artifacts (jar,
-`node_modules`, `vendor`, `site-packages`) or the web.
+ghq may have dependency source cloned locally at
+`$(ghq root)/<host>/<org>/<repo>` (e.g. `github.com/x-motemen/ghq`) — a free,
+full-history copy. Prefer it over fetching from the web or unpacking artifacts
+(jar, `node_modules`, `vendor`, `site-packages`).
 
 ## Locate a repo — don't guess the path
 
