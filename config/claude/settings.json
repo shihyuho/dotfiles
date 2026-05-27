@@ -80,17 +80,8 @@
     "typescript-lsp@claude-plugins-official": true,
     "agent-skills@addy-agent-skills": true,
     "warp@claude-code-warp": true,
-    "tldr@shihyuho-skills": true,
-    "e04@shihyuho-skills": true,
-    "writing-agents-md@shihyuho-skills": true,
-    "promote-claude-settings@shihyuho-skills": true,
-    "reveries@shihyuho-skills": true,
-    "sdkman@shihyuho-skills": true,
-    "cover-branches@shihyuho-skills": true,
-    "tutor@shihyuho-skills": true,
-    "rephrase@shihyuho-skills": true,
-    "kickoff@shihyuho-skills": true,
-    "frontend-design@claude-plugins-official": true
+    "frontend-design@claude-plugins-official": true,
+    "skills@shihyuho-skills": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {

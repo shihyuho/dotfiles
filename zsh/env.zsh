@@ -107,3 +107,4 @@ export MANPAGER='less -X'
 
 # GPG
 export GPG_TTY=$(tty)
+. "$HOME/.cargo/env"
