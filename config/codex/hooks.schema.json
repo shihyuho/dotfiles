@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shihyuho.github.io/dotfiles/schemas/codex-hooks.json",
+  "title": "Codex hooks configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hooks"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "hooks": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "SessionStart": {
+          "$ref": "#/$defs/hookEntries"
+        },
+        "PostToolUse": {
+          "$ref": "#/$defs/hookEntries"
+        },
+        "UserPromptSubmit": {
+          "$ref": "#/$defs/hookEntries"
+        },
+        "Stop": {
+          "$ref": "#/$defs/hookEntries"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hookEntries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hookEntry"
+      }
+    },
+    "hookEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hooks"
+      ],
+      "properties": {
+        "matcher": {
+          "type": "string"
+        },
+        "hooks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/commandHook"
+          }
+        }
+      }
+    },
+    "commandHook": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "command"
+      ],
+      "properties": {
+        "type": {
+          "const": "command"
+        },
+        "command": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

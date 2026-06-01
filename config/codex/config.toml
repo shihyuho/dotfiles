@@ -1,0 +1,85 @@
+notify = ["/Users/matt/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+
+[projects."/"]
+trust_level = "trusted"
+
+[projects."/Users/matt/code/github.com/shihyuho/dotfiles"]
+trust_level = "trusted"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-06-01T14:42:03Z"
+source_type = "local"
+source = "/Users/matt/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[features]
+js_repl = false
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/matt/.codex"
+CODEX_HOME = "/Users/matt/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0b0d41e7a14a4903d2f95b0b3f427ed796b12c8edca2fa392a03df43997075ae"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+SKY_CUA_SERVICE_PATH = "/Users/matt/.codex/plugins/cache/openai-bundled/computer-use/1.0.799/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+
+[desktop]
+keepRemoteControlAwakeWhilePluggedIn = true
+selected-avatar-id = "fireball"
+
+[hooks.state]
+
+[hooks.state."/Users/matt/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:7f1672b312a565a713b4efe21557760eeaacfa07f1cb6daede3194f015c9379a"
+
+[hooks.state."/Users/matt/.codex/hooks.json:post_tool_use:0:1"]
+trusted_hash = "sha256:5b6c1744f6f173e0ff4aec640f7b372d5fd7fc1d9546c4bd847933d9008e5b55"
+
+[hooks.state."/Users/matt/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:c20cd4482cc0d93f051e15fa8c631efb5804adfc1523cd9823639655a7686d59"
+
+[hooks.state."/Users/matt/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:b7c7642b704a7e77d2db6bbad7ab081d46a81fc46eb492be5f86655194fa184f"
+
+[hooks.state."/Users/matt/.codex/hooks.json:session_start:2:0"]
+trusted_hash = "sha256:546281d9d8b5df573ed607c47636eec69e10095bb9e29bd18a15325c34010476"
+
+[hooks.state."/Users/matt/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:145f66dc354121d5ae46feeb760aba0b382b69a60d80b2901ead799805e8066e"
+
+[hooks.state."/Users/matt/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:96cdc3d72ab4829110a424790993e1add46514d58a46fc92df2d347a9bc3eb54"

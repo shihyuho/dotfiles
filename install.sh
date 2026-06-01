@@ -80,6 +80,13 @@ link_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 link_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
 link_file "$DOTFILES_ROOT/config/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
+echo ""
+echo "📂 Linking Codex configurations..."
+link_file "$DOTFILES_ROOT/config/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+link_file "$DOTFILES_ROOT/config/codex/config.toml" "$HOME/.codex/config.toml"
+link_file "$DOTFILES_ROOT/config/codex/guides" "$HOME/.codex/guides"
+link_file "$DOTFILES_ROOT/config/codex/hooks.json" "$HOME/.codex/hooks.json"
+link_file "$DOTFILES_ROOT/config/codex/hooks" "$HOME/.codex/hooks"
 
 echo ""
 echo "📂 Linking Starship configurations..."

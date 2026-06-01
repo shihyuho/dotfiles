@@ -95,6 +95,8 @@ ls -la ~ | grep -E "\->" | grep dotfiles | head -5
 
 Managed AI-tool paths include:
 - `~/.claude/settings.json` -> `$DOTFILES_DIR/config/claude/settings.json`
+- `~/.codex/config.toml` -> `$DOTFILES_DIR/config/codex/config.toml`
+- `~/.codex/hooks.json` -> `$DOTFILES_DIR/config/codex/hooks.json`
 - `~/.config/opencode/opencode.json` -> `$DOTFILES_DIR/config/opencode/opencode.json`
 - `~/.config/opencode/oh-my-opencode-slim.json` -> `$DOTFILES_DIR/config/opencode/oh-my-opencode-slim.json`
 

@@ -162,6 +162,31 @@ Edit files under `config/claude/` in this repository, not the symlinks in `~/.cl
 
 This repo manages `settings.json`, `hooks/`, and `commands/` under `config/claude/`. Future candidates include `agents/`.
 
+## Codex Configuration
+
+### Automatic Management
+
+The Codex stable configuration files are managed by the dotfiles install flow:
+
+```bash
+make install  # Creates the Codex symlinks
+```
+
+Managed symlinks:
+- `~/.codex/AGENTS.md` -> `dotfiles/config/codex/AGENTS.md`
+- `~/.codex/config.toml` -> `dotfiles/config/codex/config.toml`
+- `~/.codex/guides` -> `dotfiles/config/codex/guides`
+- `~/.codex/hooks.json` -> `dotfiles/config/codex/hooks.json`
+- `~/.codex/hooks` -> `dotfiles/config/codex/hooks`
+
+If any of these already exist, `make install` moves them into `~/.dotfiles_backup/...` before creating the symlink.
+
+### Updating Codex Settings
+
+Edit files under `config/codex/` in this repository, not the symlinks in `~/.codex/`.
+
+This repo intentionally does not manage Codex runtime state such as auth, logs, sessions, caches, SQLite databases, marketplace timestamps, or hook trust hashes.
+
 ### JDTLS / Lombok Prerequisites
 
 JDTLS (Java Development Tools Language Server) requires:

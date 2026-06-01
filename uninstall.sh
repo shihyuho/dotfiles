@@ -88,6 +88,11 @@ unlink_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings
 unlink_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 unlink_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
 unlink_file "$DOTFILES_ROOT/config/claude/statusline.sh" "$HOME/.claude/statusline.sh"
+unlink_file "$DOTFILES_ROOT/config/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+unlink_file "$DOTFILES_ROOT/config/codex/config.toml" "$HOME/.codex/config.toml"
+unlink_file "$DOTFILES_ROOT/config/codex/guides" "$HOME/.codex/guides"
+unlink_file "$DOTFILES_ROOT/config/codex/hooks.json" "$HOME/.codex/hooks.json"
+unlink_file "$DOTFILES_ROOT/config/codex/hooks" "$HOME/.codex/hooks"
 
 unlink_file "$DOTFILES_ROOT/config/starship/starship.toml" "$HOME/.config/starship.toml"
 unlink_file "$DOTFILES_ROOT/config/yazi" "$HOME/.config/yazi"

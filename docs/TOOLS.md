@@ -95,6 +95,10 @@
   - Config: `config/claude/settings.json`
   - Managed symlink: `~/.claude/settings.json` -> `dotfiles/config/claude/settings.json`
   - Notes: Edit the repo copy, not `~/.claude/settings.json`; future candidates live under `config/claude/`
+- **Codex 設定**: Codex CLI/Desktop 設定檔
+  - Config: `config/codex/config.toml`, `config/codex/hooks.json`
+  - Managed symlink: `~/.codex/config.toml` -> `dotfiles/config/codex/config.toml`
+  - Notes: Edit repo copies under `config/codex/`; runtime state such as auth, logs, sessions, and caches stays local under `~/.codex/`
 
 ## Development Languages
 
