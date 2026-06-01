@@ -6,14 +6,6 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/matt/.superset/hooks/notify.sh"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
             "command": "python3 ~/.codex/hooks/using-release-workflow-session.py"
           }
         ]
@@ -38,26 +30,6 @@
           {
             "type": "command",
             "command": "python3 ~/.codex/hooks/using-release-workflow-tool.py"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/matt/.superset/hooks/notify.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/matt/.superset/hooks/notify.sh"
           }
         ]
       }
