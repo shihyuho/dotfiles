@@ -1,6 +1,7 @@
 notify = ["/Users/matt/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 model = "gpt-5.5"
 model_reasoning_effort = "high"
+personality = "pragmatic"
 
 [projects."/"]
 trust_level = "trusted"
@@ -9,11 +10,12 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-01T14:42:03Z"
+last_updated = "2026-06-02T02:00:19Z"
 source_type = "local"
 source = "/Users/matt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
+last_updated = "2026-06-02T02:19:53Z"
 source_type = "local"
 source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -60,6 +62,8 @@ CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 [desktop]
 keepRemoteControlAwakeWhilePluggedIn = true
 selected-avatar-id = "fireball"
+appearanceTheme = "system"
+localeOverride = "en-US"
 
 [hooks.state]
 
@@ -70,10 +74,10 @@ trusted_hash = "sha256:7f1672b312a565a713b4efe21557760eeaacfa07f1cb6daede3194f01
 trusted_hash = "sha256:5b6c1744f6f173e0ff4aec640f7b372d5fd7fc1d9546c4bd847933d9008e5b55"
 
 [hooks.state."/Users/matt/.codex/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:c20cd4482cc0d93f051e15fa8c631efb5804adfc1523cd9823639655a7686d59"
+trusted_hash = "sha256:b7c7642b704a7e77d2db6bbad7ab081d46a81fc46eb492be5f86655194fa184f"
 
 [hooks.state."/Users/matt/.codex/hooks.json:session_start:1:0"]
-trusted_hash = "sha256:b7c7642b704a7e77d2db6bbad7ab081d46a81fc46eb492be5f86655194fa184f"
+trusted_hash = "sha256:546281d9d8b5df573ed607c47636eec69e10095bb9e29bd18a15325c34010476"
 
 [hooks.state."/Users/matt/.codex/hooks.json:session_start:2:0"]
 trusted_hash = "sha256:546281d9d8b5df573ed607c47636eec69e10095bb9e29bd18a15325c34010476"
