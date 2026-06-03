@@ -44,6 +44,15 @@
             "command": "python3 ~/.claude/hooks/using-git-commit-co-author-tool.py"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/using-release-workflow-tool.py"
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -60,6 +69,14 @@
           {
             "type": "command",
             "command": "python3 ~/.claude/hooks/using-git-commit-co-author-session.py"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/using-release-workflow-session.py"
           }
         ]
       }
@@ -81,7 +98,8 @@
     "agent-skills@addy-agent-skills": true,
     "warp@claude-code-warp": true,
     "frontend-design@claude-plugins-official": true,
-    "skills@shihyuho-skills": true
+    "skills@shihyuho-skills": true,
+    "webwright@webwright": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
@@ -118,6 +136,12 @@
         "repo": "shihyuho/skills"
       },
       "autoUpdate": true
+    },
+    "webwright": {
+      "source": {
+        "source": "github",
+        "repo": "microsoft/Webwright"
+      }
     }
   },
   "outputStyle": "default",
@@ -127,8 +151,10 @@
     "enabled": true,
     "mode": "hold"
   },
+  "skipDangerousModePermissionPrompt": true,
   "verbose": true,
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "skipWorkflowUsageWarning": true
 }
