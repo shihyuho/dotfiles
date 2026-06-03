@@ -78,6 +78,7 @@ link_file "$DOTFILES_ROOT/config/claude/guides" "$HOME/.claude/guides"
 link_file "$DOTFILES_ROOT/config/claude/settings.json" "$HOME/.claude/settings.json"
 link_file "$DOTFILES_ROOT/config/claude/hooks" "$HOME/.claude/hooks"
 link_file "$DOTFILES_ROOT/config/claude/commands" "$HOME/.claude/commands"
+link_file "$DOTFILES_ROOT/config/claude/workflows" "$HOME/.claude/workflows"
 link_file "$DOTFILES_ROOT/config/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
 echo ""

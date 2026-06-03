@@ -8,6 +8,7 @@ Currently managed:
 - `settings.json`
 - `hooks/`
 - `commands/`
+- `workflows/` — dynamic workflow scripts, linked to `~/.claude/workflows/` (research preview)
 - `plugins/` — custom Claude Code plugins (see below)
 
 Future candidates for this directory:
