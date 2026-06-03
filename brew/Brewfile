@@ -208,6 +208,7 @@ cask "iterm2"
 cask "visual-studio-code"
 cask "coteditor"  # Text editor
 cask "cmux"
+cask "claude-code@latest"  # Terminal-based AI coding assistant (tracks latest)
 tap "nkzw-tech/tap"
 cask "nkzw-tech/tap/codiff"
 # cask "sublime-text"
