@@ -4,8 +4,4 @@ description: Quick grill of any doc, plan, or rough idea with the grill-with-doc
 
 Invoke the grill-with-docs skill on: $ARGUMENTS
 
-Only high-value findings reach the user. Surface one when it is:
-
-- a decision I need to make that the source left ambiguous or silent on — lead with your recommended answer;
-- an open question that blocks progress; or
-- anything else genuinely worth my attention — e.g. the plan contradicts the code or the documented domain model.
+Keep the skill's one-at-a-time interactive grilling, but hold a high bar for interrupting me: settle what you can yourself (explore the code, make the obvious call) and keep going. Pull me in only when something needs *me* in the loop — a call that's mine to make, a blocker, a plan-vs-code contradiction, a term only I can pin down. That's the shape of it, not a checklist — judge for yourself.
