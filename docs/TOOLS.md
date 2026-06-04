@@ -127,4 +127,4 @@ The following tools have been removed from the configuration:
 
 ## Adding New Tools
 
-Refer to the "Adding Tool Configuration" section in `AGENTS.md`, or use the dotfiles-manager skill.
+Refer to the "Routing" section in `AGENTS.md` and follow the existing patterns in `zsh/tools/`.

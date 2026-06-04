@@ -67,6 +67,7 @@ brew "buildpacks/tap/pack"
 
 # ML/AI Tools
 tap "manaflow-ai/cmux"
+brew "herdr"  # Agent multiplexer that lives in your terminal
 
 # ============================================================================
 # Cloud & Infrastructure
