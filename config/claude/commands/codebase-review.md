@@ -81,12 +81,17 @@ workflow needs to:
 - Read `args = { types, scope, angles, votes }` from the command.
 - Fan out finders per audit type over the approved angles. **Finders must fully re-read
   the actual source in scope — judge from the files as they are now, never from memory
-  or prior assumptions about the repo.**
+  or prior assumptions about the repo.** When the scope is too large for one finder to
+  read exhaustively, split it across finders by directory so their union covers the whole
+  target — never silently sample a subset.
 - Adversarially verify each finding with `votes` skeptics (try to refute; drop on
   majority-refute), then dedup by `file:line` and rank by severity.
 - Return structured JSON where each finding carries `type`, `title`, `file`, `line`,
   `severity` (critical/high/medium/low), `why`, `suggestedFix` — Step 5 reads these
-  field names, so keep them stable.
+  field names, so keep them stable. For `perf` findings, `why` must carry a quantified
+  or complexity-level impact (Big-O, per-element cost, per-request allocation count) —
+  reject a vague "could be slow". Also return any path that was excluded or left
+  uncovered, so the report can disclose it.
 
 Build it on the platform's own workflow primitives: `pipeline()` to find then verify
 without a barrier, and schema-validated `agent()` output so findings come back
@@ -113,6 +118,8 @@ from `date '+%Y%m%d-%H%M%S'`), print the absolute path, and **do not auto-open**
   `file:line` locations stay in their original form.
 - Structure: 摘要(各類型 finding 數 + 嚴重度分佈) → 依稽核類型分區 → 每個 finding 一張卡:
   標題 / 位置 `file:line` / 嚴重度 / 為何是問題 / 建議修法 / 對抗驗證結論(confirmed).
+- **No silent caps:** if any path was excluded or left uncovered, list it in a 覆蓋範圍
+  section so the report never implies coverage it did not achieve.
 - Label the perf section **靜態最佳化稽核** and restate the profiler caveat there.
 - **HTML**: single self-contained file with inline CSS, severity colour-coding.
   **Markdown**: same content with headings and tables.
