@@ -1,6 +1,6 @@
 ---
-allowed-tools: Bash(git mv:*), Bash(git status:*), Bash(git ls-files:*), Bash(mv:*), Bash(mkdir:*), Bash(rmdir:*), Bash(ls:*), Bash(test:*)
-description: Move SPEC.md, tasks/*, and implementation-notes (from agent-skills /spec /plan and the kickoff skill) into docs/features/<feature-name>/ so multiple features can coexist without overwriting each other.
+allowed-tools: Bash(git mv:*), Bash(git status:*), Bash(git ls-files:*), Bash(mv:*), Bash(mkdir:*), Bash(rmdir:*), Bash(ls:*), Bash(test:*), Read, Edit, Grep
+description: Move SPEC.md, tasks/*, and implementation-notes (from agent-skills /spec /plan and the kickoff skill) into docs/features/<feature-name>/ so multiple features can coexist without overwriting each other, rewriting cross-references between the moved files to their new paths.
 ---
 
 ## Context
@@ -49,15 +49,25 @@ This prevents the next `/spec` run from overwriting the current feature's artifa
      - `implementation-notes.md` / `implementation-notes.html` → `docs/features/<feature-name>/` (keep the filename and extension; move whichever exists)
    - `mkdir -p docs/features/<feature-name>/` first.
 
-4. **Clean up the empty `tasks/` directory** if and only if it is now empty (`rmdir tasks/` — never `rm -rf`).
+4. **Rewrite cross-references between the moved files.** After the move the files are renamed and co-located, so any link from one moved file to another now points at a stale path. Scan the *content* of each file you just moved and update only the references that target another file in this moved set:
+   - Every moved file now lives side by side in `docs/features/<feature-name>/`, so each surviving cross-reference becomes a bare sibling filename. Resolve any `./` / `../` prefix before matching, then map the old reference to the new one:
+     - `SPEC.md`                                   → `spec.md`
+     - `tasks/plan.md` (or bare `plan.md`)         → `plan.md`
+     - `tasks/todo.md` (or bare `todo.md`)         → `todo.md`
+     - `implementation-notes.md` / `.html`         → same filename
+   - Cover Markdown link targets `[text](path)`, inline-code paths `` `path` ``, and — if `implementation-notes.html` was moved — HTML `href="path"`.
+   - Mind the case change: `SPEC.md` → `spec.md`. Only rewrite the path inside a link/reference; do not touch human-readable link text or prose unless it is itself a path.
+   - Rewrite references **only** among the files this command moved. Leave every other line untouched, and never edit files outside the moved set.
 
-5. **Do not commit.** Leave the moves staged so the user can review with `git status` and craft their own commit message.
+5. **Clean up the empty `tasks/` directory** if and only if it is now empty (`rmdir tasks/` — never `rm -rf`).
 
-6. **Report** the final layout (the new files under `docs/features/<feature-name>/`) and any leftover files in `tasks/` that were not moved.
+6. **Do not commit.** Leave the moves staged so the user can review with `git status` and craft their own commit message.
+
+7. **Report** the final layout (the new files under `docs/features/<feature-name>/`), any cross-references that were rewritten, and any leftover files in `tasks/` that were not moved.
 
 ### Constraints
 
 - Never delete `SPEC.md`, `tasks/plan.md`, `tasks/todo.md`, or `implementation-notes.{md,html}` without moving them first.
 - Never overwrite an existing file in `docs/features/<feature-name>/` — stop and ask.
 - Never run `rm -rf` on `tasks/`. Use `rmdir` so it fails loudly if there are unexpected files.
-- Do not modify the file contents — this command only relocates them.
+- Do not modify file contents beyond the step 4 cross-reference rewrite — no rewording, reformatting, or other edits.
