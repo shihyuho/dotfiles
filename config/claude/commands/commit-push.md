@@ -17,7 +17,9 @@ You MUST invoke the git-commit-co-author skill before running git commit.
 
 Based on the above changes:
 
-1. Create a single commit with an appropriate message.
+1. Assess whether the diff clearly spans several unrelated concerns (e.g. a bug fix plus an unrelated rename plus a new doc). Treat a cohesive change that merely touches many files as one concern — bias toward NOT splitting; only flag clear, separable concerns.
+   - One concern: create a single commit with an appropriate message.
+   - Clearly several unrelated concerns: ask the user whether to record one single commit or split into atomic commits (one per concern), then commit accordingly.
 2. Push the branch to origin. **Safety gate:** If the current branch equals the default branch, STOP before pushing and use the AskUserQuestion tool to get explicit confirmation that pushing directly to the default branch is intended. Commit first regardless — only the push step gates on confirmation.
 
-When pushing without confirmation (non-default branch), do all steps in a single message. Do not use any other tools or send any other text besides these tool calls.
+When recording a single commit and pushing without confirmation (non-default branch), do all steps in a single message. Do not use any other tools or send any other text besides these tool calls.
