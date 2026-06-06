@@ -122,13 +122,6 @@
       },
       "autoUpdate": true
     },
-    "claude-code-warp": {
-      "source": {
-        "source": "github",
-        "repo": "warpdotdev/claude-code-warp"
-      },
-      "autoUpdate": true
-    },
     "shihyuho-skills": {
       "source": {
         "source": "github",
