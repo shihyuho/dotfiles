@@ -1,7 +1,7 @@
 ---
 description: Create a git commit
 agent: build
-model: opencode/minimax-m2.5-free
+model: opencode/nemotron-3-ultra-free
 ---
 
 ## Context

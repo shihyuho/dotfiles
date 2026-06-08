@@ -1,7 +1,7 @@
 ---
 description: Open a PR for the current branch
 agent: build
-model: opencode/minimax-m2.5-free
+model: opencode/nemotron-3-ultra-free
 subtask: true
 ---
 

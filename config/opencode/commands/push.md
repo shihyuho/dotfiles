@@ -1,7 +1,7 @@
 ---
 description: Push current branch to origin
 agent: build
-model: opencode/minimax-m2.5-free
+model: opencode/nemotron-3-ultra-free
 subtask: true
 ---
 
