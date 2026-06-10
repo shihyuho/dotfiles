@@ -5,7 +5,7 @@ cat <<'HOOK_JSON'
 {
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "Invoke the skills: planning-with-files, git-workflow-and-versioning."
+    "additionalContext": "Invoke the skills: planning-with-files, git-workflow-and-versioning, artifact-anatomy."
   }
 }
 HOOK_JSON
