@@ -14,7 +14,7 @@ This repository manages modular dotfiles with three standing goals:
 - Conversely, when the user adds or removes a package in `brew/Brewfile`, run the matching `brew install`/`brew uninstall` so the system matches the repo.
 - If managed paths change, update `install.sh` and `uninstall.sh` together.
 - If package/tool maintenance flows change, update the relevant `make` entrypoints and workflow docs together, not just the underlying scripts.
-- If Claude plugin content changes, bump the version in `.claude-plugin/marketplace.json` and each affected plugin's own `.claude-plugin/plugin.json`.
+- Don't add a `version` field to `.claude-plugin/marketplace.json` or any plugin's `.claude-plugin/plugin.json` — Claude plugins use commit-SHA versioning (every commit is a new version); a pinned version freezes installed users on a stale snapshot.
 - Keep heavy tool-loading behind repo shims and lazy loading, not eager startup init.
 - Never commit untested changes.
 - Never commit `.secrets`, credentials, or other secret material.

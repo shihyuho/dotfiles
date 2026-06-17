@@ -1,5 +1,4 @@
 {
   "name": "jdtls-lombok-lsp",
-  "description": "JDTLS with Lombok support for Java projects",
-  "version": "2.1.0"
+  "description": "JDTLS with Lombok support for Java projects"
 }

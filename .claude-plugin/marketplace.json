@@ -7,14 +7,12 @@
     {
       "name": "jdtls-lombok-lsp",
       "source": "./config/claude/plugins/jdtls-lombok-lsp",
-      "description": "JDTLS with Lombok support for Java projects",
-      "version": "2.0.0"
+      "description": "JDTLS with Lombok support for Java projects"
     },
     {
       "name": "output-styles",
       "source": "./config/claude/plugins/output-styles",
-      "description": "Output styles for Claude Code",
-      "version": "1.2.0"
+      "description": "Output styles for Claude Code"
     }
   ]
 }
