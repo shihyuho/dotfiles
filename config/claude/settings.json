@@ -34,7 +34,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "opus[1m]",
   "hooks": {
     "PostToolUse": [
       {
@@ -132,6 +132,7 @@
   "outputStyle": "default",
   "language": "Traditional Chinese (zh_TW)",
   "effortLevel": "xhigh",
+  "ultracode": true,
   "voice": {
     "enabled": true,
     "mode": "hold"
