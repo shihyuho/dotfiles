@@ -206,6 +206,7 @@ brew "starship"  # Cross-shell prompt (configured in config/starship/)
 
 # Development
 cask "iterm2"
+cask "warp"  # AI-powered terminal
 cask "visual-studio-code"
 cask "coteditor"  # Text editor
 cask "cmux"

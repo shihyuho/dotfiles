@@ -91,7 +91,8 @@
     "agent-skills@addy-agent-skills": true,
     "frontend-design@claude-plugins-official": true,
     "skills@shihyuho-skills": true,
-    "webwright@webwright": true
+    "webwright@webwright": true,
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
@@ -126,6 +127,12 @@
       "source": {
         "source": "github",
         "repo": "microsoft/Webwright"
+      }
+    },
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
       }
     }
   },
