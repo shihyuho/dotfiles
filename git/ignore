@@ -19,3 +19,5 @@ Thumbs.db
 
 # Session handoff (tool-generated, never commit)
 .handoff.md
+
+**/.claude/settings.local.json
