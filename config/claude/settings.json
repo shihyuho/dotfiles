@@ -32,7 +32,7 @@
       "Bash(git push --force:*)",
       "Bash(git push -f:*)"
     ],
-    "defaultMode": "dontAsk"
+    "defaultMode": "auto"
   },
   "model": "sonnet",
   "hooks": {
@@ -160,7 +160,7 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
-  "verbose": true,
+  "viewMode": "verbose",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
