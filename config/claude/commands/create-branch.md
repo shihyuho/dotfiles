@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(git status:*), Bash(git checkout:*), Bash(git switch:*), Bash(git branch:*), Bash(git diff:*), Bash(git log:*), Bash(gh issue view:*), Bash(gh issue develop:*)
+allowed-tools: Bash(git status:*), Bash(git checkout:*), Bash(git switch:*), Bash(git branch:*), Bash(git diff:*), Bash(git log:*), Bash(gh issue view:*), Bash(gh issue develop:*), Bash(git push:*)
 description: Create a git branch
 ---
 
@@ -12,14 +12,12 @@ description: Create a git branch
 
 ## Your task
 
-Create and switch to a new branch.
+Create a branch. Decide two things — its **name** and whether it reaches the **remote** — each turning on whether an issue is in play. **Issue in play** means `$ARGUMENTS` is an issue number/URL, or the conversation is clearly working a specific GitHub issue.
 
-**Issue-linked branch (preferred when an issue is in play).** If `$ARGUMENTS` is an issue number/URL, or the current conversation is clearly working on a specific GitHub issue, create the branch with `gh issue develop <issue> --name <name> --checkout` so the branch is linked to that issue. Derive `<name>` from the issue's title/content — read it with `gh issue view <issue> --json number,title,body` if you don't already have it — e.g. issue #42 "Add handoff commands" → `feat/42-add-handoff-commands`. If `$ARGUMENTS` also gives an explicit branch name, use that as `<name>` but still link via `gh issue develop`.
+**Name.** With an issue, derive `<name>` from the issue's title/content (`gh issue view <issue> --json number,title,body` if you don't already have it). Without one, derive it from the current git state (diff, recent log). Keep `<name>` short and use only ASCII letters, digits, `-`, and `/` (e.g. `feat/42-add-handoff-commands`, `fix/null-deref`).
 
-**Plain branch (no issue).** If `$ARGUMENTS` specifies a branch name, use that. Otherwise derive a descriptive name from the diff (e.g. `feat/add-handoff-commands`); if there is no diff to derive from, stop and ask the user for a branch name. Create and switch with `git switch -c <name>`.
-
-**Naming.** Unless the user gave an explicit name, keep any derived `<name>` short and use only ASCII letters, digits, `-`, and `/` (e.g. `feat/add-handoff-commands`, `fix/42-null-deref`) — no spaces or non-ASCII characters.
-
-You have the capability to call multiple tools in a single response. Do this in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
+**Remote.** Take the choice from `$ARGUMENTS` if it states one; otherwise ask the user.
+- With an issue — ask whether to create and link the branch on the remote. Approved: `gh issue develop <issue> --name <name> --checkout` (creates + links it on the remote). Declined: local only, `git switch -c <name>`.
+- Without one — create locally with `git switch -c <name>`, then ask whether to push it. Approved: `git push -u origin <name>`. Declined: leave it local.
 
 $ARGUMENTS
