@@ -32,9 +32,9 @@
       "Bash(git push --force:*)",
       "Bash(git push -f:*)"
     ],
-    "defaultMode": "auto"
+    "defaultMode": "dontAsk"
   },
-  "model": "opus[1m]",
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
@@ -92,16 +92,16 @@
     "frontend-design@claude-plugins-official": true,
     "skills@shihyuho-skills": true,
     "webwright@webwright": true,
-    "warp@claude-code-warp": true
+    "warp@claude-code-warp": true,
+    "engineering@softleader-agent-skills": true,
+    "operations@softleader-agent-skills": true,
+    "productivity@softleader-agent-skills": true,
+    "misc@softleader-agent-skills": true,
+    "wip@softleader-agent-skills": true,
+    "deprecated@softleader-agent-skills": true,
+    "pangu@pangu": true
   },
   "extraKnownMarketplaces": {
-    "planning-with-files": {
-      "source": {
-        "source": "github",
-        "repo": "OthmanAdi/planning-with-files"
-      },
-      "autoUpdate": true
-    },
     "shihyuho-dotfiles": {
       "source": {
         "source": "github",
@@ -134,12 +134,26 @@
         "source": "github",
         "repo": "warpdotdev/claude-code-warp"
       }
+    },
+    "softleader-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "softleader/agent-skills"
+      },
+      "autoUpdate": true
+    },
+    "pangu": {
+      "source": {
+        "source": "github",
+        "repo": "shihyuho/pangu.skill"
+      }
     }
   },
   "outputStyle": "default",
   "language": "Traditional Chinese (zh_TW)",
   "effortLevel": "xhigh",
   "ultracode": true,
+  "tui": "default",
   "voice": {
     "enabled": true,
     "mode": "hold"

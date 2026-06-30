@@ -1,6 +1,6 @@
 notify = ["/Users/matt/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 model = "gpt-5.5"
-model_reasoning_effort = "high"
+model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 
 [projects."/"]
@@ -9,15 +9,29 @@ trust_level = "trusted"
 [projects."/Users/matt/code/github.com/shihyuho/dotfiles"]
 trust_level = "trusted"
 
+[projects."/Users/matt/code/github.com/softleader/fairybell"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
-last_updated = "2026-06-17T06:59:00Z"
+last_updated = "2026-06-27T14:58:04Z"
 source_type = "local"
 source = "/Users/matt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-06-17T07:19:35Z"
+last_updated = "2026-06-24T11:19:34Z"
 source_type = "local"
 source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.softleader-agent-skills]
+last_updated = "2026-06-28T01:15:16Z"
+last_revision = "756b1d106d2ed69032bdeb0652ba98d9e3da0932"
+source_type = "git"
+source = "https://github.com/softleader/agent-skills.git"
+
+[marketplaces.pangu]
+last_updated = "2026-06-28T01:15:10Z"
+source_type = "local"
+source = "/Users/matt/code/github.com/shihyuho/pangu.js"
 
 [plugins."documents@openai-primary-runtime"]
 enabled = true
@@ -34,10 +48,31 @@ enabled = true
 [plugins."chrome@openai-bundled"]
 enabled = true
 
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
 [plugins."browser@openai-bundled"]
 enabled = true
 
-[plugins."pdf@openai-primary-runtime"]
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."engineering@softleader-agent-skills"]
+enabled = true
+
+[plugins."misc@softleader-agent-skills"]
+enabled = true
+
+[plugins."operations@softleader-agent-skills"]
+enabled = true
+
+[plugins."productivity@softleader-agent-skills"]
+enabled = true
+
+[plugins."wip@softleader-agent-skills"]
+enabled = true
+
+[plugins."pangu@pangu"]
 enabled = true
 
 [features]
@@ -45,21 +80,21 @@ js_repl = false
 
 [mcp_servers.node_repl]
 args = []
-command = "/Applications/Codex.app/Contents/Resources/node_repl"
+command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = ""
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/matt/.codex"
 CODEX_HOME = "/Users/matt/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0b0d41e7a14a4903d2f95b0b3f427ed796b12c8edca2fa392a03df43997075ae"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "59e7bb81812ddd5f102e1d580335166e552c91686b5726218a985b59b4f89ca1"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-SKY_CUA_SERVICE_PATH = "/Users/matt/.codex/plugins/cache/openai-bundled/computer-use/1.0.799/Codex Computer Use.app"
+BROWSER_USE_CODEX_APP_VERSION = "26.623.42026"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 
 [desktop]
@@ -67,6 +102,7 @@ keepRemoteControlAwakeWhilePluggedIn = true
 selected-avatar-id = "fireball"
 appearanceTheme = "system"
 localeOverride = "en-US"
+followUpQueueMode = "queue"
 
 [hooks.state]
 
@@ -90,3 +126,6 @@ trusted_hash = "sha256:145f66dc354121d5ae46feeb760aba0b382b69a60d80b2901ead79980
 
 [hooks.state."/Users/matt/.codex/hooks.json:stop:0:0"]
 trusted_hash = "sha256:96cdc3d72ab4829110a424790993e1add46514d58a46fc92df2d347a9bc3eb54"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
