@@ -31,18 +31,24 @@ copy-on-select = false
 theme = Material Darker
 
 # Font
-font-family = "FiraCode Nerd Font"
+font-family = "FiraCode Nerd Font Mono"
 font-size = 14
 font-thicken = true
-adjust-cell-height = 2
+adjust-cell-height = 5%
 font-feature = calt
 font-feature = liga
 
 # Window
 background-opacity = 0.95
 background-blur-radius = 20
+# Correct text rendering on the translucent background (avoids washed-out thin glyphs)
+alpha-blending = linear-corrected
+# Wider color gamut on macOS displays
+window-colorspace = display-p3
 macos-titlebar-style = transparent
 window-padding-balance = true
+window-padding-x = 14
+window-padding-y = 10
 window-decoration = true
 window-save-state = always
 window-theme = auto
