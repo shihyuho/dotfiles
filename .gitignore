@@ -26,6 +26,7 @@ task_plan.md
 
 # Backup Files
 *.backup_*
+.backup/
 
 # Claude Code settings
 .agents/settings.local.json
