@@ -213,8 +213,6 @@ cask "cmux"
 cask "claude-code@latest"  # Terminal-based AI coding assistant (tracks latest)
 tap "nkzw-tech/tap"
 cask "nkzw-tech/tap/codiff"
-tap "xdevplatform/tap"
-cask "xdevplatform/tap/xurl"
 # cask "sublime-text"
 # cask "jetbrains-toolbox"
 # cask "ghostty"

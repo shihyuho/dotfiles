@@ -2,4 +2,3 @@
 
 - Run each independent command as its own invocation, not chained into one call.
 - Before creating a new working artifact (spec, plan, todo, etc.), load the `/artifact-anatomy` skill first.
-- For x.com (Twitter), prefer `xurl` over a raw HTTP client.
