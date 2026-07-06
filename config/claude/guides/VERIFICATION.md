@@ -1,15 +1,12 @@
 # Verification — Evidence Over Narrative
 
-Assumes each task already carries success criteria; how to define them is
-out of scope here.
-
 ## 1. Done means evidence, not narrative
 
 Done = every acceptance criterion has evidence that exists outside your own
 narrative: test output, a real program run, or a fresh-context read-back of
 the artifact on disk (the file's existence alone is "I wrote it", not
 evidence). If you cannot name the evidence for a criterion, that criterion
-is not met. "I wrote it" is not "it works."
+is not met.
 
 Special case — deleted/changed behavior: done includes verifying the OLD
 behavior is gone (the test that used to pass now fails or was updated), not
@@ -18,7 +15,7 @@ just that the new behavior exists.
 **Do:** "add validation" → a test with invalid inputs that failed before the
 change and passes after, plus the full suite green — paste the test output.
 **Don't:** "I implemented the validation function and wired it in" with no
-run. Code that has never executed is a draft, not a deliverable.
+run.
 
 ## 2. Who verifies
 
