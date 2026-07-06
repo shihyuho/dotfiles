@@ -3,7 +3,7 @@ description: Review a skill; --fix applies the fixes.
 argument-hint: [skill name or path] [--fix]; empty = ask which
 ---
 
-Review the skill in `$ARGUMENTS` using `/writing-great-skills`, `/skill-creator:skill-creator`, and `/skills:hermes-instructions` as the guiding rubric. If no skill is given, ask which one first.
+Review the skill in `$ARGUMENTS` using `/writing-great-skills` and `/skill-creator:skill-creator` as the guiding rubric. If no skill is given, ask which one first.
 
 `/writing-great-skills` is user-invoked (`disable-model-invocation`) — if the Skill tool won't fire it, read its `SKILL.md` + `GLOSSARY.md` and apply that instead.
 
