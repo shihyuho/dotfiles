@@ -68,6 +68,7 @@ brew "buildpacks/tap/pack"
 # ML/AI Tools
 tap "manaflow-ai/cmux"
 brew "herdr"  # Agent multiplexer that lives in your terminal
+brew "agent-browser"  # Browser automation CLI for AI agents
 
 # ============================================================================
 # Cloud & Infrastructure
