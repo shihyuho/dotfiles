@@ -1,21 +1,6 @@
 # ghq — Local Source Mirrors
 
-ghq may have dependency source cloned locally at
-`$(ghq root)/<host>/<org>/<repo>` (e.g. `github.com/x-motemen/ghq`) — a free,
-full-history copy. Prefer it over fetching from the web or unpacking artifacts
-(jar, `node_modules`, `vendor`, `site-packages`).
+Dependency source may already be cloned locally under `$(ghq root)` — prefer it over fetching from the web or unpacking artifacts (jar, `node_modules`, `vendor`, `site-packages`).
 
-## Locate a repo — don't guess the path
-
-```
-ghq list -p <query>          full path(s) whose name contains <query>
-ghq list -e -p <org>/<repo>  exact match, one path (e.g. x-motemen/ghq)
-ghq list                     all repos, relative paths
-ghq root [--all]             the ghq root(s)
-```
-
-## When reading dependency source
-
-- Resolve the path via `ghq list -e -p <org>/<repo>` and read there — don't
-  assume `~/...`.
-- Match the runtime version — don't assume `main`/`master`.
+- Resolve the path with `ghq list -e -p <org>/<repo>` — never guess or assume `~/...`.
+- Read at the runtime version, not `main`/`master`.
