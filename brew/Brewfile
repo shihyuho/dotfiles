@@ -219,6 +219,7 @@ cask "nkzw-tech/tap/codiff"
 # cask "ghostty"
 
 # Productivity
+cask "macshot"  # Screenshot & screen recording
 # cask "raycast"
 # cask "rectangle"     # Window manager
 # cask "alt-tab"       # Better app switcher
