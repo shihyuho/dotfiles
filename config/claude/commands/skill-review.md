@@ -1,6 +1,6 @@
 ---
 description: Review a skill; --fix applies the fixes.
-argument-hint: [skill name or path] [--fix]; empty = ask which
+argument-hint: "[skill name or path] [--fix]; empty = ask which"
 ---
 
 Review the skill in `$ARGUMENTS` using `/writing-great-skills` and `/skill-creator:skill-creator` as the guiding rubric. If no skill is given, ask which one first.

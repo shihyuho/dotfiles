@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(gh issue comment:*), Bash(gh issue view:*), Bash(gh issue list:*), Bash(gh pr comment:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(git rev-parse:*), Bash(ls:*), Write, AskUserQuestion, Read
-argument-hint: [number] [file...]
+argument-hint: "[number] [file...]"
 description: Post local files (or stashed chat content) as comments on a GitHub issue or pull request (infers missing args from context, always confirms inferred values)
 ---
 
