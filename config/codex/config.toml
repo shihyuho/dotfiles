@@ -1,5 +1,5 @@
 notify = ["/Users/matt/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 
@@ -12,19 +12,22 @@ trust_level = "trusted"
 [projects."/Users/matt/code/github.com/softleader/fairybell"]
 trust_level = "trusted"
 
+[projects."/Users/matt/code/github.com/shihyuho/skills"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
-last_updated = "2026-07-10T02:11:03Z"
+last_updated = "2026-07-10T12:36:41Z"
 source_type = "local"
 source = "/Users/matt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-07-09T03:19:55Z"
+last_updated = "2026-07-10T13:20:07Z"
 source_type = "local"
 source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.softleader-agent-skills]
-last_updated = "2026-07-10T09:20:16Z"
-last_revision = "f94696f38a73897300244d6bd2dafa33defc74c3"
+last_updated = "2026-07-11T02:58:46Z"
+last_revision = "66be94a6a8aa1836ab8973add08205689237ea7e"
 source_type = "git"
 source = "https://github.com/softleader/agent-skills.git"
 
