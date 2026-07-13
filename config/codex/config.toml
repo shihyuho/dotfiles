@@ -26,8 +26,8 @@ source_type = "local"
 source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.softleader-agent-skills]
-last_updated = "2026-07-11T02:58:46Z"
-last_revision = "66be94a6a8aa1836ab8973add08205689237ea7e"
+last_updated = "2026-07-12T15:08:28Z"
+last_revision = "1172532fddb3bb917d8f781fdd087bc1eb0ba92d"
 source_type = "git"
 source = "https://github.com/softleader/agent-skills.git"
 

@@ -1,36 +1,15 @@
 ---
-description: Hand the current conversation off to a fresh background agent — write the handoff, then launch it with `claude --bg` seeded with that handoff as its prompt.
-argument-hint: "[optional steer for the fresh agent]"
+description: Hand the current conversation off to a fresh background agent that picks up the work immediately.
+argument-hint: "What will the next session be used for?"
+disable-model-invocation: true
 ---
 
-Hand **this conversation** off so a fresh agent can continue the work. The handoff is not saved for the user to read — it is the new agent's prompt.
+Follow the `/handoff` skill to write a summary of the current conversation so a fresh agent can continue the work. It is user-invoked (`disable-model-invocation`), so the Skill tool won't fire it — read `~/.claude/skills/handoff/SKILL.md` and follow it directly. The summary is not for the user to read — it is the fresh agent's prompt.
 
-`$ARGUMENTS`: optional steer (`只做完測試`, `skip the docs`). Empty = continue the current work as-is.
+Launch the agent with the file `/handoff` wrote: `claude --bg --name "<descriptive name>" --model "<model>" "$(cat <handoff-file>)"`. Pass it as a path — quoting the summary inline breaks on the backticks, `$`, and quotes a handoff normally contains. The command returns immediately; the agent runs in the current working directory and the user manages it with `claude agents`.
 
-## 1. Write the handoff
+Always pass `-n`/`--name` with a short descriptive name: derive it from `ARGUMENTS` when the user gave one, otherwise from the handed-off work (e.g. `--name "Fix login bug"`). It sets the display name shown in the job list, session picker, and terminal title.
 
-The fresh agent sees none of this conversation, and starts in the **current working directory**. Give it only what was actually established here — no invention, no filler:
-
-- **Goal** — what we are doing and why.
-- **State** — what is done, what is half-done; branch, files touched (`file:line`), commands already run.
-- **Next** — remaining steps in order, each with how it is verified (done = evidence, not narrative).
-- **Constraints & decisions** — approaches already ruled out and why, conventions to follow, traps hit.
-- **Open questions** — what is unresolved; the agent must ask, not guess.
-
-Address the agent ("Continue …"), don't report about the conversation.
-
-## 2. Launch it
-
-Write the handoff to a temp file first, then pass it as the prompt — quoting it inline breaks on the backticks, `$`, and quotes a handoff normally contains.
-
-```bash
-claude --bg --name "<descriptive name>" --model "<this session's model>" "$(cat <handoff-file>)"
-```
-
-- `--bg` — starts as a background agent in the current working directory and returns immediately; the user manages it with `claude agents`.
-- `--name` — always pass it (e.g. `--name "Fix login bug"`): it sets the display name in the job list, session picker, and terminal title.
-- `--model` — always pass it: the model **this** session is running (an alias for the latest model, e.g. `--model opus`, or the exact name, e.g. `--model claude-opus-4-8`), so the fresh agent stays on it instead of falling back to the default.
-
-Then report the agent's name, its model, and a one-line scope — nothing else.
+Always pass `--model`: the model the user named in `ARGUMENTS` if they named one, otherwise the model **this** session is running (either an alias for the latest model, e.g. `--model opus`, or the exact name, e.g. `--model claude-opus-4-8`). Never let the fresh agent fall back to the default.
 
 ARGUMENTS: $ARGUMENTS
