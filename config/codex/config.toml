@@ -16,7 +16,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-10T12:36:41Z"
+last_updated = "2026-07-14T01:22:17Z"
 source_type = "local"
 source = "/Users/matt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -26,8 +26,8 @@ source_type = "local"
 source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.softleader-agent-skills]
-last_updated = "2026-07-12T15:08:28Z"
-last_revision = "1172532fddb3bb917d8f781fdd087bc1eb0ba92d"
+last_updated = "2026-07-14T01:51:18Z"
+last_revision = "dea5895966594fed1c05c86d3a542aca9b4a6b3f"
 source_type = "git"
 source = "https://github.com/softleader/agent-skills.git"
 
@@ -95,14 +95,14 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/matt/.codex"
 CODEX_HOME = "/Users/matt/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,c8b7e809d7cf9e20a57123b2530d476ccec9a01a6230a7b2b924fea7d94d7f4a"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e2cad16d8d9f60f09c9f0951ec7dfdd9e8f59dedd06045c0b6827dc8fa8322f0"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.707.31428"
-SKY_CUA_SERVICE_PATH = "/Users/matt/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000366/Codex Computer Use.app"
+BROWSER_USE_CODEX_APP_VERSION = "26.707.62119"
+SKY_CUA_SERVICE_PATH = "/Users/matt/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000387/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.computer-use]
