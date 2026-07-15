@@ -4,7 +4,7 @@ argument-hint: "What will the next session be used for?"
 disable-model-invocation: true
 ---
 
-Follow the `/handoff` skill to write a summary of the current conversation so a fresh agent can continue the work. It is user-invoked (`disable-model-invocation`), so the Skill tool won't fire it — read `~/.claude/skills/handoff/SKILL.md` and follow it directly. The summary is not for the user to read — it is the fresh agent's prompt.
+Follow the `/handoff` skill to write a summary of the current conversation so a fresh agent can continue the work. It is user-invoked (`disable-model-invocation`), so the Skill tool won't fire it — read its `SKILL.md` instead and follow it directly. The summary is not for the user to read — it is the fresh agent's prompt.
 
 Launch the agent with the file `/handoff` wrote: `claude --bg --name "<descriptive name>" --model "<model>" -- "$(cat <handoff-file>)"`. Pass it as a path — quoting the summary inline breaks on the backticks, `$`, and quotes a handoff normally contains. Keep the `--`: without it a summary that opens with `-` (a YAML frontmatter fence, a bullet) is parsed as a flag and the launch dies. The command returns immediately; the agent runs in the current working directory and the user manages it with `claude agents`.
 
