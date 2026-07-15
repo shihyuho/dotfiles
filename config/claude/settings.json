@@ -155,7 +155,7 @@
   "ultracode": true,
   "tui": "default",
   "voice": {
-    "enabled": true,
+    "enabled": false,
     "mode": "hold"
   },
   "skipDangerousModePermissionPrompt": true,
