@@ -40,6 +40,14 @@ alias cc="claude --continue"
 alias ch="claude --chrome"
 alias cu="claude update"
 
+ccp() {
+  claude -p "/commit-push and skip the default-branch confirmation gate" --model "${1:-sonnet}"
+}
+
+ccpp() {
+  claude -p "/create-branch /commit-push-pr" --model "${1:-sonnet}"
+}
+
 om() {
   ocmonitor live --pick
 }
