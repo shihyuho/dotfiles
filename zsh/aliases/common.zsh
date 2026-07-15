@@ -41,11 +41,11 @@ alias ch="claude --chrome"
 alias cu="claude update"
 
 ccp() {
-  claude -p "/commit-push and skip the default-branch confirmation gate" --model "${1:-sonnet}"
+  claude -p "/commit-push, split into atomic commits, and skip the default-branch confirmation gate" --model "${1:-sonnet}"
 }
 
 ccpp() {
-  claude -p "/create-branch /commit-push-pr" --model "${1:-sonnet}"
+  claude -p "/create-branch /commit-push-pr, split into atomic commits" --model "${1:-sonnet}"
 }
 
 om() {
