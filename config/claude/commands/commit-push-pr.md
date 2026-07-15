@@ -24,5 +24,6 @@ Based on the above changes:
    - Clearly several unrelated concerns: ask the user whether to record one single commit or split into atomic commits (one per concern), then commit accordingly. If the arguments received above ask for atomic commits (or similar), skip that question and split into atomic commits (one per concern) directly.
 3. Push the branch to origin. **Safety gate:** If the push target is the default branch (step 1 was skipped for any reason), STOP and get explicit confirmation first. If the arguments received above already confirm pushing to the default branch, take that as the confirmation and skip the question; otherwise use the AskUserQuestion tool to ask.
 4. Create a pull request using `gh pr create`. If `.github/` contains a PR template, follow that format.
+5. Give the user the pull request URL that `gh pr create` returned.
 
-When no safety-gate question is needed — step 1 created a new branch, or the arguments already confirm the default-branch push — you have the capability to call multiple tools in a single response and SHOULD do all of the above in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
+When no safety-gate question is needed — step 1 created a new branch, or the arguments already confirm the default-branch push — you have the capability to call multiple tools in a single response and SHOULD do steps 1–4 in a single message, then send the PR link as your only text output. Do not use any other tools or send any other text.
