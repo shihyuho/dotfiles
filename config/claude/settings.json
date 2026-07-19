@@ -22,9 +22,7 @@
       "Bash(git restore .:*)",
       "Bash(gh repo delete:*)",
       "Bash(gh repo archive:*)",
-      "Bash(gh pr close:*)",
       "Bash(gh pr merge:*)",
-      "Bash(gh issue close:*)",
       "Bash(gh issue delete:*)",
       "Bash(gh release delete:*)",
       "Bash(gh api * -X DELETE)",
@@ -34,7 +32,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet",
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "PostToolUse": [
       {
@@ -88,31 +86,24 @@
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
-    "agent-skills@addy-agent-skills": true,
     "frontend-design@claude-plugins-official": true,
     "skills@shihyuho-skills": true,
     "webwright@webwright": true,
-    "warp@claude-code-warp": true,
     "engineering@softleader-agent-skills": true,
     "operations@softleader-agent-skills": true,
     "productivity@softleader-agent-skills": true,
     "misc@softleader-agent-skills": true,
     "wip@softleader-agent-skills": true,
     "deprecated@softleader-agent-skills": true,
-    "pangu@pangu": true
+    "pangu@pangu": true,
+    "mattpocock-skills@mattpocock": true,
+    "humanizer@humanizer": true
   },
   "extraKnownMarketplaces": {
     "shihyuho-dotfiles": {
       "source": {
         "source": "github",
         "repo": "shihyuho/dotfiles"
-      },
-      "autoUpdate": true
-    },
-    "addy-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "addyosmani/agent-skills"
       },
       "autoUpdate": true
     },
@@ -147,9 +138,22 @@
         "source": "github",
         "repo": "shihyuho/pangu.skill"
       }
+    },
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
     }
   },
   "outputStyle": "default",
+  "viewMode": "verbose",
   "language": "Traditional Chinese (zh_TW)",
   "effortLevel": "xhigh",
   "ultracode": true,
@@ -160,7 +164,6 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
-  "viewMode": "verbose",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
