@@ -12,7 +12,8 @@
       "Read(~/Downloads/**)",
       "Read(~/Documents/**)",
       "Read(~/tmp/**)",
-      "Read(/tmp/**)"
+      "Read(/tmp/**)",
+			"Bash(gh issue edit:*)"
     ],
     "deny": [
       "Bash(git reset --hard:*)",
@@ -166,5 +167,5 @@
   "skipWorkflowUsageWarning": true,
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": false
 }
