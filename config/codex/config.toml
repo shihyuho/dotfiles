@@ -16,7 +16,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-14T01:22:17Z"
+last_updated = "2026-07-22T09:56:15Z"
 source_type = "local"
 source = "/Users/matt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -26,15 +26,16 @@ source_type = "local"
 source = "/Users/matt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.softleader-agent-skills]
-last_updated = "2026-07-21T06:39:00Z"
-last_revision = "d7f9efe460b675adf77538a2520099ed076189cd"
+last_updated = "2026-07-23T08:37:05Z"
+last_revision = "0e5df918e93fed672eb231172865eba312834f0b"
 source_type = "git"
 source = "https://github.com/softleader/agent-skills.git"
 
 [marketplaces.pangu]
-last_updated = "2026-06-28T01:15:10Z"
-source_type = "local"
-source = "/Users/matt/code/github.com/shihyuho/pangu.js"
+last_updated = "2026-07-22T09:56:02Z"
+last_revision = "16ed0a82dfe99c2878f942e3e815910a2c356048"
+source_type = "git"
+source = "https://github.com/shihyuho/pangu.skill.git"
 
 [plugins."documents@openai-primary-runtime"]
 enabled = true
@@ -95,14 +96,14 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/matt/.codex"
 CODEX_HOME = "/Users/matt/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e2cad16d8d9f60f09c9f0951ec7dfdd9e8f59dedd06045c0b6827dc8fa8322f0"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,7182a69deb1cf34d457c66e124d0df74d480677b1136fc255b1a52074a5b4b6d"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.707.62119"
-SKY_CUA_SERVICE_PATH = "/Users/matt/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000387/Codex Computer Use.app"
+BROWSER_USE_CODEX_APP_VERSION = "26.715.70719"
+SKY_CUA_SERVICE_PATH = "/Users/matt/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000451/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.computer-use]
@@ -144,3 +145,8 @@ trusted_hash = "sha256:96cdc3d72ab4829110a424790993e1add46514d58a46fc92df2d347a9
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+
+[shell_environment_policy.set]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,7182a69deb1cf34d457c66e124d0df74d480677b1136fc255b1a52074a5b4b6d"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/matt/.codex"
