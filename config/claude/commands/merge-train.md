@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(gh repo view:*), Bash(gh pr list:*), Bash(gh pr view:*), Bash(gh pr merge:*), Bash(gh pr update-branch:*), Bash(gh api:*), Bash(git rev-parse:*), Read, Write, AskUserQuestion
-argument-hint: "[pr numbers…] [--method squash|merge|rebase] [--check <context>] [--timeout <seconds>]; empty = auto-discover approved PRs"
+argument-hint: "[pr numbers…] [--method squash|merge|rebase] [--check <context>] [--timeout <seconds>]; empty = PRs discussed in context, else auto-discover approved PRs"
 description: Land every approved PR on the default branch one at a time, driving auto-merge through a serialized update-branch queue
 ---
 
@@ -27,7 +27,7 @@ Nothing here merges a PR that GitHub would not merge on its own. Auto-merge does
 - `--method squash|merge|rebase` — merge method. When omitted, derive it in step 2.
 - `--check <context>` — a required check context, repeatable. When omitted, derive it in step 2.
 - `--timeout <seconds>` — per-PR wait budget. Default `2700` (45 minutes).
-- Empty — discover the queue in step 3.
+- Empty — infer before discovering. When the conversation so far makes it unambiguous which PRs this run is about, use those as the queue — same handling as an explicit queue (skip discovery in step 3, still run the approval and staleness report), except sorted by `createdAt` oldest first, since conversation order carries no ordering intent. Label the queue "inferred from conversation" in the step-4 plan so a wrong inference is visible before anything runs. Any doubt about which PRs were meant → discover the queue in step 3.
 
 ### 2. Establish the repo's merge rules
 
