@@ -13,7 +13,7 @@
       "Read(~/Documents/**)",
       "Read(~/tmp/**)",
       "Read(/tmp/**)",
-			"Bash(gh issue edit:*)"
+      "Bash(gh issue edit:*)"
     ],
     "deny": [
       "Bash(git reset --hard:*)",
