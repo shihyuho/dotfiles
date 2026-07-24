@@ -23,7 +23,6 @@
       "Bash(git restore .:*)",
       "Bash(gh repo delete:*)",
       "Bash(gh repo archive:*)",
-      "Bash(gh pr merge:*)",
       "Bash(gh issue delete:*)",
       "Bash(gh release delete:*)",
       "Bash(gh api * -X DELETE)",
