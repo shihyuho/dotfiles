@@ -1,6 +1,6 @@
 # Dotfiles Brewfile
 # Install all packages: brew bundle --file=~/dotfiles/brew/Brewfile
-# Updated: 2026-02-06
+# Updated: 2026-07-24
 
 # ============================================================================
 # Core System Tools
@@ -83,6 +83,9 @@ brew "terraform"  # If needed
 
 # Go
 brew "go"
+
+# Zig
+brew "zig@0.15"  # keg-only; add $(brew --prefix zig@0.15)/bin to PATH if needed
 
 # Node.js
 brew "nvm"
