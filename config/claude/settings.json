@@ -97,7 +97,8 @@
     "deprecated@softleader-agent-skills": true,
     "pangu@pangu": true,
     "mattpocock-skills@mattpocock": true,
-    "humanizer@humanizer": true
+    "humanizer@humanizer": true,
+    "i-have-adhd@i-have-adhd": true
   },
   "extraKnownMarketplaces": {
     "shihyuho-dotfiles": {
@@ -149,6 +150,12 @@
       "source": {
         "source": "github",
         "repo": "blader/humanizer"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
       }
     }
   },
